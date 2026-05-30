@@ -1,4 +1,4 @@
-import { validateConfig } from '@/lib';
+import { validateConfig } from '@/helpers';
 import { Logger } from '@nestjs/common';
 import { registerAs } from '@nestjs/config';
 import { IsNumber, IsString, Max, Min } from 'class-validator';
