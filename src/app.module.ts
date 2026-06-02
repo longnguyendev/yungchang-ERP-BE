@@ -4,13 +4,17 @@ import prismaConfig from '@/common/config/prisma.config';
 import SeverConfig from '@/common/config/sever.config';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { APP_GUARD } from '@nestjs/core';
+import { ThrottlerModule } from '@nestjs/throttler';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import emailConfig from './common/config/email.config';
 import jwtConfig from './common/config/jwt.config';
 import redisConfig from './common/config/redis.config';
+import { FIVE_MINUTES } from './constants';
 import { CoreModule } from './core/core.module';
+import { GqlThrottlerGuard, JwtAuthGuard, VerifyGuard } from './guards';
 import { AuthModule } from './modules/auth/auth.module';
 import { EmployeeModule } from './modules/employee/employee.module';
 import { UserAccountModule } from './modules/user-account/user-account.module';
@@ -31,6 +35,12 @@ import { UserTokenModule } from './modules/user-token/user-token.module';
       isGlobal: true,
       cache: true,
     }),
+    ThrottlerModule.forRoot([
+      {
+        ttl: FIVE_MINUTES,
+        limit: 100,
+      },
+    ]),
     CoreModule,
     EmployeeModule,
     UserAccountModule,
@@ -38,6 +48,20 @@ import { UserTokenModule } from './modules/user-token/user-token.module';
     AuthModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: APP_GUARD,
+      useClass: JwtAuthGuard,
+    },
+    {
+      provide: APP_GUARD,
+      useClass: GqlThrottlerGuard,
+    },
+    {
+      provide: APP_GUARD,
+      useClass: VerifyGuard,
+    },
+  ],
 })
 export class AppModule {}

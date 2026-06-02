@@ -7,6 +7,7 @@ import { ApolloDriverConfig } from '@nestjs/apollo';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { GqlOptionsFactory } from '@nestjs/graphql';
+import { Response, Request } from 'express';
 
 @Injectable()
 export class GqlConfigService implements GqlOptionsFactory {
@@ -30,6 +31,10 @@ export class GqlConfigService implements GqlOptionsFactory {
           ? ApolloServerPluginLandingPageProductionDefault()
           : ApolloServerPluginLandingPageLocalDefault(),
       ],
+      context: ({ req, res }: { req: Request; res: Response }) => ({
+        req,
+        res,
+      }),
     };
   }
 }

@@ -114,7 +114,7 @@ export class AuthService {
     };
     const expiresIn = this.configService.get('jwt.refreshExpirationTime', {
       infer: true,
-    })!;
+    }) as StringValue;
     const mode = this.configService.get('server.mode', { infer: true });
     const accessToken = await this.generateAccessToken(payload);
     const refreshToken = await this.generateRefreshToken(payload);
@@ -130,7 +130,7 @@ export class AuthService {
       httpOnly: true,
       secure: mode === 'production',
       sameSite: 'strict',
-      expires: new Date(Date.now() + ms(+expiresIn)),
+      expires: new Date(Date.now() + ms(expiresIn)),
     });
     return {
       accessToken,
