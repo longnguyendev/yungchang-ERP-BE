@@ -13,6 +13,6 @@ export class GqlThrottlerGuard extends ThrottlerGuard {
   }
 
   protected throwThrottlingException(): Promise<void> {
-    throw new TooManyRequestsException('Vượt quá giới hạn truy cập!');
+    throw new TooManyRequestsException();
   }
 }

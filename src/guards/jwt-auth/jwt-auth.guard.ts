@@ -1,3 +1,4 @@
+import { UnauthorizedException } from '@/common/exceptions';
 import { IS_PUBLIC_KEY } from '@/decorators';
 import { UserAccount } from '@/generated/prisma/browser';
 import { ExecutionContext, Injectable } from '@nestjs/common';
@@ -27,5 +28,18 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
   getRequest(context: ExecutionContext) {
     const ctx = GqlExecutionContext.create(context);
     return ctx.getContext<{ req: { user: UserAccount | undefined } }>().req;
+  }
+
+  handleRequest<UserAccount>(
+    err: any,
+    user: UserAccount | undefined,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    _info: any,
+  ) {
+    // You can throw an exception based on either "info" or "err" arguments
+    if (err || !user) {
+      throw err || new UnauthorizedException();
+    }
+    return user;
   }
 }

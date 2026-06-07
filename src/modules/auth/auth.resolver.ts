@@ -1,5 +1,11 @@
 import { ONE_MINUTES } from '@/constants';
-import { CurrentUser, Public, SkipVerify, Token } from '@/decorators';
+import {
+  CurrentUser,
+  Public,
+  RefreshToken,
+  SkipVerify,
+  Token,
+} from '@/decorators';
 import { JwtRefreshAuthGuard, LocalAuthGuard } from '@/guards';
 import { UseGuards } from '@nestjs/common';
 import { Args, Context, Mutation, Query, Resolver } from '@nestjs/graphql';
@@ -48,7 +54,10 @@ export class AuthResolver {
   @SkipVerify()
   @UseGuards(JwtRefreshAuthGuard)
   @Query(() => Auth)
-  refreshToken(@CurrentUser() user: UserAccount, @Token() token: string) {
+  refreshToken(
+    @CurrentUser() user: UserAccount,
+    @RefreshToken() token: string,
+  ) {
     return this.authService.refreshToken(user, token);
   }
 

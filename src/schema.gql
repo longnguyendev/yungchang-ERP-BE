@@ -1,0 +1,126 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Auth {
+  accessToken: String!
+}
+
+input ChangePasswordInput {
+  newPassword: String!
+  oldPassword: String!
+}
+
+input CreateEmployeeInput {
+  firstName: String!
+  id: String!
+  isActive: Boolean
+  lastName: String!
+}
+
+input CreateUserAccountInput {
+  email: String
+  employeeId: String!
+  password: String!
+  username: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Employee {
+  createdAt: DateTime!
+  deletedAt: DateTime
+  firstName: String!
+  id: String!
+  isActive: Boolean!
+  lastName: String!
+  updatedAt: DateTime!
+  userAccount: UserAccount
+}
+
+type MessageResult {
+  message: String!
+}
+
+type Mutation {
+  changePassword(changePasswordInput: ChangePasswordInput!): MessageResult!
+  createEmployee(createEmployeeInput: CreateEmployeeInput!): Employee!
+  createUserAccount(createUserAccountInput: CreateUserAccountInput!): UserAccount!
+  forgotPassword(email: String!): MessageResult!
+  regenerateVerifyCode: MessageResult!
+  removeEmployee(id: String!): Employee!
+  removeUserAccount(id: Int!): UserAccount!
+  resetPassword(resetPasswordInput: ResetPasswordInput!): MessageResult!
+  signIn(signInInput: SignInInput!): Auth!
+  signOut: UserToken!
+  signUp(signUpInput: SignUpInput!): Auth!
+  updateEmployee(updateEmployeeInput: UpdateEmployeeInput!): Employee!
+  updateUserAccount(employeeId: String!, updateUserAccountInput: UpdateUserAccountInput!): UserAccount!
+  verifyUser(verifyUserInput: VerifyUserInput!): UserAccount!
+}
+
+type Query {
+  employee(code: String!): Employee!
+  me: UserAccount!
+  refreshToken: Auth!
+  userAccount(employeeCode: String!): UserAccount!
+}
+
+input ResetPasswordInput {
+  email: String!
+  newPassword: String!
+  token: String!
+}
+
+input SignInInput {
+  password: String!
+  username: String!
+}
+
+input SignUpInput {
+  email: String
+  employeeId: String!
+  password: String!
+  username: String!
+}
+
+input UpdateEmployeeInput {
+  firstName: String
+  id: String!
+  isActive: Boolean
+  lastName: String
+}
+
+input UpdateUserAccountInput {
+  email: String
+  employeeId: String
+  password: String
+  username: String
+}
+
+type UserAccount {
+  createdAt: DateTime!
+  deletedAt: DateTime
+  email: String
+  employee: Employee!
+  employeeId: String!
+  id: Int!
+  isActive: Boolean!
+  updatedAt: DateTime!
+  username: String!
+  verified: Boolean!
+}
+
+type UserToken {
+  createdAt: DateTime!
+  deletedAt: DateTime
+  id: Int!
+  updatedAt: DateTime!
+}
+
+input VerifyUserInput {
+  code: String!
+}

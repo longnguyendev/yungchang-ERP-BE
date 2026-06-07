@@ -38,7 +38,7 @@ import { UserTokenModule } from './modules/user-token/user-token.module';
     ThrottlerModule.forRoot([
       {
         ttl: FIVE_MINUTES,
-        limit: 100,
+        limit: 50,
       },
     ]),
     CoreModule,

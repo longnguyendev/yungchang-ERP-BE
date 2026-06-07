@@ -1,7 +1,12 @@
+import {
+  EmployeeNotFoundException,
+  UserAccountAlreadyExistsException,
+  UserAccountEmployeeExistsException,
+} from '@/common/exceptions';
 import { UserAccountFindUniqueArgs } from '@/generated/prisma/models';
 import { hashPassword } from '@/helpers';
 import { PrismaService } from '@/prisma.service';
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 
 import { EmployeeService } from '../employee/employee.service';
 import { CreateUserAccountInput } from './dto/create-user-account.input';
@@ -20,21 +25,23 @@ export class UserAccountService {
       where: { id: rest.employeeId },
     });
     if (!employee) {
-      throw new NotFoundException('Employee with this code does not exist');
+      throw new EmployeeNotFoundException({ employeeId: rest.employeeId });
     }
     const existingAccount = await this.prismaService.userAccount.findUnique({
       where: { employeeId: rest.employeeId },
     });
     if (existingAccount) {
-      throw new NotFoundException(
-        'User account for this employee already exists',
-      );
+      throw new UserAccountEmployeeExistsException({
+        employeeId: rest.employeeId,
+      });
     }
     const existingUsername = await this.prismaService.userAccount.findUnique({
       where: { username: rest.username },
     });
     if (existingUsername) {
-      throw new NotFoundException('Username already exists');
+      throw new UserAccountAlreadyExistsException({
+        username: rest.username,
+      });
     }
     const passwordHash = await hashPassword(password);
 

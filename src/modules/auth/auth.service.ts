@@ -1,4 +1,5 @@
 import { AppConfig } from '@/common/config/app.config';
+import { UnauthorizedException } from '@/common/exceptions';
 import { SALT_OR_ROUNDS } from '@/constants';
 import { generateSecureOTP } from '@/helpers';
 import {
@@ -8,7 +9,6 @@ import {
   HttpStatus,
   Injectable,
   NotFoundException,
-  UnauthorizedException,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
@@ -61,7 +61,10 @@ export class AuthService {
     const expiresIn = this.configService.get('jwt.refreshExpirationTime', {
       infer: true,
     }) as StringValue;
-    return this.jwtService.signAsync(payload, { expiresIn });
+    return this.jwtService.signAsync(payload, {
+      expiresIn,
+      secret: this.configService.get('jwt.refreshSecret', { infer: true }),
+    });
   }
 
   generateResetToken(): string {
@@ -159,7 +162,7 @@ export class AuthService {
 
     const userToken = await this.userTokenService.findOne({
       where: {
-        accessToken: token,
+        refreshToken: token,
       },
     });
     if (!userToken) {
@@ -277,7 +280,7 @@ export class AuthService {
       password: oldPassword,
     });
     if (!user) {
-      throw new UnauthorizedException('Mật khẩu cũ không chính xác!');
+      throw new UnauthorizedException();
     }
     const hashedPassword = await this.hashPassword(newPassword);
     const { employeeId } = user;

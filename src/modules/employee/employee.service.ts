@@ -1,9 +1,10 @@
+import { EmployeeAlreadyExistsException } from '@/common/exceptions/employee/employee-already-exists.exception';
 import {
   EmployeeFindManyArgs,
   EmployeeFindUniqueArgs,
 } from '@/generated/prisma/models';
 import { PrismaService } from '@/prisma.service';
-import { ConflictException, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 
 import { CreateEmployeeInput } from './dto/create-employee.input';
 import { UpdateEmployeeInput } from './dto/update-employee.input';
@@ -17,7 +18,9 @@ export class EmployeeService {
     });
 
     if (employee) {
-      throw new ConflictException('Employee with this id already exists');
+      throw new EmployeeAlreadyExistsException({
+        employeeId: createEmployeeInput.id,
+      });
     }
     return this.prismaService.employee.create({
       data: createEmployeeInput,
