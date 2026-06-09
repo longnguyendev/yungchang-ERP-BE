@@ -6,7 +6,7 @@ import { BaseException } from '../base.exception';
 export class UnauthorizedException extends BaseException {
   constructor() {
     super({
-      i18nKey: I18N_KEYS.SERVER_ERRORS.SYSTEM.UNAUTHORIZED,
+      i18nKey: I18N_KEYS.ERRORS.SYSTEM.UNAUTHORIZED,
       statusCode: HttpStatus.UNAUTHORIZED,
     });
   }

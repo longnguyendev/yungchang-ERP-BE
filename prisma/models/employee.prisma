@@ -1,10 +1,26 @@
 model Employee {
-  id            String          @id
-  firstName     String
-  lastName      String
-  account       UserAccount?
-  createdAt     DateTime        @default(now())
-  updatedAt     DateTime        @updatedAt
-  deletedAt     DateTime?
-  isActive      Boolean         @default(true)
+  id        String       @id
+  firstName String
+  lastName  String
+  account   UserAccount?
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+  deletedAt DateTime?
+  isActive  Boolean      @default(true)
+  createdBy String?
+  updatedBy String?
+
+  // Self-referential relations for audit
+  createdByEmployee Employee? @relation("EmpCreatedBy", fields: [createdBy], references: [id])
+  updatedByEmployee Employee? @relation("EmpUpdatedBy", fields: [updatedBy], references: [id])
+
+  // Inverse relations — records created/updated/deleted by this employee
+  employeesCreated Employee[] @relation("EmpCreatedBy")
+  employeesUpdated Employee[] @relation("EmpUpdatedBy")
+
+  // Inverse relations from other models
+  userAccountsCreated UserAccount[] @relation("UACreatedBy")
+  userAccountsUpdated UserAccount[] @relation("UAUpdatedBy")
+  userTokensCreated   UserToken[]   @relation("UTCreatedBy")
+  userTokensUpdated   UserToken[]   @relation("UTUpdatedBy")
 }

@@ -23,7 +23,9 @@ export class EmployeeService {
       });
     }
     return this.prismaService.employee.create({
-      data: createEmployeeInput,
+      data: {
+        ...createEmployeeInput,
+      },
     });
   }
 

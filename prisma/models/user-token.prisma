@@ -1,12 +1,19 @@
-model userToken {
-  id              Int    @id @default(autoincrement()) 
-  employeeId      String
-  refreshToken    String  @unique
-  accessToken     String  @unique
-  expiresAt       Int
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
-  deletedAt       DateTime?
+model UserToken {
+  id           Int       @id @default(autoincrement())
+  employeeId   String
+  refreshToken String    @unique
+  accessToken  String    @unique
+  expiresAt    Int
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
 
   userAccount UserAccount @relation(fields: [employeeId], references: [employeeId])
+
+  // Audit fields
+  createdBy String?
+  updatedBy String?
+
+  // Audit relations to Employee
+  createdByEmployee Employee? @relation("UTCreatedBy", fields: [createdBy], references: [id])
+  updatedByEmployee Employee? @relation("UTUpdatedBy", fields: [updatedBy], references: [id])
 }

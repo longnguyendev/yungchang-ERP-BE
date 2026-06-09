@@ -28,7 +28,7 @@ export type Employee = Prisma.EmployeeModel
  */
 export type UserAccount = Prisma.UserAccountModel
 /**
- * Model userToken
+ * Model UserToken
  * 
  */
-export type userToken = Prisma.userTokenModel
+export type UserToken = Prisma.UserTokenModel

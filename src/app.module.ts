@@ -14,7 +14,7 @@ import jwtConfig from './common/config/jwt.config';
 import redisConfig from './common/config/redis.config';
 import { FIVE_MINUTES } from './constants';
 import { CoreModule } from './core/core.module';
-import { GqlThrottlerGuard, JwtAuthGuard, VerifyGuard } from './guards';
+import { GqlThrottlerGuard, JwtAuthGuard } from './guards';
 import { AuthModule } from './modules/auth/auth.module';
 import { EmployeeModule } from './modules/employee/employee.module';
 import { UserAccountModule } from './modules/user-account/user-account.module';
@@ -42,6 +42,7 @@ import { UserTokenModule } from './modules/user-token/user-token.module';
       },
     ]),
     CoreModule,
+
     EmployeeModule,
     UserAccountModule,
     UserTokenModule,
@@ -57,10 +58,6 @@ import { UserTokenModule } from './modules/user-token/user-token.module';
     {
       provide: APP_GUARD,
       useClass: GqlThrottlerGuard,
-    },
-    {
-      provide: APP_GUARD,
-      useClass: VerifyGuard,
     },
   ],
 })

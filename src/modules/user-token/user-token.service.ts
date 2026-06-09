@@ -1,4 +1,4 @@
-import { userTokenFindUniqueArgs } from '@/generated/prisma/models';
+import { UserTokenFindUniqueArgs } from '@/generated/prisma/models';
 import { PrismaService } from '@/prisma.service';
 import { Injectable } from '@nestjs/common';
 
@@ -14,7 +14,7 @@ export class UserTokenService {
     });
   }
 
-  findOne(args: userTokenFindUniqueArgs) {
+  findOne(args: UserTokenFindUniqueArgs) {
     return this.prismaService.userToken.findUnique({
       ...args,
     });

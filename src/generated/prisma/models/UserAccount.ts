@@ -43,8 +43,9 @@ export type UserAccountMinAggregateOutputType = {
   isActive: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
-  deletedAt: Date | null
   verified: boolean | null
+  createdBy: string | null
+  updatedBy: string | null
 }
 
 export type UserAccountMaxAggregateOutputType = {
@@ -56,8 +57,9 @@ export type UserAccountMaxAggregateOutputType = {
   isActive: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
-  deletedAt: Date | null
   verified: boolean | null
+  createdBy: string | null
+  updatedBy: string | null
 }
 
 export type UserAccountCountAggregateOutputType = {
@@ -69,8 +71,9 @@ export type UserAccountCountAggregateOutputType = {
   isActive: number
   createdAt: number
   updatedAt: number
-  deletedAt: number
   verified: number
+  createdBy: number
+  updatedBy: number
   _all: number
 }
 
@@ -92,8 +95,9 @@ export type UserAccountMinAggregateInputType = {
   isActive?: true
   createdAt?: true
   updatedAt?: true
-  deletedAt?: true
   verified?: true
+  createdBy?: true
+  updatedBy?: true
 }
 
 export type UserAccountMaxAggregateInputType = {
@@ -105,8 +109,9 @@ export type UserAccountMaxAggregateInputType = {
   isActive?: true
   createdAt?: true
   updatedAt?: true
-  deletedAt?: true
   verified?: true
+  createdBy?: true
+  updatedBy?: true
 }
 
 export type UserAccountCountAggregateInputType = {
@@ -118,8 +123,9 @@ export type UserAccountCountAggregateInputType = {
   isActive?: true
   createdAt?: true
   updatedAt?: true
-  deletedAt?: true
   verified?: true
+  createdBy?: true
+  updatedBy?: true
   _all?: true
 }
 
@@ -218,8 +224,9 @@ export type UserAccountGroupByOutputType = {
   isActive: boolean
   createdAt: Date
   updatedAt: Date
-  deletedAt: Date | null
   verified: boolean
+  createdBy: string | null
+  updatedBy: string | null
   _count: UserAccountCountAggregateOutputType | null
   _avg: UserAccountAvgAggregateOutputType | null
   _sum: UserAccountSumAggregateOutputType | null
@@ -254,10 +261,13 @@ export type UserAccountWhereInput = {
   isActive?: Prisma.BoolFilter<"UserAccount"> | boolean
   createdAt?: Prisma.DateTimeFilter<"UserAccount"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"UserAccount"> | Date | string
-  deletedAt?: Prisma.DateTimeNullableFilter<"UserAccount"> | Date | string | null
   verified?: Prisma.BoolFilter<"UserAccount"> | boolean
+  createdBy?: Prisma.StringNullableFilter<"UserAccount"> | string | null
+  updatedBy?: Prisma.StringNullableFilter<"UserAccount"> | string | null
   employee?: Prisma.XOR<Prisma.EmployeeScalarRelationFilter, Prisma.EmployeeWhereInput>
   tokens?: Prisma.UserTokenListRelationFilter
+  createdByEmployee?: Prisma.XOR<Prisma.EmployeeNullableScalarRelationFilter, Prisma.EmployeeWhereInput> | null
+  updatedByEmployee?: Prisma.XOR<Prisma.EmployeeNullableScalarRelationFilter, Prisma.EmployeeWhereInput> | null
 }
 
 export type UserAccountOrderByWithRelationInput = {
@@ -269,10 +279,13 @@ export type UserAccountOrderByWithRelationInput = {
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   verified?: Prisma.SortOrder
+  createdBy?: Prisma.SortOrderInput | Prisma.SortOrder
+  updatedBy?: Prisma.SortOrderInput | Prisma.SortOrder
   employee?: Prisma.EmployeeOrderByWithRelationInput
-  tokens?: Prisma.userTokenOrderByRelationAggregateInput
+  tokens?: Prisma.UserTokenOrderByRelationAggregateInput
+  createdByEmployee?: Prisma.EmployeeOrderByWithRelationInput
+  updatedByEmployee?: Prisma.EmployeeOrderByWithRelationInput
 }
 
 export type UserAccountWhereUniqueInput = Prisma.AtLeast<{
@@ -287,10 +300,13 @@ export type UserAccountWhereUniqueInput = Prisma.AtLeast<{
   isActive?: Prisma.BoolFilter<"UserAccount"> | boolean
   createdAt?: Prisma.DateTimeFilter<"UserAccount"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"UserAccount"> | Date | string
-  deletedAt?: Prisma.DateTimeNullableFilter<"UserAccount"> | Date | string | null
   verified?: Prisma.BoolFilter<"UserAccount"> | boolean
+  createdBy?: Prisma.StringNullableFilter<"UserAccount"> | string | null
+  updatedBy?: Prisma.StringNullableFilter<"UserAccount"> | string | null
   employee?: Prisma.XOR<Prisma.EmployeeScalarRelationFilter, Prisma.EmployeeWhereInput>
   tokens?: Prisma.UserTokenListRelationFilter
+  createdByEmployee?: Prisma.XOR<Prisma.EmployeeNullableScalarRelationFilter, Prisma.EmployeeWhereInput> | null
+  updatedByEmployee?: Prisma.XOR<Prisma.EmployeeNullableScalarRelationFilter, Prisma.EmployeeWhereInput> | null
 }, "id" | "employeeId" | "username" | "email">
 
 export type UserAccountOrderByWithAggregationInput = {
@@ -302,8 +318,9 @@ export type UserAccountOrderByWithAggregationInput = {
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   verified?: Prisma.SortOrder
+  createdBy?: Prisma.SortOrderInput | Prisma.SortOrder
+  updatedBy?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.UserAccountCountOrderByAggregateInput
   _avg?: Prisma.UserAccountAvgOrderByAggregateInput
   _max?: Prisma.UserAccountMaxOrderByAggregateInput
@@ -323,8 +340,9 @@ export type UserAccountScalarWhereWithAggregatesInput = {
   isActive?: Prisma.BoolWithAggregatesFilter<"UserAccount"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"UserAccount"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"UserAccount"> | Date | string
-  deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"UserAccount"> | Date | string | null
   verified?: Prisma.BoolWithAggregatesFilter<"UserAccount"> | boolean
+  createdBy?: Prisma.StringNullableWithAggregatesFilter<"UserAccount"> | string | null
+  updatedBy?: Prisma.StringNullableWithAggregatesFilter<"UserAccount"> | string | null
 }
 
 export type UserAccountCreateInput = {
@@ -334,10 +352,11 @@ export type UserAccountCreateInput = {
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
   verified?: boolean
   employee: Prisma.EmployeeCreateNestedOneWithoutAccountInput
-  tokens?: Prisma.userTokenCreateNestedManyWithoutUserAccountInput
+  tokens?: Prisma.UserTokenCreateNestedManyWithoutUserAccountInput
+  createdByEmployee?: Prisma.EmployeeCreateNestedOneWithoutUserAccountsCreatedInput
+  updatedByEmployee?: Prisma.EmployeeCreateNestedOneWithoutUserAccountsUpdatedInput
 }
 
 export type UserAccountUncheckedCreateInput = {
@@ -349,9 +368,10 @@ export type UserAccountUncheckedCreateInput = {
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
   verified?: boolean
-  tokens?: Prisma.userTokenUncheckedCreateNestedManyWithoutUserAccountInput
+  createdBy?: string | null
+  updatedBy?: string | null
+  tokens?: Prisma.UserTokenUncheckedCreateNestedManyWithoutUserAccountInput
 }
 
 export type UserAccountUpdateInput = {
@@ -361,10 +381,11 @@ export type UserAccountUpdateInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   employee?: Prisma.EmployeeUpdateOneRequiredWithoutAccountNestedInput
-  tokens?: Prisma.userTokenUpdateManyWithoutUserAccountNestedInput
+  tokens?: Prisma.UserTokenUpdateManyWithoutUserAccountNestedInput
+  createdByEmployee?: Prisma.EmployeeUpdateOneWithoutUserAccountsCreatedNestedInput
+  updatedByEmployee?: Prisma.EmployeeUpdateOneWithoutUserAccountsUpdatedNestedInput
 }
 
 export type UserAccountUncheckedUpdateInput = {
@@ -376,9 +397,10 @@ export type UserAccountUncheckedUpdateInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  tokens?: Prisma.userTokenUncheckedUpdateManyWithoutUserAccountNestedInput
+  createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tokens?: Prisma.UserTokenUncheckedUpdateManyWithoutUserAccountNestedInput
 }
 
 export type UserAccountCreateManyInput = {
@@ -390,8 +412,9 @@ export type UserAccountCreateManyInput = {
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
   verified?: boolean
+  createdBy?: string | null
+  updatedBy?: string | null
 }
 
 export type UserAccountUpdateManyMutationInput = {
@@ -401,7 +424,6 @@ export type UserAccountUpdateManyMutationInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
@@ -414,13 +436,24 @@ export type UserAccountUncheckedUpdateManyInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type UserAccountNullableScalarRelationFilter = {
   is?: Prisma.UserAccountWhereInput | null
   isNot?: Prisma.UserAccountWhereInput | null
+}
+
+export type UserAccountListRelationFilter = {
+  every?: Prisma.UserAccountWhereInput
+  some?: Prisma.UserAccountWhereInput
+  none?: Prisma.UserAccountWhereInput
+}
+
+export type UserAccountOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type UserAccountCountOrderByAggregateInput = {
@@ -432,8 +465,9 @@ export type UserAccountCountOrderByAggregateInput = {
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  deletedAt?: Prisma.SortOrder
   verified?: Prisma.SortOrder
+  createdBy?: Prisma.SortOrder
+  updatedBy?: Prisma.SortOrder
 }
 
 export type UserAccountAvgOrderByAggregateInput = {
@@ -449,8 +483,9 @@ export type UserAccountMaxOrderByAggregateInput = {
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  deletedAt?: Prisma.SortOrder
   verified?: Prisma.SortOrder
+  createdBy?: Prisma.SortOrder
+  updatedBy?: Prisma.SortOrder
 }
 
 export type UserAccountMinOrderByAggregateInput = {
@@ -462,8 +497,9 @@ export type UserAccountMinOrderByAggregateInput = {
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  deletedAt?: Prisma.SortOrder
   verified?: Prisma.SortOrder
+  createdBy?: Prisma.SortOrder
+  updatedBy?: Prisma.SortOrder
 }
 
 export type UserAccountSumOrderByAggregateInput = {
@@ -481,10 +517,38 @@ export type UserAccountCreateNestedOneWithoutEmployeeInput = {
   connect?: Prisma.UserAccountWhereUniqueInput
 }
 
+export type UserAccountCreateNestedManyWithoutCreatedByEmployeeInput = {
+  create?: Prisma.XOR<Prisma.UserAccountCreateWithoutCreatedByEmployeeInput, Prisma.UserAccountUncheckedCreateWithoutCreatedByEmployeeInput> | Prisma.UserAccountCreateWithoutCreatedByEmployeeInput[] | Prisma.UserAccountUncheckedCreateWithoutCreatedByEmployeeInput[]
+  connectOrCreate?: Prisma.UserAccountCreateOrConnectWithoutCreatedByEmployeeInput | Prisma.UserAccountCreateOrConnectWithoutCreatedByEmployeeInput[]
+  createMany?: Prisma.UserAccountCreateManyCreatedByEmployeeInputEnvelope
+  connect?: Prisma.UserAccountWhereUniqueInput | Prisma.UserAccountWhereUniqueInput[]
+}
+
+export type UserAccountCreateNestedManyWithoutUpdatedByEmployeeInput = {
+  create?: Prisma.XOR<Prisma.UserAccountCreateWithoutUpdatedByEmployeeInput, Prisma.UserAccountUncheckedCreateWithoutUpdatedByEmployeeInput> | Prisma.UserAccountCreateWithoutUpdatedByEmployeeInput[] | Prisma.UserAccountUncheckedCreateWithoutUpdatedByEmployeeInput[]
+  connectOrCreate?: Prisma.UserAccountCreateOrConnectWithoutUpdatedByEmployeeInput | Prisma.UserAccountCreateOrConnectWithoutUpdatedByEmployeeInput[]
+  createMany?: Prisma.UserAccountCreateManyUpdatedByEmployeeInputEnvelope
+  connect?: Prisma.UserAccountWhereUniqueInput | Prisma.UserAccountWhereUniqueInput[]
+}
+
 export type UserAccountUncheckedCreateNestedOneWithoutEmployeeInput = {
   create?: Prisma.XOR<Prisma.UserAccountCreateWithoutEmployeeInput, Prisma.UserAccountUncheckedCreateWithoutEmployeeInput>
   connectOrCreate?: Prisma.UserAccountCreateOrConnectWithoutEmployeeInput
   connect?: Prisma.UserAccountWhereUniqueInput
+}
+
+export type UserAccountUncheckedCreateNestedManyWithoutCreatedByEmployeeInput = {
+  create?: Prisma.XOR<Prisma.UserAccountCreateWithoutCreatedByEmployeeInput, Prisma.UserAccountUncheckedCreateWithoutCreatedByEmployeeInput> | Prisma.UserAccountCreateWithoutCreatedByEmployeeInput[] | Prisma.UserAccountUncheckedCreateWithoutCreatedByEmployeeInput[]
+  connectOrCreate?: Prisma.UserAccountCreateOrConnectWithoutCreatedByEmployeeInput | Prisma.UserAccountCreateOrConnectWithoutCreatedByEmployeeInput[]
+  createMany?: Prisma.UserAccountCreateManyCreatedByEmployeeInputEnvelope
+  connect?: Prisma.UserAccountWhereUniqueInput | Prisma.UserAccountWhereUniqueInput[]
+}
+
+export type UserAccountUncheckedCreateNestedManyWithoutUpdatedByEmployeeInput = {
+  create?: Prisma.XOR<Prisma.UserAccountCreateWithoutUpdatedByEmployeeInput, Prisma.UserAccountUncheckedCreateWithoutUpdatedByEmployeeInput> | Prisma.UserAccountCreateWithoutUpdatedByEmployeeInput[] | Prisma.UserAccountUncheckedCreateWithoutUpdatedByEmployeeInput[]
+  connectOrCreate?: Prisma.UserAccountCreateOrConnectWithoutUpdatedByEmployeeInput | Prisma.UserAccountCreateOrConnectWithoutUpdatedByEmployeeInput[]
+  createMany?: Prisma.UserAccountCreateManyUpdatedByEmployeeInputEnvelope
+  connect?: Prisma.UserAccountWhereUniqueInput | Prisma.UserAccountWhereUniqueInput[]
 }
 
 export type UserAccountUpdateOneWithoutEmployeeNestedInput = {
@@ -497,6 +561,34 @@ export type UserAccountUpdateOneWithoutEmployeeNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserAccountUpdateToOneWithWhereWithoutEmployeeInput, Prisma.UserAccountUpdateWithoutEmployeeInput>, Prisma.UserAccountUncheckedUpdateWithoutEmployeeInput>
 }
 
+export type UserAccountUpdateManyWithoutCreatedByEmployeeNestedInput = {
+  create?: Prisma.XOR<Prisma.UserAccountCreateWithoutCreatedByEmployeeInput, Prisma.UserAccountUncheckedCreateWithoutCreatedByEmployeeInput> | Prisma.UserAccountCreateWithoutCreatedByEmployeeInput[] | Prisma.UserAccountUncheckedCreateWithoutCreatedByEmployeeInput[]
+  connectOrCreate?: Prisma.UserAccountCreateOrConnectWithoutCreatedByEmployeeInput | Prisma.UserAccountCreateOrConnectWithoutCreatedByEmployeeInput[]
+  upsert?: Prisma.UserAccountUpsertWithWhereUniqueWithoutCreatedByEmployeeInput | Prisma.UserAccountUpsertWithWhereUniqueWithoutCreatedByEmployeeInput[]
+  createMany?: Prisma.UserAccountCreateManyCreatedByEmployeeInputEnvelope
+  set?: Prisma.UserAccountWhereUniqueInput | Prisma.UserAccountWhereUniqueInput[]
+  disconnect?: Prisma.UserAccountWhereUniqueInput | Prisma.UserAccountWhereUniqueInput[]
+  delete?: Prisma.UserAccountWhereUniqueInput | Prisma.UserAccountWhereUniqueInput[]
+  connect?: Prisma.UserAccountWhereUniqueInput | Prisma.UserAccountWhereUniqueInput[]
+  update?: Prisma.UserAccountUpdateWithWhereUniqueWithoutCreatedByEmployeeInput | Prisma.UserAccountUpdateWithWhereUniqueWithoutCreatedByEmployeeInput[]
+  updateMany?: Prisma.UserAccountUpdateManyWithWhereWithoutCreatedByEmployeeInput | Prisma.UserAccountUpdateManyWithWhereWithoutCreatedByEmployeeInput[]
+  deleteMany?: Prisma.UserAccountScalarWhereInput | Prisma.UserAccountScalarWhereInput[]
+}
+
+export type UserAccountUpdateManyWithoutUpdatedByEmployeeNestedInput = {
+  create?: Prisma.XOR<Prisma.UserAccountCreateWithoutUpdatedByEmployeeInput, Prisma.UserAccountUncheckedCreateWithoutUpdatedByEmployeeInput> | Prisma.UserAccountCreateWithoutUpdatedByEmployeeInput[] | Prisma.UserAccountUncheckedCreateWithoutUpdatedByEmployeeInput[]
+  connectOrCreate?: Prisma.UserAccountCreateOrConnectWithoutUpdatedByEmployeeInput | Prisma.UserAccountCreateOrConnectWithoutUpdatedByEmployeeInput[]
+  upsert?: Prisma.UserAccountUpsertWithWhereUniqueWithoutUpdatedByEmployeeInput | Prisma.UserAccountUpsertWithWhereUniqueWithoutUpdatedByEmployeeInput[]
+  createMany?: Prisma.UserAccountCreateManyUpdatedByEmployeeInputEnvelope
+  set?: Prisma.UserAccountWhereUniqueInput | Prisma.UserAccountWhereUniqueInput[]
+  disconnect?: Prisma.UserAccountWhereUniqueInput | Prisma.UserAccountWhereUniqueInput[]
+  delete?: Prisma.UserAccountWhereUniqueInput | Prisma.UserAccountWhereUniqueInput[]
+  connect?: Prisma.UserAccountWhereUniqueInput | Prisma.UserAccountWhereUniqueInput[]
+  update?: Prisma.UserAccountUpdateWithWhereUniqueWithoutUpdatedByEmployeeInput | Prisma.UserAccountUpdateWithWhereUniqueWithoutUpdatedByEmployeeInput[]
+  updateMany?: Prisma.UserAccountUpdateManyWithWhereWithoutUpdatedByEmployeeInput | Prisma.UserAccountUpdateManyWithWhereWithoutUpdatedByEmployeeInput[]
+  deleteMany?: Prisma.UserAccountScalarWhereInput | Prisma.UserAccountScalarWhereInput[]
+}
+
 export type UserAccountUncheckedUpdateOneWithoutEmployeeNestedInput = {
   create?: Prisma.XOR<Prisma.UserAccountCreateWithoutEmployeeInput, Prisma.UserAccountUncheckedCreateWithoutEmployeeInput>
   connectOrCreate?: Prisma.UserAccountCreateOrConnectWithoutEmployeeInput
@@ -507,8 +599,32 @@ export type UserAccountUncheckedUpdateOneWithoutEmployeeNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserAccountUpdateToOneWithWhereWithoutEmployeeInput, Prisma.UserAccountUpdateWithoutEmployeeInput>, Prisma.UserAccountUncheckedUpdateWithoutEmployeeInput>
 }
 
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
+export type UserAccountUncheckedUpdateManyWithoutCreatedByEmployeeNestedInput = {
+  create?: Prisma.XOR<Prisma.UserAccountCreateWithoutCreatedByEmployeeInput, Prisma.UserAccountUncheckedCreateWithoutCreatedByEmployeeInput> | Prisma.UserAccountCreateWithoutCreatedByEmployeeInput[] | Prisma.UserAccountUncheckedCreateWithoutCreatedByEmployeeInput[]
+  connectOrCreate?: Prisma.UserAccountCreateOrConnectWithoutCreatedByEmployeeInput | Prisma.UserAccountCreateOrConnectWithoutCreatedByEmployeeInput[]
+  upsert?: Prisma.UserAccountUpsertWithWhereUniqueWithoutCreatedByEmployeeInput | Prisma.UserAccountUpsertWithWhereUniqueWithoutCreatedByEmployeeInput[]
+  createMany?: Prisma.UserAccountCreateManyCreatedByEmployeeInputEnvelope
+  set?: Prisma.UserAccountWhereUniqueInput | Prisma.UserAccountWhereUniqueInput[]
+  disconnect?: Prisma.UserAccountWhereUniqueInput | Prisma.UserAccountWhereUniqueInput[]
+  delete?: Prisma.UserAccountWhereUniqueInput | Prisma.UserAccountWhereUniqueInput[]
+  connect?: Prisma.UserAccountWhereUniqueInput | Prisma.UserAccountWhereUniqueInput[]
+  update?: Prisma.UserAccountUpdateWithWhereUniqueWithoutCreatedByEmployeeInput | Prisma.UserAccountUpdateWithWhereUniqueWithoutCreatedByEmployeeInput[]
+  updateMany?: Prisma.UserAccountUpdateManyWithWhereWithoutCreatedByEmployeeInput | Prisma.UserAccountUpdateManyWithWhereWithoutCreatedByEmployeeInput[]
+  deleteMany?: Prisma.UserAccountScalarWhereInput | Prisma.UserAccountScalarWhereInput[]
+}
+
+export type UserAccountUncheckedUpdateManyWithoutUpdatedByEmployeeNestedInput = {
+  create?: Prisma.XOR<Prisma.UserAccountCreateWithoutUpdatedByEmployeeInput, Prisma.UserAccountUncheckedCreateWithoutUpdatedByEmployeeInput> | Prisma.UserAccountCreateWithoutUpdatedByEmployeeInput[] | Prisma.UserAccountUncheckedCreateWithoutUpdatedByEmployeeInput[]
+  connectOrCreate?: Prisma.UserAccountCreateOrConnectWithoutUpdatedByEmployeeInput | Prisma.UserAccountCreateOrConnectWithoutUpdatedByEmployeeInput[]
+  upsert?: Prisma.UserAccountUpsertWithWhereUniqueWithoutUpdatedByEmployeeInput | Prisma.UserAccountUpsertWithWhereUniqueWithoutUpdatedByEmployeeInput[]
+  createMany?: Prisma.UserAccountCreateManyUpdatedByEmployeeInputEnvelope
+  set?: Prisma.UserAccountWhereUniqueInput | Prisma.UserAccountWhereUniqueInput[]
+  disconnect?: Prisma.UserAccountWhereUniqueInput | Prisma.UserAccountWhereUniqueInput[]
+  delete?: Prisma.UserAccountWhereUniqueInput | Prisma.UserAccountWhereUniqueInput[]
+  connect?: Prisma.UserAccountWhereUniqueInput | Prisma.UserAccountWhereUniqueInput[]
+  update?: Prisma.UserAccountUpdateWithWhereUniqueWithoutUpdatedByEmployeeInput | Prisma.UserAccountUpdateWithWhereUniqueWithoutUpdatedByEmployeeInput[]
+  updateMany?: Prisma.UserAccountUpdateManyWithWhereWithoutUpdatedByEmployeeInput | Prisma.UserAccountUpdateManyWithWhereWithoutUpdatedByEmployeeInput[]
+  deleteMany?: Prisma.UserAccountScalarWhereInput | Prisma.UserAccountScalarWhereInput[]
 }
 
 export type IntFieldUpdateOperationsInput = {
@@ -540,9 +656,10 @@ export type UserAccountCreateWithoutEmployeeInput = {
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
   verified?: boolean
-  tokens?: Prisma.userTokenCreateNestedManyWithoutUserAccountInput
+  tokens?: Prisma.UserTokenCreateNestedManyWithoutUserAccountInput
+  createdByEmployee?: Prisma.EmployeeCreateNestedOneWithoutUserAccountsCreatedInput
+  updatedByEmployee?: Prisma.EmployeeCreateNestedOneWithoutUserAccountsUpdatedInput
 }
 
 export type UserAccountUncheckedCreateWithoutEmployeeInput = {
@@ -553,14 +670,89 @@ export type UserAccountUncheckedCreateWithoutEmployeeInput = {
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
   verified?: boolean
-  tokens?: Prisma.userTokenUncheckedCreateNestedManyWithoutUserAccountInput
+  createdBy?: string | null
+  updatedBy?: string | null
+  tokens?: Prisma.UserTokenUncheckedCreateNestedManyWithoutUserAccountInput
 }
 
 export type UserAccountCreateOrConnectWithoutEmployeeInput = {
   where: Prisma.UserAccountWhereUniqueInput
   create: Prisma.XOR<Prisma.UserAccountCreateWithoutEmployeeInput, Prisma.UserAccountUncheckedCreateWithoutEmployeeInput>
+}
+
+export type UserAccountCreateWithoutCreatedByEmployeeInput = {
+  username: string
+  email?: string | null
+  password: string
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  verified?: boolean
+  employee: Prisma.EmployeeCreateNestedOneWithoutAccountInput
+  tokens?: Prisma.UserTokenCreateNestedManyWithoutUserAccountInput
+  updatedByEmployee?: Prisma.EmployeeCreateNestedOneWithoutUserAccountsUpdatedInput
+}
+
+export type UserAccountUncheckedCreateWithoutCreatedByEmployeeInput = {
+  id?: number
+  employeeId: string
+  username: string
+  email?: string | null
+  password: string
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  verified?: boolean
+  updatedBy?: string | null
+  tokens?: Prisma.UserTokenUncheckedCreateNestedManyWithoutUserAccountInput
+}
+
+export type UserAccountCreateOrConnectWithoutCreatedByEmployeeInput = {
+  where: Prisma.UserAccountWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserAccountCreateWithoutCreatedByEmployeeInput, Prisma.UserAccountUncheckedCreateWithoutCreatedByEmployeeInput>
+}
+
+export type UserAccountCreateManyCreatedByEmployeeInputEnvelope = {
+  data: Prisma.UserAccountCreateManyCreatedByEmployeeInput | Prisma.UserAccountCreateManyCreatedByEmployeeInput[]
+  skipDuplicates?: boolean
+}
+
+export type UserAccountCreateWithoutUpdatedByEmployeeInput = {
+  username: string
+  email?: string | null
+  password: string
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  verified?: boolean
+  employee: Prisma.EmployeeCreateNestedOneWithoutAccountInput
+  tokens?: Prisma.UserTokenCreateNestedManyWithoutUserAccountInput
+  createdByEmployee?: Prisma.EmployeeCreateNestedOneWithoutUserAccountsCreatedInput
+}
+
+export type UserAccountUncheckedCreateWithoutUpdatedByEmployeeInput = {
+  id?: number
+  employeeId: string
+  username: string
+  email?: string | null
+  password: string
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  verified?: boolean
+  createdBy?: string | null
+  tokens?: Prisma.UserTokenUncheckedCreateNestedManyWithoutUserAccountInput
+}
+
+export type UserAccountCreateOrConnectWithoutUpdatedByEmployeeInput = {
+  where: Prisma.UserAccountWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserAccountCreateWithoutUpdatedByEmployeeInput, Prisma.UserAccountUncheckedCreateWithoutUpdatedByEmployeeInput>
+}
+
+export type UserAccountCreateManyUpdatedByEmployeeInputEnvelope = {
+  data: Prisma.UserAccountCreateManyUpdatedByEmployeeInput | Prisma.UserAccountCreateManyUpdatedByEmployeeInput[]
+  skipDuplicates?: boolean
 }
 
 export type UserAccountUpsertWithoutEmployeeInput = {
@@ -581,9 +773,10 @@ export type UserAccountUpdateWithoutEmployeeInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  tokens?: Prisma.userTokenUpdateManyWithoutUserAccountNestedInput
+  tokens?: Prisma.UserTokenUpdateManyWithoutUserAccountNestedInput
+  createdByEmployee?: Prisma.EmployeeUpdateOneWithoutUserAccountsCreatedNestedInput
+  updatedByEmployee?: Prisma.EmployeeUpdateOneWithoutUserAccountsUpdatedNestedInput
 }
 
 export type UserAccountUncheckedUpdateWithoutEmployeeInput = {
@@ -594,9 +787,59 @@ export type UserAccountUncheckedUpdateWithoutEmployeeInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  tokens?: Prisma.userTokenUncheckedUpdateManyWithoutUserAccountNestedInput
+  createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tokens?: Prisma.UserTokenUncheckedUpdateManyWithoutUserAccountNestedInput
+}
+
+export type UserAccountUpsertWithWhereUniqueWithoutCreatedByEmployeeInput = {
+  where: Prisma.UserAccountWhereUniqueInput
+  update: Prisma.XOR<Prisma.UserAccountUpdateWithoutCreatedByEmployeeInput, Prisma.UserAccountUncheckedUpdateWithoutCreatedByEmployeeInput>
+  create: Prisma.XOR<Prisma.UserAccountCreateWithoutCreatedByEmployeeInput, Prisma.UserAccountUncheckedCreateWithoutCreatedByEmployeeInput>
+}
+
+export type UserAccountUpdateWithWhereUniqueWithoutCreatedByEmployeeInput = {
+  where: Prisma.UserAccountWhereUniqueInput
+  data: Prisma.XOR<Prisma.UserAccountUpdateWithoutCreatedByEmployeeInput, Prisma.UserAccountUncheckedUpdateWithoutCreatedByEmployeeInput>
+}
+
+export type UserAccountUpdateManyWithWhereWithoutCreatedByEmployeeInput = {
+  where: Prisma.UserAccountScalarWhereInput
+  data: Prisma.XOR<Prisma.UserAccountUpdateManyMutationInput, Prisma.UserAccountUncheckedUpdateManyWithoutCreatedByEmployeeInput>
+}
+
+export type UserAccountScalarWhereInput = {
+  AND?: Prisma.UserAccountScalarWhereInput | Prisma.UserAccountScalarWhereInput[]
+  OR?: Prisma.UserAccountScalarWhereInput[]
+  NOT?: Prisma.UserAccountScalarWhereInput | Prisma.UserAccountScalarWhereInput[]
+  id?: Prisma.IntFilter<"UserAccount"> | number
+  employeeId?: Prisma.StringFilter<"UserAccount"> | string
+  username?: Prisma.StringFilter<"UserAccount"> | string
+  email?: Prisma.StringNullableFilter<"UserAccount"> | string | null
+  password?: Prisma.StringFilter<"UserAccount"> | string
+  isActive?: Prisma.BoolFilter<"UserAccount"> | boolean
+  createdAt?: Prisma.DateTimeFilter<"UserAccount"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"UserAccount"> | Date | string
+  verified?: Prisma.BoolFilter<"UserAccount"> | boolean
+  createdBy?: Prisma.StringNullableFilter<"UserAccount"> | string | null
+  updatedBy?: Prisma.StringNullableFilter<"UserAccount"> | string | null
+}
+
+export type UserAccountUpsertWithWhereUniqueWithoutUpdatedByEmployeeInput = {
+  where: Prisma.UserAccountWhereUniqueInput
+  update: Prisma.XOR<Prisma.UserAccountUpdateWithoutUpdatedByEmployeeInput, Prisma.UserAccountUncheckedUpdateWithoutUpdatedByEmployeeInput>
+  create: Prisma.XOR<Prisma.UserAccountCreateWithoutUpdatedByEmployeeInput, Prisma.UserAccountUncheckedCreateWithoutUpdatedByEmployeeInput>
+}
+
+export type UserAccountUpdateWithWhereUniqueWithoutUpdatedByEmployeeInput = {
+  where: Prisma.UserAccountWhereUniqueInput
+  data: Prisma.XOR<Prisma.UserAccountUpdateWithoutUpdatedByEmployeeInput, Prisma.UserAccountUncheckedUpdateWithoutUpdatedByEmployeeInput>
+}
+
+export type UserAccountUpdateManyWithWhereWithoutUpdatedByEmployeeInput = {
+  where: Prisma.UserAccountScalarWhereInput
+  data: Prisma.XOR<Prisma.UserAccountUpdateManyMutationInput, Prisma.UserAccountUncheckedUpdateManyWithoutUpdatedByEmployeeInput>
 }
 
 export type UserAccountCreateWithoutTokensInput = {
@@ -606,9 +849,10 @@ export type UserAccountCreateWithoutTokensInput = {
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
   verified?: boolean
   employee: Prisma.EmployeeCreateNestedOneWithoutAccountInput
+  createdByEmployee?: Prisma.EmployeeCreateNestedOneWithoutUserAccountsCreatedInput
+  updatedByEmployee?: Prisma.EmployeeCreateNestedOneWithoutUserAccountsUpdatedInput
 }
 
 export type UserAccountUncheckedCreateWithoutTokensInput = {
@@ -620,8 +864,9 @@ export type UserAccountUncheckedCreateWithoutTokensInput = {
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
   verified?: boolean
+  createdBy?: string | null
+  updatedBy?: string | null
 }
 
 export type UserAccountCreateOrConnectWithoutTokensInput = {
@@ -647,9 +892,10 @@ export type UserAccountUpdateWithoutTokensInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   employee?: Prisma.EmployeeUpdateOneRequiredWithoutAccountNestedInput
+  createdByEmployee?: Prisma.EmployeeUpdateOneWithoutUserAccountsCreatedNestedInput
+  updatedByEmployee?: Prisma.EmployeeUpdateOneWithoutUserAccountsUpdatedNestedInput
 }
 
 export type UserAccountUncheckedUpdateWithoutTokensInput = {
@@ -661,8 +907,115 @@ export type UserAccountUncheckedUpdateWithoutTokensInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type UserAccountCreateManyCreatedByEmployeeInput = {
+  id?: number
+  employeeId: string
+  username: string
+  email?: string | null
+  password: string
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  verified?: boolean
+  updatedBy?: string | null
+}
+
+export type UserAccountCreateManyUpdatedByEmployeeInput = {
+  id?: number
+  employeeId: string
+  username: string
+  email?: string | null
+  password: string
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  verified?: boolean
+  createdBy?: string | null
+}
+
+export type UserAccountUpdateWithoutCreatedByEmployeeInput = {
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  employee?: Prisma.EmployeeUpdateOneRequiredWithoutAccountNestedInput
+  tokens?: Prisma.UserTokenUpdateManyWithoutUserAccountNestedInput
+  updatedByEmployee?: Prisma.EmployeeUpdateOneWithoutUserAccountsUpdatedNestedInput
+}
+
+export type UserAccountUncheckedUpdateWithoutCreatedByEmployeeInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  employeeId?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  updatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tokens?: Prisma.UserTokenUncheckedUpdateManyWithoutUserAccountNestedInput
+}
+
+export type UserAccountUncheckedUpdateManyWithoutCreatedByEmployeeInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  employeeId?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  updatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type UserAccountUpdateWithoutUpdatedByEmployeeInput = {
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  employee?: Prisma.EmployeeUpdateOneRequiredWithoutAccountNestedInput
+  tokens?: Prisma.UserTokenUpdateManyWithoutUserAccountNestedInput
+  createdByEmployee?: Prisma.EmployeeUpdateOneWithoutUserAccountsCreatedNestedInput
+}
+
+export type UserAccountUncheckedUpdateWithoutUpdatedByEmployeeInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  employeeId?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tokens?: Prisma.UserTokenUncheckedUpdateManyWithoutUserAccountNestedInput
+}
+
+export type UserAccountUncheckedUpdateManyWithoutUpdatedByEmployeeInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  employeeId?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -692,7 +1045,7 @@ export type UserAccountCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.
  * UserAccountCountOutputType without action
  */
 export type UserAccountCountOutputTypeCountTokensArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.userTokenWhereInput
+  where?: Prisma.UserTokenWhereInput
 }
 
 
@@ -705,10 +1058,13 @@ export type UserAccountSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   isActive?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  deletedAt?: boolean
   verified?: boolean
+  createdBy?: boolean
+  updatedBy?: boolean
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
   tokens?: boolean | Prisma.UserAccount$tokensArgs<ExtArgs>
+  createdByEmployee?: boolean | Prisma.UserAccount$createdByEmployeeArgs<ExtArgs>
+  updatedByEmployee?: boolean | Prisma.UserAccount$updatedByEmployeeArgs<ExtArgs>
   _count?: boolean | Prisma.UserAccountCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["userAccount"]>
 
@@ -721,9 +1077,12 @@ export type UserAccountSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   isActive?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  deletedAt?: boolean
   verified?: boolean
+  createdBy?: boolean
+  updatedBy?: boolean
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
+  createdByEmployee?: boolean | Prisma.UserAccount$createdByEmployeeArgs<ExtArgs>
+  updatedByEmployee?: boolean | Prisma.UserAccount$updatedByEmployeeArgs<ExtArgs>
 }, ExtArgs["result"]["userAccount"]>
 
 export type UserAccountSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -735,9 +1094,12 @@ export type UserAccountSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   isActive?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  deletedAt?: boolean
   verified?: boolean
+  createdBy?: boolean
+  updatedBy?: boolean
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
+  createdByEmployee?: boolean | Prisma.UserAccount$createdByEmployeeArgs<ExtArgs>
+  updatedByEmployee?: boolean | Prisma.UserAccount$updatedByEmployeeArgs<ExtArgs>
 }, ExtArgs["result"]["userAccount"]>
 
 export type UserAccountSelectScalar = {
@@ -749,28 +1111,37 @@ export type UserAccountSelectScalar = {
   isActive?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  deletedAt?: boolean
   verified?: boolean
+  createdBy?: boolean
+  updatedBy?: boolean
 }
 
-export type UserAccountOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "employeeId" | "username" | "email" | "password" | "isActive" | "createdAt" | "updatedAt" | "deletedAt" | "verified", ExtArgs["result"]["userAccount"]>
+export type UserAccountOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "employeeId" | "username" | "email" | "password" | "isActive" | "createdAt" | "updatedAt" | "verified" | "createdBy" | "updatedBy", ExtArgs["result"]["userAccount"]>
 export type UserAccountInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
   tokens?: boolean | Prisma.UserAccount$tokensArgs<ExtArgs>
+  createdByEmployee?: boolean | Prisma.UserAccount$createdByEmployeeArgs<ExtArgs>
+  updatedByEmployee?: boolean | Prisma.UserAccount$updatedByEmployeeArgs<ExtArgs>
   _count?: boolean | Prisma.UserAccountCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserAccountIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
+  createdByEmployee?: boolean | Prisma.UserAccount$createdByEmployeeArgs<ExtArgs>
+  updatedByEmployee?: boolean | Prisma.UserAccount$updatedByEmployeeArgs<ExtArgs>
 }
 export type UserAccountIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
+  createdByEmployee?: boolean | Prisma.UserAccount$createdByEmployeeArgs<ExtArgs>
+  updatedByEmployee?: boolean | Prisma.UserAccount$updatedByEmployeeArgs<ExtArgs>
 }
 
 export type $UserAccountPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "UserAccount"
   objects: {
     employee: Prisma.$EmployeePayload<ExtArgs>
-    tokens: Prisma.$userTokenPayload<ExtArgs>[]
+    tokens: Prisma.$UserTokenPayload<ExtArgs>[]
+    createdByEmployee: Prisma.$EmployeePayload<ExtArgs> | null
+    updatedByEmployee: Prisma.$EmployeePayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -781,8 +1152,9 @@ export type $UserAccountPayload<ExtArgs extends runtime.Types.Extensions.Interna
     isActive: boolean
     createdAt: Date
     updatedAt: Date
-    deletedAt: Date | null
     verified: boolean
+    createdBy: string | null
+    updatedBy: string | null
   }, ExtArgs["result"]["userAccount"]>
   composites: {}
 }
@@ -1178,7 +1550,9 @@ readonly fields: UserAccountFieldRefs;
 export interface Prisma__UserAccountClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   employee<T extends Prisma.EmployeeDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EmployeeDefaultArgs<ExtArgs>>): Prisma.Prisma__EmployeeClient<runtime.Types.Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  tokens<T extends Prisma.UserAccount$tokensArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserAccount$tokensArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$userTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  tokens<T extends Prisma.UserAccount$tokensArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserAccount$tokensArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  createdByEmployee<T extends Prisma.UserAccount$createdByEmployeeArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserAccount$createdByEmployeeArgs<ExtArgs>>): Prisma.Prisma__EmployeeClient<runtime.Types.Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  updatedByEmployee<T extends Prisma.UserAccount$updatedByEmployeeArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserAccount$updatedByEmployeeArgs<ExtArgs>>): Prisma.Prisma__EmployeeClient<runtime.Types.Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1216,8 +1590,9 @@ export interface UserAccountFieldRefs {
   readonly isActive: Prisma.FieldRef<"UserAccount", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"UserAccount", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"UserAccount", 'DateTime'>
-  readonly deletedAt: Prisma.FieldRef<"UserAccount", 'DateTime'>
   readonly verified: Prisma.FieldRef<"UserAccount", 'Boolean'>
+  readonly createdBy: Prisma.FieldRef<"UserAccount", 'String'>
+  readonly updatedBy: Prisma.FieldRef<"UserAccount", 'String'>
 }
     
 
@@ -1623,23 +1998,61 @@ export type UserAccountDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.I
  */
 export type UserAccount$tokensArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the userToken
+   * Select specific fields to fetch from the UserToken
    */
-  select?: Prisma.userTokenSelect<ExtArgs> | null
+  select?: Prisma.UserTokenSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the userToken
+   * Omit specific fields from the UserToken
    */
-  omit?: Prisma.userTokenOmit<ExtArgs> | null
+  omit?: Prisma.UserTokenOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.userTokenInclude<ExtArgs> | null
-  where?: Prisma.userTokenWhereInput
-  orderBy?: Prisma.userTokenOrderByWithRelationInput | Prisma.userTokenOrderByWithRelationInput[]
-  cursor?: Prisma.userTokenWhereUniqueInput
+  include?: Prisma.UserTokenInclude<ExtArgs> | null
+  where?: Prisma.UserTokenWhereInput
+  orderBy?: Prisma.UserTokenOrderByWithRelationInput | Prisma.UserTokenOrderByWithRelationInput[]
+  cursor?: Prisma.UserTokenWhereUniqueInput
   take?: number
   skip?: number
   distinct?: Prisma.UserTokenScalarFieldEnum | Prisma.UserTokenScalarFieldEnum[]
+}
+
+/**
+ * UserAccount.createdByEmployee
+ */
+export type UserAccount$createdByEmployeeArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Employee
+   */
+  select?: Prisma.EmployeeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Employee
+   */
+  omit?: Prisma.EmployeeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EmployeeInclude<ExtArgs> | null
+  where?: Prisma.EmployeeWhereInput
+}
+
+/**
+ * UserAccount.updatedByEmployee
+ */
+export type UserAccount$updatedByEmployeeArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Employee
+   */
+  select?: Prisma.EmployeeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Employee
+   */
+  omit?: Prisma.EmployeeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EmployeeInclude<ExtArgs> | null
+  where?: Prisma.EmployeeWhereInput
 }
 
 /**

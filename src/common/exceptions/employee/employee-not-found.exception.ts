@@ -6,7 +6,7 @@ import { BaseException } from '../base.exception';
 export class EmployeeNotFoundException extends BaseException {
   constructor({ employeeId }: { employeeId: string }) {
     super({
-      i18nKey: I18N_KEYS.SERVER_ERRORS.EMPLOYEE.NOT_FOUND,
+      i18nKey: I18N_KEYS.ERRORS.EMPLOYEE.NOT_FOUND,
       statusCode: HttpStatus.NOT_FOUND,
       params: { employeeId },
     });

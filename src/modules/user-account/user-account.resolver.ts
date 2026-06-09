@@ -1,4 +1,5 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { CurrentUser, Public } from '@/decorators';
+import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
 
 import { CreateUserAccountInput } from './dto/create-user-account.input';
 import { UpdateUserAccountInput } from './dto/update-user-account.input';
@@ -13,8 +14,9 @@ export class UserAccountResolver {
   createUserAccount(
     @Args('createUserAccountInput')
     createUserAccountInput: CreateUserAccountInput,
+    @CurrentUser() currentUser: UserAccount,
   ) {
-    return this.userAccountService.create(createUserAccountInput);
+    return this.userAccountService.create(createUserAccountInput, currentUser);
   }
 
   @Query(() => [UserAccount], { name: 'userAccount' })
@@ -22,10 +24,9 @@ export class UserAccountResolver {
     return this.userAccountService.findAll();
   }
 
+  @Public()
   @Query(() => UserAccount, { name: 'userAccount' })
-  findOneByEmployeeCode(
-    @Args('employeeCode', { type: () => String }) employeeId: string,
-  ) {
+  findOne(@Args('employeeCode', { type: () => String }) employeeId: string) {
     return this.userAccountService.findOne({
       where: {
         employeeId,
@@ -36,10 +37,15 @@ export class UserAccountResolver {
   @Mutation(() => UserAccount)
   updateUserAccount(
     @Args('employeeId', { type: () => String }) employeeId: string,
+    @CurrentUser() currentUser: UserAccount,
     @Args('updateUserAccountInput')
     updateUserAccountInput: UpdateUserAccountInput,
   ) {
-    return this.userAccountService.update(employeeId, updateUserAccountInput);
+    return this.userAccountService.update(
+      employeeId,
+      currentUser,
+      updateUserAccountInput,
+    );
   }
 
   @Mutation(() => UserAccount)

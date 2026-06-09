@@ -1,1 +1,2 @@
-export * from './unauthorized-exception';
+export * from './unauthorized.exception';
+export * from './forbidden.exception';

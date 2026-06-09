@@ -1,10 +1,9 @@
 import { AppConfig } from '@/common/config/app.config';
-import { UnauthorizedException } from '@/common/exceptions';
+import { ForbiddenException, UnauthorizedException } from '@/common/exceptions';
 import { SALT_OR_ROUNDS } from '@/constants';
 import { generateSecureOTP } from '@/helpers';
 import {
   BadRequestException,
-  ConflictException,
   HttpException,
   HttpStatus,
   Injectable,
@@ -19,7 +18,6 @@ import ms, { StringValue } from 'ms';
 
 import { RedisService } from '../../core/redis/redis.service';
 import { EmailService } from '../email/email.service';
-import { CreateUserAccountInput } from '../user-account/dto/create-user-account.input';
 import { UserAccount } from '../user-account/entities/user-account.entity';
 import { UserAccountService } from '../user-account/user-account.service';
 import { UserTokenService } from '../user-token/user-token.service';
@@ -90,28 +88,15 @@ export class AuthService {
     return null;
   }
 
-  async validateGoogleUser(
-    googleUser: CreateUserAccountInput,
-  ): Promise<UserAccount> {
-    const { email } = googleUser;
-    const user = await this.userAccountService.findOne({
-      where: { email },
-    });
-    if (user) {
-      return user;
-    }
-    return await this.userAccountService.create({
-      ...googleUser,
-      email,
-    });
-  }
-
   async isMatch(attempt: string, password: string): Promise<boolean> {
     return bcrypt.compare(attempt, password);
   }
 
   async signIn(user: UserAccount, context: Request): Promise<Auth> {
-    const { employeeId } = user;
+    const { employeeId, isActive, username } = user;
+    if (!isActive) {
+      throw new ForbiddenException({ username });
+    }
     const payload: Payload = {
       sub: employeeId,
     };
@@ -138,21 +123,6 @@ export class AuthService {
     return {
       accessToken,
     };
-  }
-
-  async signUp(
-    createUserDto: CreateUserAccountInput,
-    context: Request,
-  ): Promise<Auth> {
-    const { username } = createUserDto;
-    const user = await this.userAccountService.findOne({
-      where: { username },
-    });
-    if (user) {
-      throw new ConflictException('User Already Exists!');
-    }
-    const newUser = await this.userAccountService.create(createUserDto);
-    return this.signIn(newUser, context);
   }
 
   async refreshToken(user: UserAccount, token: string): Promise<Auth> {
@@ -202,6 +172,7 @@ export class AuthService {
     if (!userToken) {
       throw new UnauthorizedException();
     }
+
     return user;
   }
 
@@ -242,7 +213,10 @@ export class AuthService {
     return { message: 'Email đặt lại mật khẩu đã được gửi!' };
   }
 
-  async resetPassword(resetPasswordInput: ResetPasswordInput) {
+  async resetPassword(
+    resetPasswordInput: ResetPasswordInput,
+    currentUser: UserAccount,
+  ) {
     const { newPassword, token, email } = resetPasswordInput;
     const user = await this.userAccountService.findOne({
       where: {
@@ -260,7 +234,7 @@ export class AuthService {
     const { employeeId } = user;
     const key = `${aliasResetPassword}:${employeeId}`;
     await Promise.all([
-      this.userAccountService.update(employeeId, {
+      this.userAccountService.update(employeeId, currentUser, {
         password: hashedPassword,
       }),
       this.redisService.del(key),
@@ -273,6 +247,7 @@ export class AuthService {
     changePasswordInput: ChangePasswordInput & {
       username: string;
     },
+    currentUser: UserAccount,
   ) {
     const { username, newPassword, oldPassword } = changePasswordInput;
     const user = await this.validateUser({
@@ -284,7 +259,7 @@ export class AuthService {
     }
     const hashedPassword = await this.hashPassword(newPassword);
     const { employeeId } = user;
-    await this.userAccountService.update(employeeId, {
+    await this.userAccountService.update(employeeId, currentUser, {
       password: hashedPassword,
     });
     return { message: 'Mật khẩu đã được đổi thành công!' };
@@ -294,6 +269,7 @@ export class AuthService {
     verifyUserInput: VerifyUserInput & {
       user: UserAccount;
     },
+    currentUser: UserAccount,
   ) {
     const {
       code,
@@ -306,7 +282,7 @@ export class AuthService {
     }
     const key = `${aliasVerifyUser}:${id}`;
     await this.redisService.del(key);
-    return this.userAccountService.update(id, {
+    return this.userAccountService.update(id, currentUser, {
       verified: true,
     });
   }

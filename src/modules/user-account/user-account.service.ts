@@ -11,6 +11,7 @@ import { Injectable } from '@nestjs/common';
 import { EmployeeService } from '../employee/employee.service';
 import { CreateUserAccountInput } from './dto/create-user-account.input';
 import { UpdateUserAccountInput } from './dto/update-user-account.input';
+import { UserAccount } from './entities/user-account.entity';
 
 @Injectable()
 export class UserAccountService {
@@ -18,8 +19,9 @@ export class UserAccountService {
     private readonly prismaService: PrismaService,
     private readonly employeeService: EmployeeService,
   ) {}
-  async create(createUserAccountInput: CreateUserAccountInput) {
-    const { password, ...rest } = createUserAccountInput;
+
+  async create(dto: CreateUserAccountInput, currentUser?: UserAccount) {
+    const { password, ...rest } = dto;
 
     const employee = await this.employeeService.findOne({
       where: { id: rest.employeeId },
@@ -46,7 +48,12 @@ export class UserAccountService {
     const passwordHash = await hashPassword(password);
 
     return this.prismaService.userAccount.create({
-      data: { ...rest, password: passwordHash },
+      data: {
+        ...rest,
+        password: passwordHash,
+        createdBy: currentUser?.employeeId,
+        verified: true,
+      },
       include: { employee: true },
     });
   }
@@ -54,6 +61,9 @@ export class UserAccountService {
   findAll(args?: UserAccountFindUniqueArgs) {
     return this.prismaService.userAccount.findMany({
       ...args,
+      include: {
+        employee: true,
+      },
     });
   }
 
@@ -64,16 +74,22 @@ export class UserAccountService {
     });
   }
 
-  update(employeeId: string, updateUserAccountInput: UpdateUserAccountInput) {
+  update(
+    employeeId: string,
+    currentUser: UserAccount,
+    updateUserAccountInput: UpdateUserAccountInput,
+  ) {
     return this.prismaService.userAccount.update({
       where: { employeeId },
-      data: updateUserAccountInput,
+      data: { ...updateUserAccountInput, createdBy: currentUser.employeeId },
+      include: { employee: true },
     });
   }
 
   remove(id: number) {
     return this.prismaService.userAccount.delete({
       where: { id },
+      include: { employee: true },
     });
   }
 }

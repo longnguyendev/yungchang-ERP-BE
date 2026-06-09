@@ -4,7 +4,7 @@
 // biome-ignore-all lint: generated file
 // @ts-nocheck 
 /*
- * This file exports the `userToken` model and its related types.
+ * This file exports the `UserToken` model and its related types.
  *
  * 🟢 You can import this file directly.
  */
@@ -13,10 +13,10 @@ import type * as $Enums from "../enums.js"
 import type * as Prisma from "../internal/prismaNamespace.js"
 
 /**
- * Model userToken
+ * Model UserToken
  * 
  */
-export type userTokenModel = runtime.Types.Result.DefaultSelection<Prisma.$userTokenPayload>
+export type UserTokenModel = runtime.Types.Result.DefaultSelection<Prisma.$UserTokenPayload>
 
 export type AggregateUserToken = {
   _count: UserTokenCountAggregateOutputType | null
@@ -44,7 +44,8 @@ export type UserTokenMinAggregateOutputType = {
   expiresAt: number | null
   createdAt: Date | null
   updatedAt: Date | null
-  deletedAt: Date | null
+  createdBy: string | null
+  updatedBy: string | null
 }
 
 export type UserTokenMaxAggregateOutputType = {
@@ -55,7 +56,8 @@ export type UserTokenMaxAggregateOutputType = {
   expiresAt: number | null
   createdAt: Date | null
   updatedAt: Date | null
-  deletedAt: Date | null
+  createdBy: string | null
+  updatedBy: string | null
 }
 
 export type UserTokenCountAggregateOutputType = {
@@ -66,7 +68,8 @@ export type UserTokenCountAggregateOutputType = {
   expiresAt: number
   createdAt: number
   updatedAt: number
-  deletedAt: number
+  createdBy: number
+  updatedBy: number
   _all: number
 }
 
@@ -89,7 +92,8 @@ export type UserTokenMinAggregateInputType = {
   expiresAt?: true
   createdAt?: true
   updatedAt?: true
-  deletedAt?: true
+  createdBy?: true
+  updatedBy?: true
 }
 
 export type UserTokenMaxAggregateInputType = {
@@ -100,7 +104,8 @@ export type UserTokenMaxAggregateInputType = {
   expiresAt?: true
   createdAt?: true
   updatedAt?: true
-  deletedAt?: true
+  createdBy?: true
+  updatedBy?: true
 }
 
 export type UserTokenCountAggregateInputType = {
@@ -111,43 +116,44 @@ export type UserTokenCountAggregateInputType = {
   expiresAt?: true
   createdAt?: true
   updatedAt?: true
-  deletedAt?: true
+  createdBy?: true
+  updatedBy?: true
   _all?: true
 }
 
 export type UserTokenAggregateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Filter which userToken to aggregate.
+   * Filter which UserToken to aggregate.
    */
-  where?: Prisma.userTokenWhereInput
+  where?: Prisma.UserTokenWhereInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    * 
-   * Determine the order of userTokens to fetch.
+   * Determine the order of UserTokens to fetch.
    */
-  orderBy?: Prisma.userTokenOrderByWithRelationInput | Prisma.userTokenOrderByWithRelationInput[]
+  orderBy?: Prisma.UserTokenOrderByWithRelationInput | Prisma.UserTokenOrderByWithRelationInput[]
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    * 
    * Sets the start position
    */
-  cursor?: Prisma.userTokenWhereUniqueInput
+  cursor?: Prisma.UserTokenWhereUniqueInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Take `±n` userTokens from the position of the cursor.
+   * Take `±n` UserTokens from the position of the cursor.
    */
   take?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Skip the first `n` userTokens.
+   * Skip the first `n` UserTokens.
    */
   skip?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
-   * Count returned userTokens
+   * Count returned UserTokens
   **/
   _count?: true | UserTokenCountAggregateInputType
   /**
@@ -187,11 +193,11 @@ export type GetUserTokenAggregateType<T extends UserTokenAggregateArgs> = {
 
 
 
-export type userTokenGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.userTokenWhereInput
-  orderBy?: Prisma.userTokenOrderByWithAggregationInput | Prisma.userTokenOrderByWithAggregationInput[]
+export type UserTokenGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.UserTokenWhereInput
+  orderBy?: Prisma.UserTokenOrderByWithAggregationInput | Prisma.UserTokenOrderByWithAggregationInput[]
   by: Prisma.UserTokenScalarFieldEnum[] | Prisma.UserTokenScalarFieldEnum
-  having?: Prisma.userTokenScalarWhereWithAggregatesInput
+  having?: Prisma.UserTokenScalarWhereWithAggregatesInput
   take?: number
   skip?: number
   _count?: UserTokenCountAggregateInputType | true
@@ -209,7 +215,8 @@ export type UserTokenGroupByOutputType = {
   expiresAt: number
   createdAt: Date
   updatedAt: Date
-  deletedAt: Date | null
+  createdBy: string | null
+  updatedBy: string | null
   _count: UserTokenCountAggregateOutputType | null
   _avg: UserTokenAvgAggregateOutputType | null
   _sum: UserTokenSumAggregateOutputType | null
@@ -217,7 +224,7 @@ export type UserTokenGroupByOutputType = {
   _max: UserTokenMaxAggregateOutputType | null
 }
 
-export type GetUserTokenGroupByPayload<T extends userTokenGroupByArgs> = Prisma.PrismaPromise<
+export type GetUserTokenGroupByPayload<T extends UserTokenGroupByArgs> = Prisma.PrismaPromise<
   Array<
     Prisma.PickEnumerable<UserTokenGroupByOutputType, T['by']> &
       {
@@ -232,22 +239,25 @@ export type GetUserTokenGroupByPayload<T extends userTokenGroupByArgs> = Prisma.
 
 
 
-export type userTokenWhereInput = {
-  AND?: Prisma.userTokenWhereInput | Prisma.userTokenWhereInput[]
-  OR?: Prisma.userTokenWhereInput[]
-  NOT?: Prisma.userTokenWhereInput | Prisma.userTokenWhereInput[]
-  id?: Prisma.IntFilter<"userToken"> | number
-  employeeId?: Prisma.StringFilter<"userToken"> | string
-  refreshToken?: Prisma.StringFilter<"userToken"> | string
-  accessToken?: Prisma.StringFilter<"userToken"> | string
-  expiresAt?: Prisma.IntFilter<"userToken"> | number
-  createdAt?: Prisma.DateTimeFilter<"userToken"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"userToken"> | Date | string
-  deletedAt?: Prisma.DateTimeNullableFilter<"userToken"> | Date | string | null
+export type UserTokenWhereInput = {
+  AND?: Prisma.UserTokenWhereInput | Prisma.UserTokenWhereInput[]
+  OR?: Prisma.UserTokenWhereInput[]
+  NOT?: Prisma.UserTokenWhereInput | Prisma.UserTokenWhereInput[]
+  id?: Prisma.IntFilter<"UserToken"> | number
+  employeeId?: Prisma.StringFilter<"UserToken"> | string
+  refreshToken?: Prisma.StringFilter<"UserToken"> | string
+  accessToken?: Prisma.StringFilter<"UserToken"> | string
+  expiresAt?: Prisma.IntFilter<"UserToken"> | number
+  createdAt?: Prisma.DateTimeFilter<"UserToken"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"UserToken"> | Date | string
+  createdBy?: Prisma.StringNullableFilter<"UserToken"> | string | null
+  updatedBy?: Prisma.StringNullableFilter<"UserToken"> | string | null
   userAccount?: Prisma.XOR<Prisma.UserAccountScalarRelationFilter, Prisma.UserAccountWhereInput>
+  createdByEmployee?: Prisma.XOR<Prisma.EmployeeNullableScalarRelationFilter, Prisma.EmployeeWhereInput> | null
+  updatedByEmployee?: Prisma.XOR<Prisma.EmployeeNullableScalarRelationFilter, Prisma.EmployeeWhereInput> | null
 }
 
-export type userTokenOrderByWithRelationInput = {
+export type UserTokenOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   employeeId?: Prisma.SortOrder
   refreshToken?: Prisma.SortOrder
@@ -255,26 +265,32 @@ export type userTokenOrderByWithRelationInput = {
   expiresAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  createdBy?: Prisma.SortOrderInput | Prisma.SortOrder
+  updatedBy?: Prisma.SortOrderInput | Prisma.SortOrder
   userAccount?: Prisma.UserAccountOrderByWithRelationInput
+  createdByEmployee?: Prisma.EmployeeOrderByWithRelationInput
+  updatedByEmployee?: Prisma.EmployeeOrderByWithRelationInput
 }
 
-export type userTokenWhereUniqueInput = Prisma.AtLeast<{
+export type UserTokenWhereUniqueInput = Prisma.AtLeast<{
   id?: number
   refreshToken?: string
   accessToken?: string
-  AND?: Prisma.userTokenWhereInput | Prisma.userTokenWhereInput[]
-  OR?: Prisma.userTokenWhereInput[]
-  NOT?: Prisma.userTokenWhereInput | Prisma.userTokenWhereInput[]
-  employeeId?: Prisma.StringFilter<"userToken"> | string
-  expiresAt?: Prisma.IntFilter<"userToken"> | number
-  createdAt?: Prisma.DateTimeFilter<"userToken"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"userToken"> | Date | string
-  deletedAt?: Prisma.DateTimeNullableFilter<"userToken"> | Date | string | null
+  AND?: Prisma.UserTokenWhereInput | Prisma.UserTokenWhereInput[]
+  OR?: Prisma.UserTokenWhereInput[]
+  NOT?: Prisma.UserTokenWhereInput | Prisma.UserTokenWhereInput[]
+  employeeId?: Prisma.StringFilter<"UserToken"> | string
+  expiresAt?: Prisma.IntFilter<"UserToken"> | number
+  createdAt?: Prisma.DateTimeFilter<"UserToken"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"UserToken"> | Date | string
+  createdBy?: Prisma.StringNullableFilter<"UserToken"> | string | null
+  updatedBy?: Prisma.StringNullableFilter<"UserToken"> | string | null
   userAccount?: Prisma.XOR<Prisma.UserAccountScalarRelationFilter, Prisma.UserAccountWhereInput>
+  createdByEmployee?: Prisma.XOR<Prisma.EmployeeNullableScalarRelationFilter, Prisma.EmployeeWhereInput> | null
+  updatedByEmployee?: Prisma.XOR<Prisma.EmployeeNullableScalarRelationFilter, Prisma.EmployeeWhereInput> | null
 }, "id" | "refreshToken" | "accessToken">
 
-export type userTokenOrderByWithAggregationInput = {
+export type UserTokenOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   employeeId?: Prisma.SortOrder
   refreshToken?: Prisma.SortOrder
@@ -282,39 +298,42 @@ export type userTokenOrderByWithAggregationInput = {
   expiresAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  _count?: Prisma.userTokenCountOrderByAggregateInput
-  _avg?: Prisma.userTokenAvgOrderByAggregateInput
-  _max?: Prisma.userTokenMaxOrderByAggregateInput
-  _min?: Prisma.userTokenMinOrderByAggregateInput
-  _sum?: Prisma.userTokenSumOrderByAggregateInput
+  createdBy?: Prisma.SortOrderInput | Prisma.SortOrder
+  updatedBy?: Prisma.SortOrderInput | Prisma.SortOrder
+  _count?: Prisma.UserTokenCountOrderByAggregateInput
+  _avg?: Prisma.UserTokenAvgOrderByAggregateInput
+  _max?: Prisma.UserTokenMaxOrderByAggregateInput
+  _min?: Prisma.UserTokenMinOrderByAggregateInput
+  _sum?: Prisma.UserTokenSumOrderByAggregateInput
 }
 
-export type userTokenScalarWhereWithAggregatesInput = {
-  AND?: Prisma.userTokenScalarWhereWithAggregatesInput | Prisma.userTokenScalarWhereWithAggregatesInput[]
-  OR?: Prisma.userTokenScalarWhereWithAggregatesInput[]
-  NOT?: Prisma.userTokenScalarWhereWithAggregatesInput | Prisma.userTokenScalarWhereWithAggregatesInput[]
-  id?: Prisma.IntWithAggregatesFilter<"userToken"> | number
-  employeeId?: Prisma.StringWithAggregatesFilter<"userToken"> | string
-  refreshToken?: Prisma.StringWithAggregatesFilter<"userToken"> | string
-  accessToken?: Prisma.StringWithAggregatesFilter<"userToken"> | string
-  expiresAt?: Prisma.IntWithAggregatesFilter<"userToken"> | number
-  createdAt?: Prisma.DateTimeWithAggregatesFilter<"userToken"> | Date | string
-  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"userToken"> | Date | string
-  deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"userToken"> | Date | string | null
+export type UserTokenScalarWhereWithAggregatesInput = {
+  AND?: Prisma.UserTokenScalarWhereWithAggregatesInput | Prisma.UserTokenScalarWhereWithAggregatesInput[]
+  OR?: Prisma.UserTokenScalarWhereWithAggregatesInput[]
+  NOT?: Prisma.UserTokenScalarWhereWithAggregatesInput | Prisma.UserTokenScalarWhereWithAggregatesInput[]
+  id?: Prisma.IntWithAggregatesFilter<"UserToken"> | number
+  employeeId?: Prisma.StringWithAggregatesFilter<"UserToken"> | string
+  refreshToken?: Prisma.StringWithAggregatesFilter<"UserToken"> | string
+  accessToken?: Prisma.StringWithAggregatesFilter<"UserToken"> | string
+  expiresAt?: Prisma.IntWithAggregatesFilter<"UserToken"> | number
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"UserToken"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"UserToken"> | Date | string
+  createdBy?: Prisma.StringNullableWithAggregatesFilter<"UserToken"> | string | null
+  updatedBy?: Prisma.StringNullableWithAggregatesFilter<"UserToken"> | string | null
 }
 
-export type userTokenCreateInput = {
+export type UserTokenCreateInput = {
   refreshToken: string
   accessToken: string
   expiresAt: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
   userAccount: Prisma.UserAccountCreateNestedOneWithoutTokensInput
+  createdByEmployee?: Prisma.EmployeeCreateNestedOneWithoutUserTokensCreatedInput
+  updatedByEmployee?: Prisma.EmployeeCreateNestedOneWithoutUserTokensUpdatedInput
 }
 
-export type userTokenUncheckedCreateInput = {
+export type UserTokenUncheckedCreateInput = {
   id?: number
   employeeId: string
   refreshToken: string
@@ -322,20 +341,22 @@ export type userTokenUncheckedCreateInput = {
   expiresAt: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
+  createdBy?: string | null
+  updatedBy?: string | null
 }
 
-export type userTokenUpdateInput = {
+export type UserTokenUpdateInput = {
   refreshToken?: Prisma.StringFieldUpdateOperationsInput | string
   accessToken?: Prisma.StringFieldUpdateOperationsInput | string
   expiresAt?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   userAccount?: Prisma.UserAccountUpdateOneRequiredWithoutTokensNestedInput
+  createdByEmployee?: Prisma.EmployeeUpdateOneWithoutUserTokensCreatedNestedInput
+  updatedByEmployee?: Prisma.EmployeeUpdateOneWithoutUserTokensUpdatedNestedInput
 }
 
-export type userTokenUncheckedUpdateInput = {
+export type UserTokenUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   employeeId?: Prisma.StringFieldUpdateOperationsInput | string
   refreshToken?: Prisma.StringFieldUpdateOperationsInput | string
@@ -343,10 +364,11 @@ export type userTokenUncheckedUpdateInput = {
   expiresAt?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
-export type userTokenCreateManyInput = {
+export type UserTokenCreateManyInput = {
   id?: number
   employeeId: string
   refreshToken: string
@@ -354,19 +376,19 @@ export type userTokenCreateManyInput = {
   expiresAt: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
+  createdBy?: string | null
+  updatedBy?: string | null
 }
 
-export type userTokenUpdateManyMutationInput = {
+export type UserTokenUpdateManyMutationInput = {
   refreshToken?: Prisma.StringFieldUpdateOperationsInput | string
   accessToken?: Prisma.StringFieldUpdateOperationsInput | string
   expiresAt?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
-export type userTokenUncheckedUpdateManyInput = {
+export type UserTokenUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   employeeId?: Prisma.StringFieldUpdateOperationsInput | string
   refreshToken?: Prisma.StringFieldUpdateOperationsInput | string
@@ -374,20 +396,21 @@ export type userTokenUncheckedUpdateManyInput = {
   expiresAt?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type UserTokenListRelationFilter = {
-  every?: Prisma.userTokenWhereInput
-  some?: Prisma.userTokenWhereInput
-  none?: Prisma.userTokenWhereInput
+  every?: Prisma.UserTokenWhereInput
+  some?: Prisma.UserTokenWhereInput
+  none?: Prisma.UserTokenWhereInput
 }
 
-export type userTokenOrderByRelationAggregateInput = {
+export type UserTokenOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
-export type userTokenCountOrderByAggregateInput = {
+export type UserTokenCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   employeeId?: Prisma.SortOrder
   refreshToken?: Prisma.SortOrder
@@ -395,26 +418,16 @@ export type userTokenCountOrderByAggregateInput = {
   expiresAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  deletedAt?: Prisma.SortOrder
+  createdBy?: Prisma.SortOrder
+  updatedBy?: Prisma.SortOrder
 }
 
-export type userTokenAvgOrderByAggregateInput = {
+export type UserTokenAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
   expiresAt?: Prisma.SortOrder
 }
 
-export type userTokenMaxOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  employeeId?: Prisma.SortOrder
-  refreshToken?: Prisma.SortOrder
-  accessToken?: Prisma.SortOrder
-  expiresAt?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-  updatedAt?: Prisma.SortOrder
-  deletedAt?: Prisma.SortOrder
-}
-
-export type userTokenMinOrderByAggregateInput = {
+export type UserTokenMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   employeeId?: Prisma.SortOrder
   refreshToken?: Prisma.SortOrder
@@ -422,157 +435,441 @@ export type userTokenMinOrderByAggregateInput = {
   expiresAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  deletedAt?: Prisma.SortOrder
+  createdBy?: Prisma.SortOrder
+  updatedBy?: Prisma.SortOrder
 }
 
-export type userTokenSumOrderByAggregateInput = {
+export type UserTokenMinOrderByAggregateInput = {
+  id?: Prisma.SortOrder
+  employeeId?: Prisma.SortOrder
+  refreshToken?: Prisma.SortOrder
+  accessToken?: Prisma.SortOrder
+  expiresAt?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  createdBy?: Prisma.SortOrder
+  updatedBy?: Prisma.SortOrder
+}
+
+export type UserTokenSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   expiresAt?: Prisma.SortOrder
 }
 
-export type userTokenCreateNestedManyWithoutUserAccountInput = {
-  create?: Prisma.XOR<Prisma.userTokenCreateWithoutUserAccountInput, Prisma.userTokenUncheckedCreateWithoutUserAccountInput> | Prisma.userTokenCreateWithoutUserAccountInput[] | Prisma.userTokenUncheckedCreateWithoutUserAccountInput[]
-  connectOrCreate?: Prisma.userTokenCreateOrConnectWithoutUserAccountInput | Prisma.userTokenCreateOrConnectWithoutUserAccountInput[]
-  createMany?: Prisma.userTokenCreateManyUserAccountInputEnvelope
-  connect?: Prisma.userTokenWhereUniqueInput | Prisma.userTokenWhereUniqueInput[]
+export type UserTokenCreateNestedManyWithoutCreatedByEmployeeInput = {
+  create?: Prisma.XOR<Prisma.UserTokenCreateWithoutCreatedByEmployeeInput, Prisma.UserTokenUncheckedCreateWithoutCreatedByEmployeeInput> | Prisma.UserTokenCreateWithoutCreatedByEmployeeInput[] | Prisma.UserTokenUncheckedCreateWithoutCreatedByEmployeeInput[]
+  connectOrCreate?: Prisma.UserTokenCreateOrConnectWithoutCreatedByEmployeeInput | Prisma.UserTokenCreateOrConnectWithoutCreatedByEmployeeInput[]
+  createMany?: Prisma.UserTokenCreateManyCreatedByEmployeeInputEnvelope
+  connect?: Prisma.UserTokenWhereUniqueInput | Prisma.UserTokenWhereUniqueInput[]
 }
 
-export type userTokenUncheckedCreateNestedManyWithoutUserAccountInput = {
-  create?: Prisma.XOR<Prisma.userTokenCreateWithoutUserAccountInput, Prisma.userTokenUncheckedCreateWithoutUserAccountInput> | Prisma.userTokenCreateWithoutUserAccountInput[] | Prisma.userTokenUncheckedCreateWithoutUserAccountInput[]
-  connectOrCreate?: Prisma.userTokenCreateOrConnectWithoutUserAccountInput | Prisma.userTokenCreateOrConnectWithoutUserAccountInput[]
-  createMany?: Prisma.userTokenCreateManyUserAccountInputEnvelope
-  connect?: Prisma.userTokenWhereUniqueInput | Prisma.userTokenWhereUniqueInput[]
+export type UserTokenCreateNestedManyWithoutUpdatedByEmployeeInput = {
+  create?: Prisma.XOR<Prisma.UserTokenCreateWithoutUpdatedByEmployeeInput, Prisma.UserTokenUncheckedCreateWithoutUpdatedByEmployeeInput> | Prisma.UserTokenCreateWithoutUpdatedByEmployeeInput[] | Prisma.UserTokenUncheckedCreateWithoutUpdatedByEmployeeInput[]
+  connectOrCreate?: Prisma.UserTokenCreateOrConnectWithoutUpdatedByEmployeeInput | Prisma.UserTokenCreateOrConnectWithoutUpdatedByEmployeeInput[]
+  createMany?: Prisma.UserTokenCreateManyUpdatedByEmployeeInputEnvelope
+  connect?: Prisma.UserTokenWhereUniqueInput | Prisma.UserTokenWhereUniqueInput[]
 }
 
-export type userTokenUpdateManyWithoutUserAccountNestedInput = {
-  create?: Prisma.XOR<Prisma.userTokenCreateWithoutUserAccountInput, Prisma.userTokenUncheckedCreateWithoutUserAccountInput> | Prisma.userTokenCreateWithoutUserAccountInput[] | Prisma.userTokenUncheckedCreateWithoutUserAccountInput[]
-  connectOrCreate?: Prisma.userTokenCreateOrConnectWithoutUserAccountInput | Prisma.userTokenCreateOrConnectWithoutUserAccountInput[]
-  upsert?: Prisma.userTokenUpsertWithWhereUniqueWithoutUserAccountInput | Prisma.userTokenUpsertWithWhereUniqueWithoutUserAccountInput[]
-  createMany?: Prisma.userTokenCreateManyUserAccountInputEnvelope
-  set?: Prisma.userTokenWhereUniqueInput | Prisma.userTokenWhereUniqueInput[]
-  disconnect?: Prisma.userTokenWhereUniqueInput | Prisma.userTokenWhereUniqueInput[]
-  delete?: Prisma.userTokenWhereUniqueInput | Prisma.userTokenWhereUniqueInput[]
-  connect?: Prisma.userTokenWhereUniqueInput | Prisma.userTokenWhereUniqueInput[]
-  update?: Prisma.userTokenUpdateWithWhereUniqueWithoutUserAccountInput | Prisma.userTokenUpdateWithWhereUniqueWithoutUserAccountInput[]
-  updateMany?: Prisma.userTokenUpdateManyWithWhereWithoutUserAccountInput | Prisma.userTokenUpdateManyWithWhereWithoutUserAccountInput[]
-  deleteMany?: Prisma.userTokenScalarWhereInput | Prisma.userTokenScalarWhereInput[]
+export type UserTokenUncheckedCreateNestedManyWithoutCreatedByEmployeeInput = {
+  create?: Prisma.XOR<Prisma.UserTokenCreateWithoutCreatedByEmployeeInput, Prisma.UserTokenUncheckedCreateWithoutCreatedByEmployeeInput> | Prisma.UserTokenCreateWithoutCreatedByEmployeeInput[] | Prisma.UserTokenUncheckedCreateWithoutCreatedByEmployeeInput[]
+  connectOrCreate?: Prisma.UserTokenCreateOrConnectWithoutCreatedByEmployeeInput | Prisma.UserTokenCreateOrConnectWithoutCreatedByEmployeeInput[]
+  createMany?: Prisma.UserTokenCreateManyCreatedByEmployeeInputEnvelope
+  connect?: Prisma.UserTokenWhereUniqueInput | Prisma.UserTokenWhereUniqueInput[]
 }
 
-export type userTokenUncheckedUpdateManyWithoutUserAccountNestedInput = {
-  create?: Prisma.XOR<Prisma.userTokenCreateWithoutUserAccountInput, Prisma.userTokenUncheckedCreateWithoutUserAccountInput> | Prisma.userTokenCreateWithoutUserAccountInput[] | Prisma.userTokenUncheckedCreateWithoutUserAccountInput[]
-  connectOrCreate?: Prisma.userTokenCreateOrConnectWithoutUserAccountInput | Prisma.userTokenCreateOrConnectWithoutUserAccountInput[]
-  upsert?: Prisma.userTokenUpsertWithWhereUniqueWithoutUserAccountInput | Prisma.userTokenUpsertWithWhereUniqueWithoutUserAccountInput[]
-  createMany?: Prisma.userTokenCreateManyUserAccountInputEnvelope
-  set?: Prisma.userTokenWhereUniqueInput | Prisma.userTokenWhereUniqueInput[]
-  disconnect?: Prisma.userTokenWhereUniqueInput | Prisma.userTokenWhereUniqueInput[]
-  delete?: Prisma.userTokenWhereUniqueInput | Prisma.userTokenWhereUniqueInput[]
-  connect?: Prisma.userTokenWhereUniqueInput | Prisma.userTokenWhereUniqueInput[]
-  update?: Prisma.userTokenUpdateWithWhereUniqueWithoutUserAccountInput | Prisma.userTokenUpdateWithWhereUniqueWithoutUserAccountInput[]
-  updateMany?: Prisma.userTokenUpdateManyWithWhereWithoutUserAccountInput | Prisma.userTokenUpdateManyWithWhereWithoutUserAccountInput[]
-  deleteMany?: Prisma.userTokenScalarWhereInput | Prisma.userTokenScalarWhereInput[]
+export type UserTokenUncheckedCreateNestedManyWithoutUpdatedByEmployeeInput = {
+  create?: Prisma.XOR<Prisma.UserTokenCreateWithoutUpdatedByEmployeeInput, Prisma.UserTokenUncheckedCreateWithoutUpdatedByEmployeeInput> | Prisma.UserTokenCreateWithoutUpdatedByEmployeeInput[] | Prisma.UserTokenUncheckedCreateWithoutUpdatedByEmployeeInput[]
+  connectOrCreate?: Prisma.UserTokenCreateOrConnectWithoutUpdatedByEmployeeInput | Prisma.UserTokenCreateOrConnectWithoutUpdatedByEmployeeInput[]
+  createMany?: Prisma.UserTokenCreateManyUpdatedByEmployeeInputEnvelope
+  connect?: Prisma.UserTokenWhereUniqueInput | Prisma.UserTokenWhereUniqueInput[]
 }
 
-export type userTokenCreateWithoutUserAccountInput = {
+export type UserTokenUpdateManyWithoutCreatedByEmployeeNestedInput = {
+  create?: Prisma.XOR<Prisma.UserTokenCreateWithoutCreatedByEmployeeInput, Prisma.UserTokenUncheckedCreateWithoutCreatedByEmployeeInput> | Prisma.UserTokenCreateWithoutCreatedByEmployeeInput[] | Prisma.UserTokenUncheckedCreateWithoutCreatedByEmployeeInput[]
+  connectOrCreate?: Prisma.UserTokenCreateOrConnectWithoutCreatedByEmployeeInput | Prisma.UserTokenCreateOrConnectWithoutCreatedByEmployeeInput[]
+  upsert?: Prisma.UserTokenUpsertWithWhereUniqueWithoutCreatedByEmployeeInput | Prisma.UserTokenUpsertWithWhereUniqueWithoutCreatedByEmployeeInput[]
+  createMany?: Prisma.UserTokenCreateManyCreatedByEmployeeInputEnvelope
+  set?: Prisma.UserTokenWhereUniqueInput | Prisma.UserTokenWhereUniqueInput[]
+  disconnect?: Prisma.UserTokenWhereUniqueInput | Prisma.UserTokenWhereUniqueInput[]
+  delete?: Prisma.UserTokenWhereUniqueInput | Prisma.UserTokenWhereUniqueInput[]
+  connect?: Prisma.UserTokenWhereUniqueInput | Prisma.UserTokenWhereUniqueInput[]
+  update?: Prisma.UserTokenUpdateWithWhereUniqueWithoutCreatedByEmployeeInput | Prisma.UserTokenUpdateWithWhereUniqueWithoutCreatedByEmployeeInput[]
+  updateMany?: Prisma.UserTokenUpdateManyWithWhereWithoutCreatedByEmployeeInput | Prisma.UserTokenUpdateManyWithWhereWithoutCreatedByEmployeeInput[]
+  deleteMany?: Prisma.UserTokenScalarWhereInput | Prisma.UserTokenScalarWhereInput[]
+}
+
+export type UserTokenUpdateManyWithoutUpdatedByEmployeeNestedInput = {
+  create?: Prisma.XOR<Prisma.UserTokenCreateWithoutUpdatedByEmployeeInput, Prisma.UserTokenUncheckedCreateWithoutUpdatedByEmployeeInput> | Prisma.UserTokenCreateWithoutUpdatedByEmployeeInput[] | Prisma.UserTokenUncheckedCreateWithoutUpdatedByEmployeeInput[]
+  connectOrCreate?: Prisma.UserTokenCreateOrConnectWithoutUpdatedByEmployeeInput | Prisma.UserTokenCreateOrConnectWithoutUpdatedByEmployeeInput[]
+  upsert?: Prisma.UserTokenUpsertWithWhereUniqueWithoutUpdatedByEmployeeInput | Prisma.UserTokenUpsertWithWhereUniqueWithoutUpdatedByEmployeeInput[]
+  createMany?: Prisma.UserTokenCreateManyUpdatedByEmployeeInputEnvelope
+  set?: Prisma.UserTokenWhereUniqueInput | Prisma.UserTokenWhereUniqueInput[]
+  disconnect?: Prisma.UserTokenWhereUniqueInput | Prisma.UserTokenWhereUniqueInput[]
+  delete?: Prisma.UserTokenWhereUniqueInput | Prisma.UserTokenWhereUniqueInput[]
+  connect?: Prisma.UserTokenWhereUniqueInput | Prisma.UserTokenWhereUniqueInput[]
+  update?: Prisma.UserTokenUpdateWithWhereUniqueWithoutUpdatedByEmployeeInput | Prisma.UserTokenUpdateWithWhereUniqueWithoutUpdatedByEmployeeInput[]
+  updateMany?: Prisma.UserTokenUpdateManyWithWhereWithoutUpdatedByEmployeeInput | Prisma.UserTokenUpdateManyWithWhereWithoutUpdatedByEmployeeInput[]
+  deleteMany?: Prisma.UserTokenScalarWhereInput | Prisma.UserTokenScalarWhereInput[]
+}
+
+export type UserTokenUncheckedUpdateManyWithoutCreatedByEmployeeNestedInput = {
+  create?: Prisma.XOR<Prisma.UserTokenCreateWithoutCreatedByEmployeeInput, Prisma.UserTokenUncheckedCreateWithoutCreatedByEmployeeInput> | Prisma.UserTokenCreateWithoutCreatedByEmployeeInput[] | Prisma.UserTokenUncheckedCreateWithoutCreatedByEmployeeInput[]
+  connectOrCreate?: Prisma.UserTokenCreateOrConnectWithoutCreatedByEmployeeInput | Prisma.UserTokenCreateOrConnectWithoutCreatedByEmployeeInput[]
+  upsert?: Prisma.UserTokenUpsertWithWhereUniqueWithoutCreatedByEmployeeInput | Prisma.UserTokenUpsertWithWhereUniqueWithoutCreatedByEmployeeInput[]
+  createMany?: Prisma.UserTokenCreateManyCreatedByEmployeeInputEnvelope
+  set?: Prisma.UserTokenWhereUniqueInput | Prisma.UserTokenWhereUniqueInput[]
+  disconnect?: Prisma.UserTokenWhereUniqueInput | Prisma.UserTokenWhereUniqueInput[]
+  delete?: Prisma.UserTokenWhereUniqueInput | Prisma.UserTokenWhereUniqueInput[]
+  connect?: Prisma.UserTokenWhereUniqueInput | Prisma.UserTokenWhereUniqueInput[]
+  update?: Prisma.UserTokenUpdateWithWhereUniqueWithoutCreatedByEmployeeInput | Prisma.UserTokenUpdateWithWhereUniqueWithoutCreatedByEmployeeInput[]
+  updateMany?: Prisma.UserTokenUpdateManyWithWhereWithoutCreatedByEmployeeInput | Prisma.UserTokenUpdateManyWithWhereWithoutCreatedByEmployeeInput[]
+  deleteMany?: Prisma.UserTokenScalarWhereInput | Prisma.UserTokenScalarWhereInput[]
+}
+
+export type UserTokenUncheckedUpdateManyWithoutUpdatedByEmployeeNestedInput = {
+  create?: Prisma.XOR<Prisma.UserTokenCreateWithoutUpdatedByEmployeeInput, Prisma.UserTokenUncheckedCreateWithoutUpdatedByEmployeeInput> | Prisma.UserTokenCreateWithoutUpdatedByEmployeeInput[] | Prisma.UserTokenUncheckedCreateWithoutUpdatedByEmployeeInput[]
+  connectOrCreate?: Prisma.UserTokenCreateOrConnectWithoutUpdatedByEmployeeInput | Prisma.UserTokenCreateOrConnectWithoutUpdatedByEmployeeInput[]
+  upsert?: Prisma.UserTokenUpsertWithWhereUniqueWithoutUpdatedByEmployeeInput | Prisma.UserTokenUpsertWithWhereUniqueWithoutUpdatedByEmployeeInput[]
+  createMany?: Prisma.UserTokenCreateManyUpdatedByEmployeeInputEnvelope
+  set?: Prisma.UserTokenWhereUniqueInput | Prisma.UserTokenWhereUniqueInput[]
+  disconnect?: Prisma.UserTokenWhereUniqueInput | Prisma.UserTokenWhereUniqueInput[]
+  delete?: Prisma.UserTokenWhereUniqueInput | Prisma.UserTokenWhereUniqueInput[]
+  connect?: Prisma.UserTokenWhereUniqueInput | Prisma.UserTokenWhereUniqueInput[]
+  update?: Prisma.UserTokenUpdateWithWhereUniqueWithoutUpdatedByEmployeeInput | Prisma.UserTokenUpdateWithWhereUniqueWithoutUpdatedByEmployeeInput[]
+  updateMany?: Prisma.UserTokenUpdateManyWithWhereWithoutUpdatedByEmployeeInput | Prisma.UserTokenUpdateManyWithWhereWithoutUpdatedByEmployeeInput[]
+  deleteMany?: Prisma.UserTokenScalarWhereInput | Prisma.UserTokenScalarWhereInput[]
+}
+
+export type UserTokenCreateNestedManyWithoutUserAccountInput = {
+  create?: Prisma.XOR<Prisma.UserTokenCreateWithoutUserAccountInput, Prisma.UserTokenUncheckedCreateWithoutUserAccountInput> | Prisma.UserTokenCreateWithoutUserAccountInput[] | Prisma.UserTokenUncheckedCreateWithoutUserAccountInput[]
+  connectOrCreate?: Prisma.UserTokenCreateOrConnectWithoutUserAccountInput | Prisma.UserTokenCreateOrConnectWithoutUserAccountInput[]
+  createMany?: Prisma.UserTokenCreateManyUserAccountInputEnvelope
+  connect?: Prisma.UserTokenWhereUniqueInput | Prisma.UserTokenWhereUniqueInput[]
+}
+
+export type UserTokenUncheckedCreateNestedManyWithoutUserAccountInput = {
+  create?: Prisma.XOR<Prisma.UserTokenCreateWithoutUserAccountInput, Prisma.UserTokenUncheckedCreateWithoutUserAccountInput> | Prisma.UserTokenCreateWithoutUserAccountInput[] | Prisma.UserTokenUncheckedCreateWithoutUserAccountInput[]
+  connectOrCreate?: Prisma.UserTokenCreateOrConnectWithoutUserAccountInput | Prisma.UserTokenCreateOrConnectWithoutUserAccountInput[]
+  createMany?: Prisma.UserTokenCreateManyUserAccountInputEnvelope
+  connect?: Prisma.UserTokenWhereUniqueInput | Prisma.UserTokenWhereUniqueInput[]
+}
+
+export type UserTokenUpdateManyWithoutUserAccountNestedInput = {
+  create?: Prisma.XOR<Prisma.UserTokenCreateWithoutUserAccountInput, Prisma.UserTokenUncheckedCreateWithoutUserAccountInput> | Prisma.UserTokenCreateWithoutUserAccountInput[] | Prisma.UserTokenUncheckedCreateWithoutUserAccountInput[]
+  connectOrCreate?: Prisma.UserTokenCreateOrConnectWithoutUserAccountInput | Prisma.UserTokenCreateOrConnectWithoutUserAccountInput[]
+  upsert?: Prisma.UserTokenUpsertWithWhereUniqueWithoutUserAccountInput | Prisma.UserTokenUpsertWithWhereUniqueWithoutUserAccountInput[]
+  createMany?: Prisma.UserTokenCreateManyUserAccountInputEnvelope
+  set?: Prisma.UserTokenWhereUniqueInput | Prisma.UserTokenWhereUniqueInput[]
+  disconnect?: Prisma.UserTokenWhereUniqueInput | Prisma.UserTokenWhereUniqueInput[]
+  delete?: Prisma.UserTokenWhereUniqueInput | Prisma.UserTokenWhereUniqueInput[]
+  connect?: Prisma.UserTokenWhereUniqueInput | Prisma.UserTokenWhereUniqueInput[]
+  update?: Prisma.UserTokenUpdateWithWhereUniqueWithoutUserAccountInput | Prisma.UserTokenUpdateWithWhereUniqueWithoutUserAccountInput[]
+  updateMany?: Prisma.UserTokenUpdateManyWithWhereWithoutUserAccountInput | Prisma.UserTokenUpdateManyWithWhereWithoutUserAccountInput[]
+  deleteMany?: Prisma.UserTokenScalarWhereInput | Prisma.UserTokenScalarWhereInput[]
+}
+
+export type UserTokenUncheckedUpdateManyWithoutUserAccountNestedInput = {
+  create?: Prisma.XOR<Prisma.UserTokenCreateWithoutUserAccountInput, Prisma.UserTokenUncheckedCreateWithoutUserAccountInput> | Prisma.UserTokenCreateWithoutUserAccountInput[] | Prisma.UserTokenUncheckedCreateWithoutUserAccountInput[]
+  connectOrCreate?: Prisma.UserTokenCreateOrConnectWithoutUserAccountInput | Prisma.UserTokenCreateOrConnectWithoutUserAccountInput[]
+  upsert?: Prisma.UserTokenUpsertWithWhereUniqueWithoutUserAccountInput | Prisma.UserTokenUpsertWithWhereUniqueWithoutUserAccountInput[]
+  createMany?: Prisma.UserTokenCreateManyUserAccountInputEnvelope
+  set?: Prisma.UserTokenWhereUniqueInput | Prisma.UserTokenWhereUniqueInput[]
+  disconnect?: Prisma.UserTokenWhereUniqueInput | Prisma.UserTokenWhereUniqueInput[]
+  delete?: Prisma.UserTokenWhereUniqueInput | Prisma.UserTokenWhereUniqueInput[]
+  connect?: Prisma.UserTokenWhereUniqueInput | Prisma.UserTokenWhereUniqueInput[]
+  update?: Prisma.UserTokenUpdateWithWhereUniqueWithoutUserAccountInput | Prisma.UserTokenUpdateWithWhereUniqueWithoutUserAccountInput[]
+  updateMany?: Prisma.UserTokenUpdateManyWithWhereWithoutUserAccountInput | Prisma.UserTokenUpdateManyWithWhereWithoutUserAccountInput[]
+  deleteMany?: Prisma.UserTokenScalarWhereInput | Prisma.UserTokenScalarWhereInput[]
+}
+
+export type UserTokenCreateWithoutCreatedByEmployeeInput = {
   refreshToken: string
   accessToken: string
   expiresAt: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
+  userAccount: Prisma.UserAccountCreateNestedOneWithoutTokensInput
+  updatedByEmployee?: Prisma.EmployeeCreateNestedOneWithoutUserTokensUpdatedInput
 }
 
-export type userTokenUncheckedCreateWithoutUserAccountInput = {
+export type UserTokenUncheckedCreateWithoutCreatedByEmployeeInput = {
   id?: number
+  employeeId: string
   refreshToken: string
   accessToken: string
   expiresAt: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
+  updatedBy?: string | null
 }
 
-export type userTokenCreateOrConnectWithoutUserAccountInput = {
-  where: Prisma.userTokenWhereUniqueInput
-  create: Prisma.XOR<Prisma.userTokenCreateWithoutUserAccountInput, Prisma.userTokenUncheckedCreateWithoutUserAccountInput>
+export type UserTokenCreateOrConnectWithoutCreatedByEmployeeInput = {
+  where: Prisma.UserTokenWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserTokenCreateWithoutCreatedByEmployeeInput, Prisma.UserTokenUncheckedCreateWithoutCreatedByEmployeeInput>
 }
 
-export type userTokenCreateManyUserAccountInputEnvelope = {
-  data: Prisma.userTokenCreateManyUserAccountInput | Prisma.userTokenCreateManyUserAccountInput[]
+export type UserTokenCreateManyCreatedByEmployeeInputEnvelope = {
+  data: Prisma.UserTokenCreateManyCreatedByEmployeeInput | Prisma.UserTokenCreateManyCreatedByEmployeeInput[]
   skipDuplicates?: boolean
 }
 
-export type userTokenUpsertWithWhereUniqueWithoutUserAccountInput = {
-  where: Prisma.userTokenWhereUniqueInput
-  update: Prisma.XOR<Prisma.userTokenUpdateWithoutUserAccountInput, Prisma.userTokenUncheckedUpdateWithoutUserAccountInput>
-  create: Prisma.XOR<Prisma.userTokenCreateWithoutUserAccountInput, Prisma.userTokenUncheckedCreateWithoutUserAccountInput>
+export type UserTokenCreateWithoutUpdatedByEmployeeInput = {
+  refreshToken: string
+  accessToken: string
+  expiresAt: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  userAccount: Prisma.UserAccountCreateNestedOneWithoutTokensInput
+  createdByEmployee?: Prisma.EmployeeCreateNestedOneWithoutUserTokensCreatedInput
 }
 
-export type userTokenUpdateWithWhereUniqueWithoutUserAccountInput = {
-  where: Prisma.userTokenWhereUniqueInput
-  data: Prisma.XOR<Prisma.userTokenUpdateWithoutUserAccountInput, Prisma.userTokenUncheckedUpdateWithoutUserAccountInput>
+export type UserTokenUncheckedCreateWithoutUpdatedByEmployeeInput = {
+  id?: number
+  employeeId: string
+  refreshToken: string
+  accessToken: string
+  expiresAt: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdBy?: string | null
 }
 
-export type userTokenUpdateManyWithWhereWithoutUserAccountInput = {
-  where: Prisma.userTokenScalarWhereInput
-  data: Prisma.XOR<Prisma.userTokenUpdateManyMutationInput, Prisma.userTokenUncheckedUpdateManyWithoutUserAccountInput>
+export type UserTokenCreateOrConnectWithoutUpdatedByEmployeeInput = {
+  where: Prisma.UserTokenWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserTokenCreateWithoutUpdatedByEmployeeInput, Prisma.UserTokenUncheckedCreateWithoutUpdatedByEmployeeInput>
 }
 
-export type userTokenScalarWhereInput = {
-  AND?: Prisma.userTokenScalarWhereInput | Prisma.userTokenScalarWhereInput[]
-  OR?: Prisma.userTokenScalarWhereInput[]
-  NOT?: Prisma.userTokenScalarWhereInput | Prisma.userTokenScalarWhereInput[]
-  id?: Prisma.IntFilter<"userToken"> | number
-  employeeId?: Prisma.StringFilter<"userToken"> | string
-  refreshToken?: Prisma.StringFilter<"userToken"> | string
-  accessToken?: Prisma.StringFilter<"userToken"> | string
-  expiresAt?: Prisma.IntFilter<"userToken"> | number
-  createdAt?: Prisma.DateTimeFilter<"userToken"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"userToken"> | Date | string
-  deletedAt?: Prisma.DateTimeNullableFilter<"userToken"> | Date | string | null
+export type UserTokenCreateManyUpdatedByEmployeeInputEnvelope = {
+  data: Prisma.UserTokenCreateManyUpdatedByEmployeeInput | Prisma.UserTokenCreateManyUpdatedByEmployeeInput[]
+  skipDuplicates?: boolean
 }
 
-export type userTokenCreateManyUserAccountInput = {
+export type UserTokenUpsertWithWhereUniqueWithoutCreatedByEmployeeInput = {
+  where: Prisma.UserTokenWhereUniqueInput
+  update: Prisma.XOR<Prisma.UserTokenUpdateWithoutCreatedByEmployeeInput, Prisma.UserTokenUncheckedUpdateWithoutCreatedByEmployeeInput>
+  create: Prisma.XOR<Prisma.UserTokenCreateWithoutCreatedByEmployeeInput, Prisma.UserTokenUncheckedCreateWithoutCreatedByEmployeeInput>
+}
+
+export type UserTokenUpdateWithWhereUniqueWithoutCreatedByEmployeeInput = {
+  where: Prisma.UserTokenWhereUniqueInput
+  data: Prisma.XOR<Prisma.UserTokenUpdateWithoutCreatedByEmployeeInput, Prisma.UserTokenUncheckedUpdateWithoutCreatedByEmployeeInput>
+}
+
+export type UserTokenUpdateManyWithWhereWithoutCreatedByEmployeeInput = {
+  where: Prisma.UserTokenScalarWhereInput
+  data: Prisma.XOR<Prisma.UserTokenUpdateManyMutationInput, Prisma.UserTokenUncheckedUpdateManyWithoutCreatedByEmployeeInput>
+}
+
+export type UserTokenScalarWhereInput = {
+  AND?: Prisma.UserTokenScalarWhereInput | Prisma.UserTokenScalarWhereInput[]
+  OR?: Prisma.UserTokenScalarWhereInput[]
+  NOT?: Prisma.UserTokenScalarWhereInput | Prisma.UserTokenScalarWhereInput[]
+  id?: Prisma.IntFilter<"UserToken"> | number
+  employeeId?: Prisma.StringFilter<"UserToken"> | string
+  refreshToken?: Prisma.StringFilter<"UserToken"> | string
+  accessToken?: Prisma.StringFilter<"UserToken"> | string
+  expiresAt?: Prisma.IntFilter<"UserToken"> | number
+  createdAt?: Prisma.DateTimeFilter<"UserToken"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"UserToken"> | Date | string
+  createdBy?: Prisma.StringNullableFilter<"UserToken"> | string | null
+  updatedBy?: Prisma.StringNullableFilter<"UserToken"> | string | null
+}
+
+export type UserTokenUpsertWithWhereUniqueWithoutUpdatedByEmployeeInput = {
+  where: Prisma.UserTokenWhereUniqueInput
+  update: Prisma.XOR<Prisma.UserTokenUpdateWithoutUpdatedByEmployeeInput, Prisma.UserTokenUncheckedUpdateWithoutUpdatedByEmployeeInput>
+  create: Prisma.XOR<Prisma.UserTokenCreateWithoutUpdatedByEmployeeInput, Prisma.UserTokenUncheckedCreateWithoutUpdatedByEmployeeInput>
+}
+
+export type UserTokenUpdateWithWhereUniqueWithoutUpdatedByEmployeeInput = {
+  where: Prisma.UserTokenWhereUniqueInput
+  data: Prisma.XOR<Prisma.UserTokenUpdateWithoutUpdatedByEmployeeInput, Prisma.UserTokenUncheckedUpdateWithoutUpdatedByEmployeeInput>
+}
+
+export type UserTokenUpdateManyWithWhereWithoutUpdatedByEmployeeInput = {
+  where: Prisma.UserTokenScalarWhereInput
+  data: Prisma.XOR<Prisma.UserTokenUpdateManyMutationInput, Prisma.UserTokenUncheckedUpdateManyWithoutUpdatedByEmployeeInput>
+}
+
+export type UserTokenCreateWithoutUserAccountInput = {
+  refreshToken: string
+  accessToken: string
+  expiresAt: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdByEmployee?: Prisma.EmployeeCreateNestedOneWithoutUserTokensCreatedInput
+  updatedByEmployee?: Prisma.EmployeeCreateNestedOneWithoutUserTokensUpdatedInput
+}
+
+export type UserTokenUncheckedCreateWithoutUserAccountInput = {
   id?: number
   refreshToken: string
   accessToken: string
   expiresAt: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
+  createdBy?: string | null
+  updatedBy?: string | null
 }
 
-export type userTokenUpdateWithoutUserAccountInput = {
+export type UserTokenCreateOrConnectWithoutUserAccountInput = {
+  where: Prisma.UserTokenWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserTokenCreateWithoutUserAccountInput, Prisma.UserTokenUncheckedCreateWithoutUserAccountInput>
+}
+
+export type UserTokenCreateManyUserAccountInputEnvelope = {
+  data: Prisma.UserTokenCreateManyUserAccountInput | Prisma.UserTokenCreateManyUserAccountInput[]
+  skipDuplicates?: boolean
+}
+
+export type UserTokenUpsertWithWhereUniqueWithoutUserAccountInput = {
+  where: Prisma.UserTokenWhereUniqueInput
+  update: Prisma.XOR<Prisma.UserTokenUpdateWithoutUserAccountInput, Prisma.UserTokenUncheckedUpdateWithoutUserAccountInput>
+  create: Prisma.XOR<Prisma.UserTokenCreateWithoutUserAccountInput, Prisma.UserTokenUncheckedCreateWithoutUserAccountInput>
+}
+
+export type UserTokenUpdateWithWhereUniqueWithoutUserAccountInput = {
+  where: Prisma.UserTokenWhereUniqueInput
+  data: Prisma.XOR<Prisma.UserTokenUpdateWithoutUserAccountInput, Prisma.UserTokenUncheckedUpdateWithoutUserAccountInput>
+}
+
+export type UserTokenUpdateManyWithWhereWithoutUserAccountInput = {
+  where: Prisma.UserTokenScalarWhereInput
+  data: Prisma.XOR<Prisma.UserTokenUpdateManyMutationInput, Prisma.UserTokenUncheckedUpdateManyWithoutUserAccountInput>
+}
+
+export type UserTokenCreateManyCreatedByEmployeeInput = {
+  id?: number
+  employeeId: string
+  refreshToken: string
+  accessToken: string
+  expiresAt: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  updatedBy?: string | null
+}
+
+export type UserTokenCreateManyUpdatedByEmployeeInput = {
+  id?: number
+  employeeId: string
+  refreshToken: string
+  accessToken: string
+  expiresAt: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdBy?: string | null
+}
+
+export type UserTokenUpdateWithoutCreatedByEmployeeInput = {
   refreshToken?: Prisma.StringFieldUpdateOperationsInput | string
   accessToken?: Prisma.StringFieldUpdateOperationsInput | string
   expiresAt?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  userAccount?: Prisma.UserAccountUpdateOneRequiredWithoutTokensNestedInput
+  updatedByEmployee?: Prisma.EmployeeUpdateOneWithoutUserTokensUpdatedNestedInput
 }
 
-export type userTokenUncheckedUpdateWithoutUserAccountInput = {
+export type UserTokenUncheckedUpdateWithoutCreatedByEmployeeInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  employeeId?: Prisma.StringFieldUpdateOperationsInput | string
+  refreshToken?: Prisma.StringFieldUpdateOperationsInput | string
+  accessToken?: Prisma.StringFieldUpdateOperationsInput | string
+  expiresAt?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type UserTokenUncheckedUpdateManyWithoutCreatedByEmployeeInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  employeeId?: Prisma.StringFieldUpdateOperationsInput | string
+  refreshToken?: Prisma.StringFieldUpdateOperationsInput | string
+  accessToken?: Prisma.StringFieldUpdateOperationsInput | string
+  expiresAt?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type UserTokenUpdateWithoutUpdatedByEmployeeInput = {
+  refreshToken?: Prisma.StringFieldUpdateOperationsInput | string
+  accessToken?: Prisma.StringFieldUpdateOperationsInput | string
+  expiresAt?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  userAccount?: Prisma.UserAccountUpdateOneRequiredWithoutTokensNestedInput
+  createdByEmployee?: Prisma.EmployeeUpdateOneWithoutUserTokensCreatedNestedInput
+}
+
+export type UserTokenUncheckedUpdateWithoutUpdatedByEmployeeInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  employeeId?: Prisma.StringFieldUpdateOperationsInput | string
+  refreshToken?: Prisma.StringFieldUpdateOperationsInput | string
+  accessToken?: Prisma.StringFieldUpdateOperationsInput | string
+  expiresAt?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type UserTokenUncheckedUpdateManyWithoutUpdatedByEmployeeInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  employeeId?: Prisma.StringFieldUpdateOperationsInput | string
+  refreshToken?: Prisma.StringFieldUpdateOperationsInput | string
+  accessToken?: Prisma.StringFieldUpdateOperationsInput | string
+  expiresAt?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type UserTokenCreateManyUserAccountInput = {
+  id?: number
+  refreshToken: string
+  accessToken: string
+  expiresAt: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdBy?: string | null
+  updatedBy?: string | null
+}
+
+export type UserTokenUpdateWithoutUserAccountInput = {
+  refreshToken?: Prisma.StringFieldUpdateOperationsInput | string
+  accessToken?: Prisma.StringFieldUpdateOperationsInput | string
+  expiresAt?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdByEmployee?: Prisma.EmployeeUpdateOneWithoutUserTokensCreatedNestedInput
+  updatedByEmployee?: Prisma.EmployeeUpdateOneWithoutUserTokensUpdatedNestedInput
+}
+
+export type UserTokenUncheckedUpdateWithoutUserAccountInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   refreshToken?: Prisma.StringFieldUpdateOperationsInput | string
   accessToken?: Prisma.StringFieldUpdateOperationsInput | string
   expiresAt?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
-export type userTokenUncheckedUpdateManyWithoutUserAccountInput = {
+export type UserTokenUncheckedUpdateManyWithoutUserAccountInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   refreshToken?: Prisma.StringFieldUpdateOperationsInput | string
   accessToken?: Prisma.StringFieldUpdateOperationsInput | string
   expiresAt?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
 
-export type userTokenSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+export type UserTokenSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   employeeId?: boolean
   refreshToken?: boolean
@@ -580,11 +877,14 @@ export type userTokenSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   expiresAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  deletedAt?: boolean
+  createdBy?: boolean
+  updatedBy?: boolean
   userAccount?: boolean | Prisma.UserAccountDefaultArgs<ExtArgs>
+  createdByEmployee?: boolean | Prisma.UserToken$createdByEmployeeArgs<ExtArgs>
+  updatedByEmployee?: boolean | Prisma.UserToken$updatedByEmployeeArgs<ExtArgs>
 }, ExtArgs["result"]["userToken"]>
 
-export type userTokenSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+export type UserTokenSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   employeeId?: boolean
   refreshToken?: boolean
@@ -592,11 +892,14 @@ export type userTokenSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
   expiresAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  deletedAt?: boolean
+  createdBy?: boolean
+  updatedBy?: boolean
   userAccount?: boolean | Prisma.UserAccountDefaultArgs<ExtArgs>
+  createdByEmployee?: boolean | Prisma.UserToken$createdByEmployeeArgs<ExtArgs>
+  updatedByEmployee?: boolean | Prisma.UserToken$updatedByEmployeeArgs<ExtArgs>
 }, ExtArgs["result"]["userToken"]>
 
-export type userTokenSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+export type UserTokenSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   employeeId?: boolean
   refreshToken?: boolean
@@ -604,11 +907,14 @@ export type userTokenSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
   expiresAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  deletedAt?: boolean
+  createdBy?: boolean
+  updatedBy?: boolean
   userAccount?: boolean | Prisma.UserAccountDefaultArgs<ExtArgs>
+  createdByEmployee?: boolean | Prisma.UserToken$createdByEmployeeArgs<ExtArgs>
+  updatedByEmployee?: boolean | Prisma.UserToken$updatedByEmployeeArgs<ExtArgs>
 }, ExtArgs["result"]["userToken"]>
 
-export type userTokenSelectScalar = {
+export type UserTokenSelectScalar = {
   id?: boolean
   employeeId?: boolean
   refreshToken?: boolean
@@ -616,24 +922,33 @@ export type userTokenSelectScalar = {
   expiresAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  deletedAt?: boolean
+  createdBy?: boolean
+  updatedBy?: boolean
 }
 
-export type userTokenOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "employeeId" | "refreshToken" | "accessToken" | "expiresAt" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["userToken"]>
-export type userTokenInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type UserTokenOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "employeeId" | "refreshToken" | "accessToken" | "expiresAt" | "createdAt" | "updatedAt" | "createdBy" | "updatedBy", ExtArgs["result"]["userToken"]>
+export type UserTokenInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   userAccount?: boolean | Prisma.UserAccountDefaultArgs<ExtArgs>
+  createdByEmployee?: boolean | Prisma.UserToken$createdByEmployeeArgs<ExtArgs>
+  updatedByEmployee?: boolean | Prisma.UserToken$updatedByEmployeeArgs<ExtArgs>
 }
-export type userTokenIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type UserTokenIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   userAccount?: boolean | Prisma.UserAccountDefaultArgs<ExtArgs>
+  createdByEmployee?: boolean | Prisma.UserToken$createdByEmployeeArgs<ExtArgs>
+  updatedByEmployee?: boolean | Prisma.UserToken$updatedByEmployeeArgs<ExtArgs>
 }
-export type userTokenIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type UserTokenIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   userAccount?: boolean | Prisma.UserAccountDefaultArgs<ExtArgs>
+  createdByEmployee?: boolean | Prisma.UserToken$createdByEmployeeArgs<ExtArgs>
+  updatedByEmployee?: boolean | Prisma.UserToken$updatedByEmployeeArgs<ExtArgs>
 }
 
-export type $userTokenPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  name: "userToken"
+export type $UserTokenPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  name: "UserToken"
   objects: {
     userAccount: Prisma.$UserAccountPayload<ExtArgs>
+    createdByEmployee: Prisma.$EmployeePayload<ExtArgs> | null
+    updatedByEmployee: Prisma.$EmployeePayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -643,23 +958,24 @@ export type $userTokenPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     expiresAt: number
     createdAt: Date
     updatedAt: Date
-    deletedAt: Date | null
+    createdBy: string | null
+    updatedBy: string | null
   }, ExtArgs["result"]["userToken"]>
   composites: {}
 }
 
-export type userTokenGetPayload<S extends boolean | null | undefined | userTokenDefaultArgs> = runtime.Types.Result.GetResult<Prisma.$userTokenPayload, S>
+export type UserTokenGetPayload<S extends boolean | null | undefined | UserTokenDefaultArgs> = runtime.Types.Result.GetResult<Prisma.$UserTokenPayload, S>
 
-export type userTokenCountArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> =
-  Omit<userTokenFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+export type UserTokenCountArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> =
+  Omit<UserTokenFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
     select?: UserTokenCountAggregateInputType | true
   }
 
-export interface userTokenDelegate<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-  [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['userToken'], meta: { name: 'userToken' } }
+export interface UserTokenDelegate<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+  [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['UserToken'], meta: { name: 'UserToken' } }
   /**
    * Find zero or one UserToken that matches the filter.
-   * @param {userTokenFindUniqueArgs} args - Arguments to find a UserToken
+   * @param {UserTokenFindUniqueArgs} args - Arguments to find a UserToken
    * @example
    * // Get one UserToken
    * const userToken = await prisma.userToken.findUnique({
@@ -668,12 +984,12 @@ export interface userTokenDelegate<ExtArgs extends runtime.Types.Extensions.Inte
    *   }
    * })
    */
-  findUnique<T extends userTokenFindUniqueArgs>(args: Prisma.SelectSubset<T, userTokenFindUniqueArgs<ExtArgs>>): Prisma.Prisma__userTokenClient<runtime.Types.Result.GetResult<Prisma.$userTokenPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  findUnique<T extends UserTokenFindUniqueArgs>(args: Prisma.SelectSubset<T, UserTokenFindUniqueArgs<ExtArgs>>): Prisma.Prisma__UserTokenClient<runtime.Types.Result.GetResult<Prisma.$UserTokenPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
   /**
    * Find one UserToken that matches the filter or throw an error with `error.code='P2025'`
    * if no matches were found.
-   * @param {userTokenFindUniqueOrThrowArgs} args - Arguments to find a UserToken
+   * @param {UserTokenFindUniqueOrThrowArgs} args - Arguments to find a UserToken
    * @example
    * // Get one UserToken
    * const userToken = await prisma.userToken.findUniqueOrThrow({
@@ -682,13 +998,13 @@ export interface userTokenDelegate<ExtArgs extends runtime.Types.Extensions.Inte
    *   }
    * })
    */
-  findUniqueOrThrow<T extends userTokenFindUniqueOrThrowArgs>(args: Prisma.SelectSubset<T, userTokenFindUniqueOrThrowArgs<ExtArgs>>): Prisma.Prisma__userTokenClient<runtime.Types.Result.GetResult<Prisma.$userTokenPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  findUniqueOrThrow<T extends UserTokenFindUniqueOrThrowArgs>(args: Prisma.SelectSubset<T, UserTokenFindUniqueOrThrowArgs<ExtArgs>>): Prisma.Prisma__UserTokenClient<runtime.Types.Result.GetResult<Prisma.$UserTokenPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
   /**
    * Find the first UserToken that matches the filter.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
-   * @param {userTokenFindFirstArgs} args - Arguments to find a UserToken
+   * @param {UserTokenFindFirstArgs} args - Arguments to find a UserToken
    * @example
    * // Get one UserToken
    * const userToken = await prisma.userToken.findFirst({
@@ -697,14 +1013,14 @@ export interface userTokenDelegate<ExtArgs extends runtime.Types.Extensions.Inte
    *   }
    * })
    */
-  findFirst<T extends userTokenFindFirstArgs>(args?: Prisma.SelectSubset<T, userTokenFindFirstArgs<ExtArgs>>): Prisma.Prisma__userTokenClient<runtime.Types.Result.GetResult<Prisma.$userTokenPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  findFirst<T extends UserTokenFindFirstArgs>(args?: Prisma.SelectSubset<T, UserTokenFindFirstArgs<ExtArgs>>): Prisma.Prisma__UserTokenClient<runtime.Types.Result.GetResult<Prisma.$UserTokenPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
   /**
    * Find the first UserToken that matches the filter or
    * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
-   * @param {userTokenFindFirstOrThrowArgs} args - Arguments to find a UserToken
+   * @param {UserTokenFindFirstOrThrowArgs} args - Arguments to find a UserToken
    * @example
    * // Get one UserToken
    * const userToken = await prisma.userToken.findFirstOrThrow({
@@ -713,13 +1029,13 @@ export interface userTokenDelegate<ExtArgs extends runtime.Types.Extensions.Inte
    *   }
    * })
    */
-  findFirstOrThrow<T extends userTokenFindFirstOrThrowArgs>(args?: Prisma.SelectSubset<T, userTokenFindFirstOrThrowArgs<ExtArgs>>): Prisma.Prisma__userTokenClient<runtime.Types.Result.GetResult<Prisma.$userTokenPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  findFirstOrThrow<T extends UserTokenFindFirstOrThrowArgs>(args?: Prisma.SelectSubset<T, UserTokenFindFirstOrThrowArgs<ExtArgs>>): Prisma.Prisma__UserTokenClient<runtime.Types.Result.GetResult<Prisma.$UserTokenPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
   /**
    * Find zero or more UserTokens that matches the filter.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
-   * @param {userTokenFindManyArgs} args - Arguments to filter and select certain fields only.
+   * @param {UserTokenFindManyArgs} args - Arguments to filter and select certain fields only.
    * @example
    * // Get all UserTokens
    * const userTokens = await prisma.userToken.findMany()
@@ -731,11 +1047,11 @@ export interface userTokenDelegate<ExtArgs extends runtime.Types.Extensions.Inte
    * const userTokenWithIdOnly = await prisma.userToken.findMany({ select: { id: true } })
    * 
    */
-  findMany<T extends userTokenFindManyArgs>(args?: Prisma.SelectSubset<T, userTokenFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$userTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+  findMany<T extends UserTokenFindManyArgs>(args?: Prisma.SelectSubset<T, UserTokenFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
   /**
    * Create a UserToken.
-   * @param {userTokenCreateArgs} args - Arguments to create a UserToken.
+   * @param {UserTokenCreateArgs} args - Arguments to create a UserToken.
    * @example
    * // Create one UserToken
    * const UserToken = await prisma.userToken.create({
@@ -745,11 +1061,11 @@ export interface userTokenDelegate<ExtArgs extends runtime.Types.Extensions.Inte
    * })
    * 
    */
-  create<T extends userTokenCreateArgs>(args: Prisma.SelectSubset<T, userTokenCreateArgs<ExtArgs>>): Prisma.Prisma__userTokenClient<runtime.Types.Result.GetResult<Prisma.$userTokenPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  create<T extends UserTokenCreateArgs>(args: Prisma.SelectSubset<T, UserTokenCreateArgs<ExtArgs>>): Prisma.Prisma__UserTokenClient<runtime.Types.Result.GetResult<Prisma.$UserTokenPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
   /**
    * Create many UserTokens.
-   * @param {userTokenCreateManyArgs} args - Arguments to create many UserTokens.
+   * @param {UserTokenCreateManyArgs} args - Arguments to create many UserTokens.
    * @example
    * // Create many UserTokens
    * const userToken = await prisma.userToken.createMany({
@@ -759,11 +1075,11 @@ export interface userTokenDelegate<ExtArgs extends runtime.Types.Extensions.Inte
    * })
    *     
    */
-  createMany<T extends userTokenCreateManyArgs>(args?: Prisma.SelectSubset<T, userTokenCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+  createMany<T extends UserTokenCreateManyArgs>(args?: Prisma.SelectSubset<T, UserTokenCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
 
   /**
    * Create many UserTokens and returns the data saved in the database.
-   * @param {userTokenCreateManyAndReturnArgs} args - Arguments to create many UserTokens.
+   * @param {UserTokenCreateManyAndReturnArgs} args - Arguments to create many UserTokens.
    * @example
    * // Create many UserTokens
    * const userToken = await prisma.userToken.createManyAndReturn({
@@ -783,11 +1099,11 @@ export interface userTokenDelegate<ExtArgs extends runtime.Types.Extensions.Inte
    * Read more here: https://pris.ly/d/null-undefined
    * 
    */
-  createManyAndReturn<T extends userTokenCreateManyAndReturnArgs>(args?: Prisma.SelectSubset<T, userTokenCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$userTokenPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+  createManyAndReturn<T extends UserTokenCreateManyAndReturnArgs>(args?: Prisma.SelectSubset<T, UserTokenCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserTokenPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
   /**
    * Delete a UserToken.
-   * @param {userTokenDeleteArgs} args - Arguments to delete one UserToken.
+   * @param {UserTokenDeleteArgs} args - Arguments to delete one UserToken.
    * @example
    * // Delete one UserToken
    * const UserToken = await prisma.userToken.delete({
@@ -797,11 +1113,11 @@ export interface userTokenDelegate<ExtArgs extends runtime.Types.Extensions.Inte
    * })
    * 
    */
-  delete<T extends userTokenDeleteArgs>(args: Prisma.SelectSubset<T, userTokenDeleteArgs<ExtArgs>>): Prisma.Prisma__userTokenClient<runtime.Types.Result.GetResult<Prisma.$userTokenPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  delete<T extends UserTokenDeleteArgs>(args: Prisma.SelectSubset<T, UserTokenDeleteArgs<ExtArgs>>): Prisma.Prisma__UserTokenClient<runtime.Types.Result.GetResult<Prisma.$UserTokenPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
   /**
    * Update one UserToken.
-   * @param {userTokenUpdateArgs} args - Arguments to update one UserToken.
+   * @param {UserTokenUpdateArgs} args - Arguments to update one UserToken.
    * @example
    * // Update one UserToken
    * const userToken = await prisma.userToken.update({
@@ -814,11 +1130,11 @@ export interface userTokenDelegate<ExtArgs extends runtime.Types.Extensions.Inte
    * })
    * 
    */
-  update<T extends userTokenUpdateArgs>(args: Prisma.SelectSubset<T, userTokenUpdateArgs<ExtArgs>>): Prisma.Prisma__userTokenClient<runtime.Types.Result.GetResult<Prisma.$userTokenPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  update<T extends UserTokenUpdateArgs>(args: Prisma.SelectSubset<T, UserTokenUpdateArgs<ExtArgs>>): Prisma.Prisma__UserTokenClient<runtime.Types.Result.GetResult<Prisma.$UserTokenPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
   /**
    * Delete zero or more UserTokens.
-   * @param {userTokenDeleteManyArgs} args - Arguments to filter UserTokens to delete.
+   * @param {UserTokenDeleteManyArgs} args - Arguments to filter UserTokens to delete.
    * @example
    * // Delete a few UserTokens
    * const { count } = await prisma.userToken.deleteMany({
@@ -828,13 +1144,13 @@ export interface userTokenDelegate<ExtArgs extends runtime.Types.Extensions.Inte
    * })
    * 
    */
-  deleteMany<T extends userTokenDeleteManyArgs>(args?: Prisma.SelectSubset<T, userTokenDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+  deleteMany<T extends UserTokenDeleteManyArgs>(args?: Prisma.SelectSubset<T, UserTokenDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
 
   /**
    * Update zero or more UserTokens.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
-   * @param {userTokenUpdateManyArgs} args - Arguments to update one or more rows.
+   * @param {UserTokenUpdateManyArgs} args - Arguments to update one or more rows.
    * @example
    * // Update many UserTokens
    * const userToken = await prisma.userToken.updateMany({
@@ -847,11 +1163,11 @@ export interface userTokenDelegate<ExtArgs extends runtime.Types.Extensions.Inte
    * })
    * 
    */
-  updateMany<T extends userTokenUpdateManyArgs>(args: Prisma.SelectSubset<T, userTokenUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+  updateMany<T extends UserTokenUpdateManyArgs>(args: Prisma.SelectSubset<T, UserTokenUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
 
   /**
    * Update zero or more UserTokens and returns the data updated in the database.
-   * @param {userTokenUpdateManyAndReturnArgs} args - Arguments to update many UserTokens.
+   * @param {UserTokenUpdateManyAndReturnArgs} args - Arguments to update many UserTokens.
    * @example
    * // Update many UserTokens
    * const userToken = await prisma.userToken.updateManyAndReturn({
@@ -877,11 +1193,11 @@ export interface userTokenDelegate<ExtArgs extends runtime.Types.Extensions.Inte
    * Read more here: https://pris.ly/d/null-undefined
    * 
    */
-  updateManyAndReturn<T extends userTokenUpdateManyAndReturnArgs>(args: Prisma.SelectSubset<T, userTokenUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$userTokenPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+  updateManyAndReturn<T extends UserTokenUpdateManyAndReturnArgs>(args: Prisma.SelectSubset<T, UserTokenUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserTokenPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
   /**
    * Create or update one UserToken.
-   * @param {userTokenUpsertArgs} args - Arguments to update or create a UserToken.
+   * @param {UserTokenUpsertArgs} args - Arguments to update or create a UserToken.
    * @example
    * // Update or create a UserToken
    * const userToken = await prisma.userToken.upsert({
@@ -896,14 +1212,14 @@ export interface userTokenDelegate<ExtArgs extends runtime.Types.Extensions.Inte
    *   }
    * })
    */
-  upsert<T extends userTokenUpsertArgs>(args: Prisma.SelectSubset<T, userTokenUpsertArgs<ExtArgs>>): Prisma.Prisma__userTokenClient<runtime.Types.Result.GetResult<Prisma.$userTokenPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  upsert<T extends UserTokenUpsertArgs>(args: Prisma.SelectSubset<T, UserTokenUpsertArgs<ExtArgs>>): Prisma.Prisma__UserTokenClient<runtime.Types.Result.GetResult<Prisma.$UserTokenPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
   /**
    * Count the number of UserTokens.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
-   * @param {userTokenCountArgs} args - Arguments to filter UserTokens to count.
+   * @param {UserTokenCountArgs} args - Arguments to filter UserTokens to count.
    * @example
    * // Count the number of UserTokens
    * const count = await prisma.userToken.count({
@@ -912,8 +1228,8 @@ export interface userTokenDelegate<ExtArgs extends runtime.Types.Extensions.Inte
    *   }
    * })
   **/
-  count<T extends userTokenCountArgs>(
-    args?: Prisma.Subset<T, userTokenCountArgs>,
+  count<T extends UserTokenCountArgs>(
+    args?: Prisma.Subset<T, UserTokenCountArgs>,
   ): Prisma.PrismaPromise<
     T extends runtime.Types.Utils.Record<'select', any>
       ? T['select'] extends true
@@ -952,7 +1268,7 @@ export interface userTokenDelegate<ExtArgs extends runtime.Types.Extensions.Inte
    * Group by UserToken.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
-   * @param {userTokenGroupByArgs} args - Group by arguments.
+   * @param {UserTokenGroupByArgs} args - Group by arguments.
    * @example
    * // Group by city, order by createdAt, get count
    * const result = await prisma.user.groupBy({
@@ -967,14 +1283,14 @@ export interface userTokenDelegate<ExtArgs extends runtime.Types.Extensions.Inte
    * 
   **/
   groupBy<
-    T extends userTokenGroupByArgs,
+    T extends UserTokenGroupByArgs,
     HasSelectOrTake extends Prisma.Or<
       Prisma.Extends<'skip', Prisma.Keys<T>>,
       Prisma.Extends<'take', Prisma.Keys<T>>
     >,
     OrderByArg extends Prisma.True extends HasSelectOrTake
-      ? { orderBy: userTokenGroupByArgs['orderBy'] }
-      : { orderBy?: userTokenGroupByArgs['orderBy'] },
+      ? { orderBy: UserTokenGroupByArgs['orderBy'] }
+      : { orderBy?: UserTokenGroupByArgs['orderBy'] },
     OrderFields extends Prisma.ExcludeUnderscoreKeys<Prisma.Keys<Prisma.MaybeTupleToUnion<T['orderBy']>>>,
     ByFields extends Prisma.MaybeTupleToUnion<T['by']>,
     ByValid extends Prisma.Has<ByFields, OrderFields>,
@@ -1023,22 +1339,24 @@ export interface userTokenDelegate<ExtArgs extends runtime.Types.Extensions.Inte
           ? never
           : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
       }[OrderFields]
-  >(args: Prisma.SubsetIntersection<T, userTokenGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUserTokenGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  >(args: Prisma.SubsetIntersection<T, UserTokenGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUserTokenGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
 /**
- * Fields of the userToken model
+ * Fields of the UserToken model
  */
-readonly fields: userTokenFieldRefs;
+readonly fields: UserTokenFieldRefs;
 }
 
 /**
- * The delegate class that acts as a "Promise-like" for userToken.
+ * The delegate class that acts as a "Promise-like" for UserToken.
  * Why is this prefixed with `Prisma__`?
  * Because we want to prevent naming conflicts as mentioned in
  * https://github.com/prisma/prisma-client-js/issues/707
  */
-export interface Prisma__userTokenClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+export interface Prisma__UserTokenClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   userAccount<T extends Prisma.UserAccountDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserAccountDefaultArgs<ExtArgs>>): Prisma.Prisma__UserAccountClient<runtime.Types.Result.GetResult<Prisma.$UserAccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  createdByEmployee<T extends Prisma.UserToken$createdByEmployeeArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserToken$createdByEmployeeArgs<ExtArgs>>): Prisma.Prisma__EmployeeClient<runtime.Types.Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  updatedByEmployee<T extends Prisma.UserToken$updatedByEmployeeArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserToken$updatedByEmployeeArgs<ExtArgs>>): Prisma.Prisma__EmployeeClient<runtime.Types.Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1065,431 +1383,470 @@ export interface Prisma__userTokenClient<T, Null = never, ExtArgs extends runtim
 
 
 /**
- * Fields of the userToken model
+ * Fields of the UserToken model
  */
-export interface userTokenFieldRefs {
-  readonly id: Prisma.FieldRef<"userToken", 'Int'>
-  readonly employeeId: Prisma.FieldRef<"userToken", 'String'>
-  readonly refreshToken: Prisma.FieldRef<"userToken", 'String'>
-  readonly accessToken: Prisma.FieldRef<"userToken", 'String'>
-  readonly expiresAt: Prisma.FieldRef<"userToken", 'Int'>
-  readonly createdAt: Prisma.FieldRef<"userToken", 'DateTime'>
-  readonly updatedAt: Prisma.FieldRef<"userToken", 'DateTime'>
-  readonly deletedAt: Prisma.FieldRef<"userToken", 'DateTime'>
+export interface UserTokenFieldRefs {
+  readonly id: Prisma.FieldRef<"UserToken", 'Int'>
+  readonly employeeId: Prisma.FieldRef<"UserToken", 'String'>
+  readonly refreshToken: Prisma.FieldRef<"UserToken", 'String'>
+  readonly accessToken: Prisma.FieldRef<"UserToken", 'String'>
+  readonly expiresAt: Prisma.FieldRef<"UserToken", 'Int'>
+  readonly createdAt: Prisma.FieldRef<"UserToken", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"UserToken", 'DateTime'>
+  readonly createdBy: Prisma.FieldRef<"UserToken", 'String'>
+  readonly updatedBy: Prisma.FieldRef<"UserToken", 'String'>
 }
     
 
 // Custom InputTypes
 /**
- * userToken findUnique
+ * UserToken findUnique
  */
-export type userTokenFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type UserTokenFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the userToken
+   * Select specific fields to fetch from the UserToken
    */
-  select?: Prisma.userTokenSelect<ExtArgs> | null
+  select?: Prisma.UserTokenSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the userToken
+   * Omit specific fields from the UserToken
    */
-  omit?: Prisma.userTokenOmit<ExtArgs> | null
+  omit?: Prisma.UserTokenOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.userTokenInclude<ExtArgs> | null
+  include?: Prisma.UserTokenInclude<ExtArgs> | null
   /**
-   * Filter, which userToken to fetch.
+   * Filter, which UserToken to fetch.
    */
-  where: Prisma.userTokenWhereUniqueInput
+  where: Prisma.UserTokenWhereUniqueInput
 }
 
 /**
- * userToken findUniqueOrThrow
+ * UserToken findUniqueOrThrow
  */
-export type userTokenFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type UserTokenFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the userToken
+   * Select specific fields to fetch from the UserToken
    */
-  select?: Prisma.userTokenSelect<ExtArgs> | null
+  select?: Prisma.UserTokenSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the userToken
+   * Omit specific fields from the UserToken
    */
-  omit?: Prisma.userTokenOmit<ExtArgs> | null
+  omit?: Prisma.UserTokenOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.userTokenInclude<ExtArgs> | null
+  include?: Prisma.UserTokenInclude<ExtArgs> | null
   /**
-   * Filter, which userToken to fetch.
+   * Filter, which UserToken to fetch.
    */
-  where: Prisma.userTokenWhereUniqueInput
+  where: Prisma.UserTokenWhereUniqueInput
 }
 
 /**
- * userToken findFirst
+ * UserToken findFirst
  */
-export type userTokenFindFirstArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type UserTokenFindFirstArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the userToken
+   * Select specific fields to fetch from the UserToken
    */
-  select?: Prisma.userTokenSelect<ExtArgs> | null
+  select?: Prisma.UserTokenSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the userToken
+   * Omit specific fields from the UserToken
    */
-  omit?: Prisma.userTokenOmit<ExtArgs> | null
+  omit?: Prisma.UserTokenOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.userTokenInclude<ExtArgs> | null
+  include?: Prisma.UserTokenInclude<ExtArgs> | null
   /**
-   * Filter, which userToken to fetch.
+   * Filter, which UserToken to fetch.
    */
-  where?: Prisma.userTokenWhereInput
+  where?: Prisma.UserTokenWhereInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    * 
-   * Determine the order of userTokens to fetch.
+   * Determine the order of UserTokens to fetch.
    */
-  orderBy?: Prisma.userTokenOrderByWithRelationInput | Prisma.userTokenOrderByWithRelationInput[]
+  orderBy?: Prisma.UserTokenOrderByWithRelationInput | Prisma.UserTokenOrderByWithRelationInput[]
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    * 
-   * Sets the position for searching for userTokens.
+   * Sets the position for searching for UserTokens.
    */
-  cursor?: Prisma.userTokenWhereUniqueInput
+  cursor?: Prisma.UserTokenWhereUniqueInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Take `±n` userTokens from the position of the cursor.
+   * Take `±n` UserTokens from the position of the cursor.
    */
   take?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Skip the first `n` userTokens.
+   * Skip the first `n` UserTokens.
    */
   skip?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    * 
-   * Filter by unique combinations of userTokens.
+   * Filter by unique combinations of UserTokens.
    */
   distinct?: Prisma.UserTokenScalarFieldEnum | Prisma.UserTokenScalarFieldEnum[]
 }
 
 /**
- * userToken findFirstOrThrow
+ * UserToken findFirstOrThrow
  */
-export type userTokenFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type UserTokenFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the userToken
+   * Select specific fields to fetch from the UserToken
    */
-  select?: Prisma.userTokenSelect<ExtArgs> | null
+  select?: Prisma.UserTokenSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the userToken
+   * Omit specific fields from the UserToken
    */
-  omit?: Prisma.userTokenOmit<ExtArgs> | null
+  omit?: Prisma.UserTokenOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.userTokenInclude<ExtArgs> | null
+  include?: Prisma.UserTokenInclude<ExtArgs> | null
   /**
-   * Filter, which userToken to fetch.
+   * Filter, which UserToken to fetch.
    */
-  where?: Prisma.userTokenWhereInput
+  where?: Prisma.UserTokenWhereInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    * 
-   * Determine the order of userTokens to fetch.
+   * Determine the order of UserTokens to fetch.
    */
-  orderBy?: Prisma.userTokenOrderByWithRelationInput | Prisma.userTokenOrderByWithRelationInput[]
+  orderBy?: Prisma.UserTokenOrderByWithRelationInput | Prisma.UserTokenOrderByWithRelationInput[]
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    * 
-   * Sets the position for searching for userTokens.
+   * Sets the position for searching for UserTokens.
    */
-  cursor?: Prisma.userTokenWhereUniqueInput
+  cursor?: Prisma.UserTokenWhereUniqueInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Take `±n` userTokens from the position of the cursor.
+   * Take `±n` UserTokens from the position of the cursor.
    */
   take?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Skip the first `n` userTokens.
+   * Skip the first `n` UserTokens.
    */
   skip?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    * 
-   * Filter by unique combinations of userTokens.
+   * Filter by unique combinations of UserTokens.
    */
   distinct?: Prisma.UserTokenScalarFieldEnum | Prisma.UserTokenScalarFieldEnum[]
 }
 
 /**
- * userToken findMany
+ * UserToken findMany
  */
-export type userTokenFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type UserTokenFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the userToken
+   * Select specific fields to fetch from the UserToken
    */
-  select?: Prisma.userTokenSelect<ExtArgs> | null
+  select?: Prisma.UserTokenSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the userToken
+   * Omit specific fields from the UserToken
    */
-  omit?: Prisma.userTokenOmit<ExtArgs> | null
+  omit?: Prisma.UserTokenOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.userTokenInclude<ExtArgs> | null
+  include?: Prisma.UserTokenInclude<ExtArgs> | null
   /**
-   * Filter, which userTokens to fetch.
+   * Filter, which UserTokens to fetch.
    */
-  where?: Prisma.userTokenWhereInput
+  where?: Prisma.UserTokenWhereInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    * 
-   * Determine the order of userTokens to fetch.
+   * Determine the order of UserTokens to fetch.
    */
-  orderBy?: Prisma.userTokenOrderByWithRelationInput | Prisma.userTokenOrderByWithRelationInput[]
+  orderBy?: Prisma.UserTokenOrderByWithRelationInput | Prisma.UserTokenOrderByWithRelationInput[]
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    * 
-   * Sets the position for listing userTokens.
+   * Sets the position for listing UserTokens.
    */
-  cursor?: Prisma.userTokenWhereUniqueInput
+  cursor?: Prisma.UserTokenWhereUniqueInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Take `±n` userTokens from the position of the cursor.
+   * Take `±n` UserTokens from the position of the cursor.
    */
   take?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Skip the first `n` userTokens.
+   * Skip the first `n` UserTokens.
    */
   skip?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    * 
-   * Filter by unique combinations of userTokens.
+   * Filter by unique combinations of UserTokens.
    */
   distinct?: Prisma.UserTokenScalarFieldEnum | Prisma.UserTokenScalarFieldEnum[]
 }
 
 /**
- * userToken create
+ * UserToken create
  */
-export type userTokenCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type UserTokenCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the userToken
+   * Select specific fields to fetch from the UserToken
    */
-  select?: Prisma.userTokenSelect<ExtArgs> | null
+  select?: Prisma.UserTokenSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the userToken
+   * Omit specific fields from the UserToken
    */
-  omit?: Prisma.userTokenOmit<ExtArgs> | null
+  omit?: Prisma.UserTokenOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.userTokenInclude<ExtArgs> | null
+  include?: Prisma.UserTokenInclude<ExtArgs> | null
   /**
-   * The data needed to create a userToken.
+   * The data needed to create a UserToken.
    */
-  data: Prisma.XOR<Prisma.userTokenCreateInput, Prisma.userTokenUncheckedCreateInput>
+  data: Prisma.XOR<Prisma.UserTokenCreateInput, Prisma.UserTokenUncheckedCreateInput>
 }
 
 /**
- * userToken createMany
+ * UserToken createMany
  */
-export type userTokenCreateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type UserTokenCreateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * The data used to create many userTokens.
+   * The data used to create many UserTokens.
    */
-  data: Prisma.userTokenCreateManyInput | Prisma.userTokenCreateManyInput[]
+  data: Prisma.UserTokenCreateManyInput | Prisma.UserTokenCreateManyInput[]
   skipDuplicates?: boolean
 }
 
 /**
- * userToken createManyAndReturn
+ * UserToken createManyAndReturn
  */
-export type userTokenCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type UserTokenCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the userToken
+   * Select specific fields to fetch from the UserToken
    */
-  select?: Prisma.userTokenSelectCreateManyAndReturn<ExtArgs> | null
+  select?: Prisma.UserTokenSelectCreateManyAndReturn<ExtArgs> | null
   /**
-   * Omit specific fields from the userToken
+   * Omit specific fields from the UserToken
    */
-  omit?: Prisma.userTokenOmit<ExtArgs> | null
+  omit?: Prisma.UserTokenOmit<ExtArgs> | null
   /**
-   * The data used to create many userTokens.
+   * The data used to create many UserTokens.
    */
-  data: Prisma.userTokenCreateManyInput | Prisma.userTokenCreateManyInput[]
+  data: Prisma.UserTokenCreateManyInput | Prisma.UserTokenCreateManyInput[]
   skipDuplicates?: boolean
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.userTokenIncludeCreateManyAndReturn<ExtArgs> | null
+  include?: Prisma.UserTokenIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
- * userToken update
+ * UserToken update
  */
-export type userTokenUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type UserTokenUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the userToken
+   * Select specific fields to fetch from the UserToken
    */
-  select?: Prisma.userTokenSelect<ExtArgs> | null
+  select?: Prisma.UserTokenSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the userToken
+   * Omit specific fields from the UserToken
    */
-  omit?: Prisma.userTokenOmit<ExtArgs> | null
+  omit?: Prisma.UserTokenOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.userTokenInclude<ExtArgs> | null
+  include?: Prisma.UserTokenInclude<ExtArgs> | null
   /**
-   * The data needed to update a userToken.
+   * The data needed to update a UserToken.
    */
-  data: Prisma.XOR<Prisma.userTokenUpdateInput, Prisma.userTokenUncheckedUpdateInput>
+  data: Prisma.XOR<Prisma.UserTokenUpdateInput, Prisma.UserTokenUncheckedUpdateInput>
   /**
-   * Choose, which userToken to update.
+   * Choose, which UserToken to update.
    */
-  where: Prisma.userTokenWhereUniqueInput
+  where: Prisma.UserTokenWhereUniqueInput
 }
 
 /**
- * userToken updateMany
+ * UserToken updateMany
  */
-export type userTokenUpdateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type UserTokenUpdateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * The data used to update userTokens.
+   * The data used to update UserTokens.
    */
-  data: Prisma.XOR<Prisma.userTokenUpdateManyMutationInput, Prisma.userTokenUncheckedUpdateManyInput>
+  data: Prisma.XOR<Prisma.UserTokenUpdateManyMutationInput, Prisma.UserTokenUncheckedUpdateManyInput>
   /**
-   * Filter which userTokens to update
+   * Filter which UserTokens to update
    */
-  where?: Prisma.userTokenWhereInput
+  where?: Prisma.UserTokenWhereInput
   /**
-   * Limit how many userTokens to update.
+   * Limit how many UserTokens to update.
    */
   limit?: number
 }
 
 /**
- * userToken updateManyAndReturn
+ * UserToken updateManyAndReturn
  */
-export type userTokenUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type UserTokenUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the userToken
+   * Select specific fields to fetch from the UserToken
    */
-  select?: Prisma.userTokenSelectUpdateManyAndReturn<ExtArgs> | null
+  select?: Prisma.UserTokenSelectUpdateManyAndReturn<ExtArgs> | null
   /**
-   * Omit specific fields from the userToken
+   * Omit specific fields from the UserToken
    */
-  omit?: Prisma.userTokenOmit<ExtArgs> | null
+  omit?: Prisma.UserTokenOmit<ExtArgs> | null
   /**
-   * The data used to update userTokens.
+   * The data used to update UserTokens.
    */
-  data: Prisma.XOR<Prisma.userTokenUpdateManyMutationInput, Prisma.userTokenUncheckedUpdateManyInput>
+  data: Prisma.XOR<Prisma.UserTokenUpdateManyMutationInput, Prisma.UserTokenUncheckedUpdateManyInput>
   /**
-   * Filter which userTokens to update
+   * Filter which UserTokens to update
    */
-  where?: Prisma.userTokenWhereInput
+  where?: Prisma.UserTokenWhereInput
   /**
-   * Limit how many userTokens to update.
+   * Limit how many UserTokens to update.
    */
   limit?: number
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.userTokenIncludeUpdateManyAndReturn<ExtArgs> | null
+  include?: Prisma.UserTokenIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
- * userToken upsert
+ * UserToken upsert
  */
-export type userTokenUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type UserTokenUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the userToken
+   * Select specific fields to fetch from the UserToken
    */
-  select?: Prisma.userTokenSelect<ExtArgs> | null
+  select?: Prisma.UserTokenSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the userToken
+   * Omit specific fields from the UserToken
    */
-  omit?: Prisma.userTokenOmit<ExtArgs> | null
+  omit?: Prisma.UserTokenOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.userTokenInclude<ExtArgs> | null
+  include?: Prisma.UserTokenInclude<ExtArgs> | null
   /**
-   * The filter to search for the userToken to update in case it exists.
+   * The filter to search for the UserToken to update in case it exists.
    */
-  where: Prisma.userTokenWhereUniqueInput
+  where: Prisma.UserTokenWhereUniqueInput
   /**
-   * In case the userToken found by the `where` argument doesn't exist, create a new userToken with this data.
+   * In case the UserToken found by the `where` argument doesn't exist, create a new UserToken with this data.
    */
-  create: Prisma.XOR<Prisma.userTokenCreateInput, Prisma.userTokenUncheckedCreateInput>
+  create: Prisma.XOR<Prisma.UserTokenCreateInput, Prisma.UserTokenUncheckedCreateInput>
   /**
-   * In case the userToken was found with the provided `where` argument, update it with this data.
+   * In case the UserToken was found with the provided `where` argument, update it with this data.
    */
-  update: Prisma.XOR<Prisma.userTokenUpdateInput, Prisma.userTokenUncheckedUpdateInput>
+  update: Prisma.XOR<Prisma.UserTokenUpdateInput, Prisma.UserTokenUncheckedUpdateInput>
 }
 
 /**
- * userToken delete
+ * UserToken delete
  */
-export type userTokenDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type UserTokenDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the userToken
+   * Select specific fields to fetch from the UserToken
    */
-  select?: Prisma.userTokenSelect<ExtArgs> | null
+  select?: Prisma.UserTokenSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the userToken
+   * Omit specific fields from the UserToken
    */
-  omit?: Prisma.userTokenOmit<ExtArgs> | null
+  omit?: Prisma.UserTokenOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.userTokenInclude<ExtArgs> | null
+  include?: Prisma.UserTokenInclude<ExtArgs> | null
   /**
-   * Filter which userToken to delete.
+   * Filter which UserToken to delete.
    */
-  where: Prisma.userTokenWhereUniqueInput
+  where: Prisma.UserTokenWhereUniqueInput
 }
 
 /**
- * userToken deleteMany
+ * UserToken deleteMany
  */
-export type userTokenDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type UserTokenDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Filter which userTokens to delete
+   * Filter which UserTokens to delete
    */
-  where?: Prisma.userTokenWhereInput
+  where?: Prisma.UserTokenWhereInput
   /**
-   * Limit how many userTokens to delete.
+   * Limit how many UserTokens to delete.
    */
   limit?: number
 }
 
 /**
- * userToken without action
+ * UserToken.createdByEmployee
  */
-export type userTokenDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type UserToken$createdByEmployeeArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the userToken
+   * Select specific fields to fetch from the Employee
    */
-  select?: Prisma.userTokenSelect<ExtArgs> | null
+  select?: Prisma.EmployeeSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the userToken
+   * Omit specific fields from the Employee
    */
-  omit?: Prisma.userTokenOmit<ExtArgs> | null
+  omit?: Prisma.EmployeeOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.userTokenInclude<ExtArgs> | null
+  include?: Prisma.EmployeeInclude<ExtArgs> | null
+  where?: Prisma.EmployeeWhereInput
+}
+
+/**
+ * UserToken.updatedByEmployee
+ */
+export type UserToken$updatedByEmployeeArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Employee
+   */
+  select?: Prisma.EmployeeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Employee
+   */
+  omit?: Prisma.EmployeeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EmployeeInclude<ExtArgs> | null
+  where?: Prisma.EmployeeWhereInput
+}
+
+/**
+ * UserToken without action
+ */
+export type UserTokenDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the UserToken
+   */
+  select?: Prisma.UserTokenSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the UserToken
+   */
+  omit?: Prisma.UserTokenOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserTokenInclude<ExtArgs> | null
 }

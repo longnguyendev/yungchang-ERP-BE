@@ -11,6 +11,9 @@ export class BaseEntity {
   @Field(() => GraphQLISODateTime)
   updatedAt!: Date;
 
-  @Field(() => GraphQLISODateTime, { nullable: true })
-  deletedAt?: Date | null;
+  @Field(() => String)
+  createdBy!: string;
+
+  @Field(() => String, { nullable: true })
+  updatedBy?: string | null;
 }

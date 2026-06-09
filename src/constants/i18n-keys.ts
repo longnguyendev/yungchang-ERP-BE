@@ -1,21 +1,23 @@
 export const I18N_KEYS = {
-  SERVER_ERRORS: {
+  ERRORS: {
     SYSTEM: {
-      DEFAULT: 'serverErrors.system.default',
-      TOO_MANY_REQUESTS: 'serverErrors.system.tooManyRequests',
-      UNAUTHORIZED: 'serverErrors.system.unauthorized',
-      NOT_FOUND: 'serverErrors.system.notFound',
+      DEFAULT: 'errors.system.default',
+      TOO_MANY_REQUESTS: 'errors.system.tooManyRequests',
+      UNAUTHORIZED: 'errors.system.unauthorized',
+      NOT_FOUND: 'errors.system.notFound',
+      INTERNAL_SERVER_ERROR: 'errors.system.internalServerError',
+      FORBIDDEN: 'errors.system.forbidden',
     },
 
     EMPLOYEE: {
-      NOT_FOUND: 'serverErrors.employee.notFound',
-      ALREADY_EXISTS: 'serverErrors.employee.alreadyExists',
+      NOT_FOUND: 'errors.employee.notFound',
+      ALREADY_EXISTS: 'errors.employee.alreadyExists',
     },
     USER_ACCOUNT: {
-      NOT_FOUND: 'serverErrors.userAccount.notFound',
-      ALREADY_EXISTS: 'serverErrors.userAccount.alreadyExists',
+      NOT_FOUND: 'errors.userAccount.notFound',
+      ALREADY_EXISTS: 'errors.userAccount.alreadyExists',
       USER_ACCOUNT_EMPLOYEE_EXISTS:
-        'serverErrors.userAccount.userAccountEmployeeExists',
+        'errors.userAccount.userAccountEmployeeExists',
     },
   },
 };

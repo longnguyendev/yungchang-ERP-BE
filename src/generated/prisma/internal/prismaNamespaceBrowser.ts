@@ -53,7 +53,7 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   Employee: 'Employee',
   UserAccount: 'UserAccount',
-  userToken: 'userToken'
+  UserToken: 'UserToken'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -79,7 +79,9 @@ export const EmployeeScalarFieldEnum = {
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   deletedAt: 'deletedAt',
-  isActive: 'isActive'
+  isActive: 'isActive',
+  createdBy: 'createdBy',
+  updatedBy: 'updatedBy'
 } as const
 
 export type EmployeeScalarFieldEnum = (typeof EmployeeScalarFieldEnum)[keyof typeof EmployeeScalarFieldEnum]
@@ -94,8 +96,9 @@ export const UserAccountScalarFieldEnum = {
   isActive: 'isActive',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  deletedAt: 'deletedAt',
-  verified: 'verified'
+  verified: 'verified',
+  createdBy: 'createdBy',
+  updatedBy: 'updatedBy'
 } as const
 
 export type UserAccountScalarFieldEnum = (typeof UserAccountScalarFieldEnum)[keyof typeof UserAccountScalarFieldEnum]
@@ -109,7 +112,8 @@ export const UserTokenScalarFieldEnum = {
   expiresAt: 'expiresAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  deletedAt: 'deletedAt'
+  createdBy: 'createdBy',
+  updatedBy: 'updatedBy'
 } as const
 
 export type UserTokenScalarFieldEnum = (typeof UserTokenScalarFieldEnum)[keyof typeof UserTokenScalarFieldEnum]

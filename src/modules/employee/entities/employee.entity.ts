@@ -26,4 +26,10 @@ export class Employee {
 
   @Field(() => UserAccount, { nullable: true })
   userAccount?: UserAccount;
+
+  @Field(() => String, { nullable: true })
+  createdBy?: string | null;
+
+  @Field(() => String, { nullable: true })
+  updatedBy?: string | null;
 }
