@@ -1,5 +1,7 @@
+import { CurrentUser } from '@/decorators/user.decorator';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 
+import { UserAccount } from '../user-account/entities/user-account.entity';
 import { CreateEmployeeInput } from './dto/create-employee.input';
 import { UpdateEmployeeInput } from './dto/update-employee.input';
 import { EmployeeService } from './employee.service';
@@ -12,8 +14,9 @@ export class EmployeeResolver {
   @Mutation(() => Employee)
   createEmployee(
     @Args('createEmployeeInput') createEmployeeInput: CreateEmployeeInput,
+    @CurrentUser() currentUser: UserAccount,
   ) {
-    return this.employeeService.create(createEmployeeInput);
+    return this.employeeService.create(createEmployeeInput, currentUser);
   }
 
   @Query(() => [Employee], { name: 'employee' })

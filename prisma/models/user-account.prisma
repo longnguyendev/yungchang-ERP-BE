@@ -9,7 +9,6 @@ model UserAccount {
   createdAt  DateTime    @default(now())
   updatedAt  DateTime    @updatedAt
   tokens     UserToken[]
-  verified   Boolean     @default(false)
 
   // Audit fields
   createdBy String?

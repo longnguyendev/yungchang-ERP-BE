@@ -6,13 +6,17 @@ import {
 import { PrismaService } from '@/prisma.service';
 import { Injectable } from '@nestjs/common';
 
+import { UserAccount } from '../user-account/entities/user-account.entity';
 import { CreateEmployeeInput } from './dto/create-employee.input';
 import { UpdateEmployeeInput } from './dto/update-employee.input';
 
 @Injectable()
 export class EmployeeService {
   constructor(private readonly prismaService: PrismaService) {}
-  async create(createEmployeeInput: CreateEmployeeInput) {
+  async create(
+    createEmployeeInput: CreateEmployeeInput,
+    currentUser: UserAccount,
+  ) {
     const employee = await this.prismaService.employee.findUnique({
       where: { id: createEmployeeInput.id },
     });
@@ -25,6 +29,7 @@ export class EmployeeService {
     return this.prismaService.employee.create({
       data: {
         ...createEmployeeInput,
+        createdBy: currentUser.employeeId,
       },
     });
   }
