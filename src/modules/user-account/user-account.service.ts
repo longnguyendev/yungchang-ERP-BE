@@ -52,7 +52,6 @@ export class UserAccountService {
         ...rest,
         password: passwordHash,
         createdBy: currentUser?.employeeId,
-        verified: true,
       },
       include: { employee: true },
     });

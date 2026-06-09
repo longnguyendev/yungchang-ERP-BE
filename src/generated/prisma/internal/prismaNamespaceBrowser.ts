@@ -96,7 +96,6 @@ export const UserAccountScalarFieldEnum = {
   isActive: 'isActive',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  verified: 'verified',
   createdBy: 'createdBy',
   updatedBy: 'updatedBy'
 } as const

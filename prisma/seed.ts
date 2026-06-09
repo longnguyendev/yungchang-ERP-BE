@@ -52,7 +52,6 @@ async function seed() {
         employeeId: masterEmployeeId,
         username: masterUsername,
         password: hashedPassword,
-        verified: true,
       },
     });
     console.log(
