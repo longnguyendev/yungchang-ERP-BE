@@ -4,15 +4,13 @@ import { SALT_OR_ROUNDS } from '@/constants';
 import { generateSecureOTP } from '@/helpers';
 import {
   BadRequestException,
-  HttpException,
-  HttpStatus,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import bcrypt from 'bcryptjs';
-import { randomBytes } from 'crypto';
+import { createHash, randomBytes } from 'crypto';
 import { Request } from 'express';
 import ms, { StringValue } from 'ms';
 
@@ -70,6 +68,10 @@ export class AuthService {
     return token;
   }
 
+  hashToken(token: string): string {
+    return createHash('sha256').update(token).digest('hex');
+  }
+
   async hashPassword(password: string) {
     return await bcrypt.hash(password, SALT_OR_ROUNDS);
   }
@@ -106,11 +108,12 @@ export class AuthService {
     const mode = this.configService.get('server.mode', { infer: true });
     const accessToken = await this.generateAccessToken(payload);
     const refreshToken = await this.generateRefreshToken(payload);
+    const hashedRefreshToken = this.hashToken(refreshToken);
     const jwtDecoded = this.jwtService.decode<JwtPayload>(accessToken);
     await this.userTokenService.create({
       employeeId: user.employeeId,
       expiresAt: +jwtDecoded.iat,
-      refreshToken,
+      refreshToken: hashedRefreshToken,
       accessToken,
     });
 
@@ -125,29 +128,47 @@ export class AuthService {
     };
   }
 
-  async refreshToken(user: UserAccount, token: string): Promise<Auth> {
+  async refreshToken(
+    user: UserAccount,
+    token: string,
+    context: Request,
+  ): Promise<Auth> {
     const payload: Payload = {
       sub: user.employeeId,
     };
 
+    const hashedToken = this.hashToken(token);
     const userToken = await this.userTokenService.findOne({
       where: {
-        refreshToken: token,
+        refreshToken: hashedToken,
       },
     });
     if (!userToken) {
       throw new UnauthorizedException();
     }
+    const expiresIn = this.configService.get('jwt.refreshExpirationTime', {
+      infer: true,
+    }) as StringValue;
+    const mode = this.configService.get('server.mode', { infer: true });
     const accessToken = await this.generateAccessToken(payload);
-    userToken.accessToken = accessToken;
-    const userTokenUpdate = await this.userTokenService.update(
-      userToken.id,
-      userToken,
-    );
-    if (!userTokenUpdate) {
-      throw new HttpException('Sever error', HttpStatus.BAD_REQUEST);
-    }
-    return { accessToken: accessToken };
+    const newRefreshToken = await this.generateRefreshToken(payload);
+    const hashedNewRefreshToken = this.hashToken(newRefreshToken);
+    const jwtDecoded = this.jwtService.decode<JwtPayload>(accessToken);
+
+    await this.userTokenService.update(userToken.id, {
+      employeeId: user.employeeId,
+      expiresAt: +jwtDecoded.iat,
+      accessToken,
+      refreshToken: hashedNewRefreshToken,
+    });
+
+    context.res?.cookie('refreshToken', newRefreshToken, {
+      httpOnly: true,
+      secure: mode === 'production',
+      sameSite: 'strict',
+      expires: new Date(Date.now() + ms(expiresIn)),
+    });
+    return { accessToken };
   }
 
   async signOut(token: string, context: Request) {

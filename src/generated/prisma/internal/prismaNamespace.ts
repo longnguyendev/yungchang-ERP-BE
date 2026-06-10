@@ -673,7 +673,6 @@ export const EmployeeScalarFieldEnum = {
   lastName: 'lastName',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  deletedAt: 'deletedAt',
   isActive: 'isActive',
   createdBy: 'createdBy',
   updatedBy: 'updatedBy'

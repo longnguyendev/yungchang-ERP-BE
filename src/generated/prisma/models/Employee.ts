@@ -30,7 +30,6 @@ export type EmployeeMinAggregateOutputType = {
   lastName: string | null
   createdAt: Date | null
   updatedAt: Date | null
-  deletedAt: Date | null
   isActive: boolean | null
   createdBy: string | null
   updatedBy: string | null
@@ -42,7 +41,6 @@ export type EmployeeMaxAggregateOutputType = {
   lastName: string | null
   createdAt: Date | null
   updatedAt: Date | null
-  deletedAt: Date | null
   isActive: boolean | null
   createdBy: string | null
   updatedBy: string | null
@@ -54,7 +52,6 @@ export type EmployeeCountAggregateOutputType = {
   lastName: number
   createdAt: number
   updatedAt: number
-  deletedAt: number
   isActive: number
   createdBy: number
   updatedBy: number
@@ -68,7 +65,6 @@ export type EmployeeMinAggregateInputType = {
   lastName?: true
   createdAt?: true
   updatedAt?: true
-  deletedAt?: true
   isActive?: true
   createdBy?: true
   updatedBy?: true
@@ -80,7 +76,6 @@ export type EmployeeMaxAggregateInputType = {
   lastName?: true
   createdAt?: true
   updatedAt?: true
-  deletedAt?: true
   isActive?: true
   createdBy?: true
   updatedBy?: true
@@ -92,7 +87,6 @@ export type EmployeeCountAggregateInputType = {
   lastName?: true
   createdAt?: true
   updatedAt?: true
-  deletedAt?: true
   isActive?: true
   createdBy?: true
   updatedBy?: true
@@ -177,7 +171,6 @@ export type EmployeeGroupByOutputType = {
   lastName: string
   createdAt: Date
   updatedAt: Date
-  deletedAt: Date | null
   isActive: boolean
   createdBy: string | null
   updatedBy: string | null
@@ -210,7 +203,6 @@ export type EmployeeWhereInput = {
   lastName?: Prisma.StringFilter<"Employee"> | string
   createdAt?: Prisma.DateTimeFilter<"Employee"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Employee"> | Date | string
-  deletedAt?: Prisma.DateTimeNullableFilter<"Employee"> | Date | string | null
   isActive?: Prisma.BoolFilter<"Employee"> | boolean
   createdBy?: Prisma.StringNullableFilter<"Employee"> | string | null
   updatedBy?: Prisma.StringNullableFilter<"Employee"> | string | null
@@ -231,7 +223,6 @@ export type EmployeeOrderByWithRelationInput = {
   lastName?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdBy?: Prisma.SortOrderInput | Prisma.SortOrder
   updatedBy?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -255,7 +246,6 @@ export type EmployeeWhereUniqueInput = Prisma.AtLeast<{
   lastName?: Prisma.StringFilter<"Employee"> | string
   createdAt?: Prisma.DateTimeFilter<"Employee"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Employee"> | Date | string
-  deletedAt?: Prisma.DateTimeNullableFilter<"Employee"> | Date | string | null
   isActive?: Prisma.BoolFilter<"Employee"> | boolean
   createdBy?: Prisma.StringNullableFilter<"Employee"> | string | null
   updatedBy?: Prisma.StringNullableFilter<"Employee"> | string | null
@@ -276,7 +266,6 @@ export type EmployeeOrderByWithAggregationInput = {
   lastName?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdBy?: Prisma.SortOrderInput | Prisma.SortOrder
   updatedBy?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -294,7 +283,6 @@ export type EmployeeScalarWhereWithAggregatesInput = {
   lastName?: Prisma.StringWithAggregatesFilter<"Employee"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Employee"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Employee"> | Date | string
-  deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Employee"> | Date | string | null
   isActive?: Prisma.BoolWithAggregatesFilter<"Employee"> | boolean
   createdBy?: Prisma.StringNullableWithAggregatesFilter<"Employee"> | string | null
   updatedBy?: Prisma.StringNullableWithAggregatesFilter<"Employee"> | string | null
@@ -306,7 +294,6 @@ export type EmployeeCreateInput = {
   lastName: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
   isActive?: boolean
   account?: Prisma.UserAccountCreateNestedOneWithoutEmployeeInput
   createdByEmployee?: Prisma.EmployeeCreateNestedOneWithoutEmployeesCreatedInput
@@ -325,7 +312,6 @@ export type EmployeeUncheckedCreateInput = {
   lastName: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
   isActive?: boolean
   createdBy?: string | null
   updatedBy?: string | null
@@ -344,7 +330,6 @@ export type EmployeeUpdateInput = {
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   account?: Prisma.UserAccountUpdateOneWithoutEmployeeNestedInput
   createdByEmployee?: Prisma.EmployeeUpdateOneWithoutEmployeesCreatedNestedInput
@@ -363,7 +348,6 @@ export type EmployeeUncheckedUpdateInput = {
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   updatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -382,7 +366,6 @@ export type EmployeeCreateManyInput = {
   lastName: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
   isActive?: boolean
   createdBy?: string | null
   updatedBy?: string | null
@@ -394,7 +377,6 @@ export type EmployeeUpdateManyMutationInput = {
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
@@ -404,7 +386,6 @@ export type EmployeeUncheckedUpdateManyInput = {
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   updatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -431,7 +412,6 @@ export type EmployeeCountOrderByAggregateInput = {
   lastName?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  deletedAt?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdBy?: Prisma.SortOrder
   updatedBy?: Prisma.SortOrder
@@ -443,7 +423,6 @@ export type EmployeeMaxOrderByAggregateInput = {
   lastName?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  deletedAt?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdBy?: Prisma.SortOrder
   updatedBy?: Prisma.SortOrder
@@ -455,7 +434,6 @@ export type EmployeeMinOrderByAggregateInput = {
   lastName?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  deletedAt?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdBy?: Prisma.SortOrder
   updatedBy?: Prisma.SortOrder
@@ -512,10 +490,6 @@ export type StringFieldUpdateOperationsInput = {
 
 export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
-}
-
-export type NullableDateTimeFieldUpdateOperationsInput = {
-  set?: Date | string | null
 }
 
 export type BoolFieldUpdateOperationsInput = {
@@ -686,7 +660,6 @@ export type EmployeeCreateWithoutEmployeesCreatedInput = {
   lastName: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
   isActive?: boolean
   account?: Prisma.UserAccountCreateNestedOneWithoutEmployeeInput
   createdByEmployee?: Prisma.EmployeeCreateNestedOneWithoutEmployeesCreatedInput
@@ -704,7 +677,6 @@ export type EmployeeUncheckedCreateWithoutEmployeesCreatedInput = {
   lastName: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
   isActive?: boolean
   createdBy?: string | null
   updatedBy?: string | null
@@ -727,7 +699,6 @@ export type EmployeeCreateWithoutEmployeesUpdatedInput = {
   lastName: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
   isActive?: boolean
   account?: Prisma.UserAccountCreateNestedOneWithoutEmployeeInput
   createdByEmployee?: Prisma.EmployeeCreateNestedOneWithoutEmployeesCreatedInput
@@ -745,7 +716,6 @@ export type EmployeeUncheckedCreateWithoutEmployeesUpdatedInput = {
   lastName: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
   isActive?: boolean
   createdBy?: string | null
   updatedBy?: string | null
@@ -768,7 +738,6 @@ export type EmployeeCreateWithoutCreatedByEmployeeInput = {
   lastName: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
   isActive?: boolean
   account?: Prisma.UserAccountCreateNestedOneWithoutEmployeeInput
   updatedByEmployee?: Prisma.EmployeeCreateNestedOneWithoutEmployeesUpdatedInput
@@ -786,7 +755,6 @@ export type EmployeeUncheckedCreateWithoutCreatedByEmployeeInput = {
   lastName: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
   isActive?: boolean
   updatedBy?: string | null
   account?: Prisma.UserAccountUncheckedCreateNestedOneWithoutEmployeeInput
@@ -814,7 +782,6 @@ export type EmployeeCreateWithoutUpdatedByEmployeeInput = {
   lastName: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
   isActive?: boolean
   account?: Prisma.UserAccountCreateNestedOneWithoutEmployeeInput
   createdByEmployee?: Prisma.EmployeeCreateNestedOneWithoutEmployeesCreatedInput
@@ -832,7 +799,6 @@ export type EmployeeUncheckedCreateWithoutUpdatedByEmployeeInput = {
   lastName: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
   isActive?: boolean
   createdBy?: string | null
   account?: Prisma.UserAccountUncheckedCreateNestedOneWithoutEmployeeInput
@@ -871,7 +837,6 @@ export type EmployeeUpdateWithoutEmployeesCreatedInput = {
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   account?: Prisma.UserAccountUpdateOneWithoutEmployeeNestedInput
   createdByEmployee?: Prisma.EmployeeUpdateOneWithoutEmployeesCreatedNestedInput
@@ -889,7 +854,6 @@ export type EmployeeUncheckedUpdateWithoutEmployeesCreatedInput = {
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   updatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -918,7 +882,6 @@ export type EmployeeUpdateWithoutEmployeesUpdatedInput = {
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   account?: Prisma.UserAccountUpdateOneWithoutEmployeeNestedInput
   createdByEmployee?: Prisma.EmployeeUpdateOneWithoutEmployeesCreatedNestedInput
@@ -936,7 +899,6 @@ export type EmployeeUncheckedUpdateWithoutEmployeesUpdatedInput = {
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   updatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -973,7 +935,6 @@ export type EmployeeScalarWhereInput = {
   lastName?: Prisma.StringFilter<"Employee"> | string
   createdAt?: Prisma.DateTimeFilter<"Employee"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Employee"> | Date | string
-  deletedAt?: Prisma.DateTimeNullableFilter<"Employee"> | Date | string | null
   isActive?: Prisma.BoolFilter<"Employee"> | boolean
   createdBy?: Prisma.StringNullableFilter<"Employee"> | string | null
   updatedBy?: Prisma.StringNullableFilter<"Employee"> | string | null
@@ -1001,7 +962,6 @@ export type EmployeeCreateWithoutAccountInput = {
   lastName: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
   isActive?: boolean
   createdByEmployee?: Prisma.EmployeeCreateNestedOneWithoutEmployeesCreatedInput
   updatedByEmployee?: Prisma.EmployeeCreateNestedOneWithoutEmployeesUpdatedInput
@@ -1019,7 +979,6 @@ export type EmployeeUncheckedCreateWithoutAccountInput = {
   lastName: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
   isActive?: boolean
   createdBy?: string | null
   updatedBy?: string | null
@@ -1042,7 +1001,6 @@ export type EmployeeCreateWithoutUserAccountsCreatedInput = {
   lastName: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
   isActive?: boolean
   account?: Prisma.UserAccountCreateNestedOneWithoutEmployeeInput
   createdByEmployee?: Prisma.EmployeeCreateNestedOneWithoutEmployeesCreatedInput
@@ -1060,7 +1018,6 @@ export type EmployeeUncheckedCreateWithoutUserAccountsCreatedInput = {
   lastName: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
   isActive?: boolean
   createdBy?: string | null
   updatedBy?: string | null
@@ -1083,7 +1040,6 @@ export type EmployeeCreateWithoutUserAccountsUpdatedInput = {
   lastName: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
   isActive?: boolean
   account?: Prisma.UserAccountCreateNestedOneWithoutEmployeeInput
   createdByEmployee?: Prisma.EmployeeCreateNestedOneWithoutEmployeesCreatedInput
@@ -1101,7 +1057,6 @@ export type EmployeeUncheckedCreateWithoutUserAccountsUpdatedInput = {
   lastName: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
   isActive?: boolean
   createdBy?: string | null
   updatedBy?: string | null
@@ -1135,7 +1090,6 @@ export type EmployeeUpdateWithoutAccountInput = {
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdByEmployee?: Prisma.EmployeeUpdateOneWithoutEmployeesCreatedNestedInput
   updatedByEmployee?: Prisma.EmployeeUpdateOneWithoutEmployeesUpdatedNestedInput
@@ -1153,7 +1107,6 @@ export type EmployeeUncheckedUpdateWithoutAccountInput = {
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   updatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1182,7 +1135,6 @@ export type EmployeeUpdateWithoutUserAccountsCreatedInput = {
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   account?: Prisma.UserAccountUpdateOneWithoutEmployeeNestedInput
   createdByEmployee?: Prisma.EmployeeUpdateOneWithoutEmployeesCreatedNestedInput
@@ -1200,7 +1152,6 @@ export type EmployeeUncheckedUpdateWithoutUserAccountsCreatedInput = {
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   updatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1229,7 +1180,6 @@ export type EmployeeUpdateWithoutUserAccountsUpdatedInput = {
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   account?: Prisma.UserAccountUpdateOneWithoutEmployeeNestedInput
   createdByEmployee?: Prisma.EmployeeUpdateOneWithoutEmployeesCreatedNestedInput
@@ -1247,7 +1197,6 @@ export type EmployeeUncheckedUpdateWithoutUserAccountsUpdatedInput = {
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   updatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1265,7 +1214,6 @@ export type EmployeeCreateWithoutUserTokensCreatedInput = {
   lastName: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
   isActive?: boolean
   account?: Prisma.UserAccountCreateNestedOneWithoutEmployeeInput
   createdByEmployee?: Prisma.EmployeeCreateNestedOneWithoutEmployeesCreatedInput
@@ -1283,7 +1231,6 @@ export type EmployeeUncheckedCreateWithoutUserTokensCreatedInput = {
   lastName: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
   isActive?: boolean
   createdBy?: string | null
   updatedBy?: string | null
@@ -1306,7 +1253,6 @@ export type EmployeeCreateWithoutUserTokensUpdatedInput = {
   lastName: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
   isActive?: boolean
   account?: Prisma.UserAccountCreateNestedOneWithoutEmployeeInput
   createdByEmployee?: Prisma.EmployeeCreateNestedOneWithoutEmployeesCreatedInput
@@ -1324,7 +1270,6 @@ export type EmployeeUncheckedCreateWithoutUserTokensUpdatedInput = {
   lastName: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
   isActive?: boolean
   createdBy?: string | null
   updatedBy?: string | null
@@ -1358,7 +1303,6 @@ export type EmployeeUpdateWithoutUserTokensCreatedInput = {
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   account?: Prisma.UserAccountUpdateOneWithoutEmployeeNestedInput
   createdByEmployee?: Prisma.EmployeeUpdateOneWithoutEmployeesCreatedNestedInput
@@ -1376,7 +1320,6 @@ export type EmployeeUncheckedUpdateWithoutUserTokensCreatedInput = {
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   updatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1405,7 +1348,6 @@ export type EmployeeUpdateWithoutUserTokensUpdatedInput = {
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   account?: Prisma.UserAccountUpdateOneWithoutEmployeeNestedInput
   createdByEmployee?: Prisma.EmployeeUpdateOneWithoutEmployeesCreatedNestedInput
@@ -1423,7 +1365,6 @@ export type EmployeeUncheckedUpdateWithoutUserTokensUpdatedInput = {
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   updatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1441,7 +1382,6 @@ export type EmployeeCreateManyCreatedByEmployeeInput = {
   lastName: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
   isActive?: boolean
   updatedBy?: string | null
 }
@@ -1452,7 +1392,6 @@ export type EmployeeCreateManyUpdatedByEmployeeInput = {
   lastName: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
   isActive?: boolean
   createdBy?: string | null
 }
@@ -1463,7 +1402,6 @@ export type EmployeeUpdateWithoutCreatedByEmployeeInput = {
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   account?: Prisma.UserAccountUpdateOneWithoutEmployeeNestedInput
   updatedByEmployee?: Prisma.EmployeeUpdateOneWithoutEmployeesUpdatedNestedInput
@@ -1481,7 +1419,6 @@ export type EmployeeUncheckedUpdateWithoutCreatedByEmployeeInput = {
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   updatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   account?: Prisma.UserAccountUncheckedUpdateOneWithoutEmployeeNestedInput
@@ -1499,7 +1436,6 @@ export type EmployeeUncheckedUpdateManyWithoutCreatedByEmployeeInput = {
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   updatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
@@ -1510,7 +1446,6 @@ export type EmployeeUpdateWithoutUpdatedByEmployeeInput = {
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   account?: Prisma.UserAccountUpdateOneWithoutEmployeeNestedInput
   createdByEmployee?: Prisma.EmployeeUpdateOneWithoutEmployeesCreatedNestedInput
@@ -1528,7 +1463,6 @@ export type EmployeeUncheckedUpdateWithoutUpdatedByEmployeeInput = {
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   account?: Prisma.UserAccountUncheckedUpdateOneWithoutEmployeeNestedInput
@@ -1546,7 +1480,6 @@ export type EmployeeUncheckedUpdateManyWithoutUpdatedByEmployeeInput = {
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
@@ -1633,7 +1566,6 @@ export type EmployeeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   lastName?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  deletedAt?: boolean
   isActive?: boolean
   createdBy?: boolean
   updatedBy?: boolean
@@ -1655,7 +1587,6 @@ export type EmployeeSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   lastName?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  deletedAt?: boolean
   isActive?: boolean
   createdBy?: boolean
   updatedBy?: boolean
@@ -1669,7 +1600,6 @@ export type EmployeeSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   lastName?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  deletedAt?: boolean
   isActive?: boolean
   createdBy?: boolean
   updatedBy?: boolean
@@ -1683,13 +1613,12 @@ export type EmployeeSelectScalar = {
   lastName?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  deletedAt?: boolean
   isActive?: boolean
   createdBy?: boolean
   updatedBy?: boolean
 }
 
-export type EmployeeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "firstName" | "lastName" | "createdAt" | "updatedAt" | "deletedAt" | "isActive" | "createdBy" | "updatedBy", ExtArgs["result"]["employee"]>
+export type EmployeeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "firstName" | "lastName" | "createdAt" | "updatedAt" | "isActive" | "createdBy" | "updatedBy", ExtArgs["result"]["employee"]>
 export type EmployeeInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   account?: boolean | Prisma.Employee$accountArgs<ExtArgs>
   createdByEmployee?: boolean | Prisma.Employee$createdByEmployeeArgs<ExtArgs>
@@ -1730,7 +1659,6 @@ export type $EmployeePayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     lastName: string
     createdAt: Date
     updatedAt: Date
-    deletedAt: Date | null
     isActive: boolean
     createdBy: string | null
     updatedBy: string | null
@@ -2171,7 +2099,6 @@ export interface EmployeeFieldRefs {
   readonly lastName: Prisma.FieldRef<"Employee", 'String'>
   readonly createdAt: Prisma.FieldRef<"Employee", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Employee", 'DateTime'>
-  readonly deletedAt: Prisma.FieldRef<"Employee", 'DateTime'>
   readonly isActive: Prisma.FieldRef<"Employee", 'Boolean'>
   readonly createdBy: Prisma.FieldRef<"Employee", 'String'>
   readonly updatedBy: Prisma.FieldRef<"Employee", 'String'>

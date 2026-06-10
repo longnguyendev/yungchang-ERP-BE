@@ -1,4 +1,4 @@
-import { CurrentUser, Public } from '@/decorators';
+import { CurrentUser } from '@/decorators';
 import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
 
 import { CreateUserAccountInput } from './dto/create-user-account.input';
@@ -19,17 +19,21 @@ export class UserAccountResolver {
     return this.userAccountService.create(createUserAccountInput, currentUser);
   }
 
-  @Query(() => [UserAccount], { name: 'userAccount' })
-  findAll() {
-    return this.userAccountService.findAll();
+  @Query(() => [UserAccount], { name: 'userAccounts' })
+  findAll(
+    @Args('take', { type: () => Int, nullable: true, defaultValue: 50 })
+    take: number,
+    @Args('skip', { type: () => Int, nullable: true, defaultValue: 0 })
+    skip: number,
+  ) {
+    return this.userAccountService.findAll({ take, skip });
   }
 
-  @Public()
   @Query(() => UserAccount, { name: 'userAccount' })
-  findOne(@Args('employeeCode', { type: () => String }) employeeId: string) {
+  findOne(@Args('id', { type: () => String }) id: string) {
     return this.userAccountService.findOne({
       where: {
-        employeeId,
+        employeeId: id,
       },
     });
   }

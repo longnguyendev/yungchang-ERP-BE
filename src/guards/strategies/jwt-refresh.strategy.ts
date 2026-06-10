@@ -3,7 +3,7 @@ import { UnauthorizedException } from '@/common/exceptions';
 import { Payload } from '@/modules/auth/auth.service';
 import { UserAccountService } from '@/modules/user-account/user-account.service';
 import { RefreshRequest } from '@/types';
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
@@ -33,6 +33,7 @@ export class JwtRefreshStrategy extends PassportStrategy(
     const user = await this.userAccountService.findOne({
       where: { employeeId: sub },
     });
+    Logger.log('JwtRefreshStrategy - validate - user: ', user);
     if (!user) {
       throw new UnauthorizedException();
     }

@@ -3,7 +3,10 @@ import {
   UserAccountAlreadyExistsException,
   UserAccountEmployeeExistsException,
 } from '@/common/exceptions';
-import { UserAccountFindUniqueArgs } from '@/generated/prisma/models';
+import {
+  UserAccountFindManyArgs,
+  UserAccountFindUniqueArgs,
+} from '@/generated/prisma/models';
 import { hashPassword } from '@/helpers';
 import { PrismaService } from '@/prisma.service';
 import { Injectable } from '@nestjs/common';
@@ -57,7 +60,7 @@ export class UserAccountService {
     });
   }
 
-  findAll(args?: UserAccountFindUniqueArgs) {
+  findAll(args?: UserAccountFindManyArgs) {
     return this.prismaService.userAccount.findMany({
       ...args,
       include: {

@@ -5,7 +5,6 @@ model Employee {
   account   UserAccount?
   createdAt DateTime     @default(now())
   updatedAt DateTime     @updatedAt
-  deletedAt DateTime?
   isActive  Boolean      @default(true)
   createdBy String?
   updatedBy String?

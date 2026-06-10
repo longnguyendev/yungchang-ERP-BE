@@ -46,10 +46,17 @@ export class EmployeeService {
     });
   }
 
-  update(id: string, updateEmployeeInput: Omit<UpdateEmployeeInput, 'id'>) {
+  update(
+    id: string,
+    updateEmployeeInput: Omit<UpdateEmployeeInput, 'id'>,
+    currentUser?: UserAccount,
+  ) {
     return this.prismaService.employee.update({
       where: { id },
-      data: updateEmployeeInput,
+      data: {
+        ...updateEmployeeInput,
+        updatedBy: currentUser?.employeeId,
+      },
     });
   }
 

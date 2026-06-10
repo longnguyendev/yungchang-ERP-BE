@@ -12,9 +12,6 @@ export class Employee {
   @Field(() => GraphQLISODateTime)
   updatedAt!: Date;
 
-  @Field(() => GraphQLISODateTime, { nullable: true })
-  deletedAt?: Date | null;
-
   @Field(() => String)
   firstName!: string;
 

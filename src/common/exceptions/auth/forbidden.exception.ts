@@ -4,13 +4,11 @@ import { I18N_KEYS } from '../../../constants/i18n-keys';
 import { BaseException } from '../base.exception';
 
 export class ForbiddenException extends BaseException {
-  constructor({ username }: { username: string }) {
+  constructor(params?: { username?: string }) {
     super({
       i18nKey: I18N_KEYS.ERRORS.SYSTEM.FORBIDDEN,
       statusCode: HttpStatus.FORBIDDEN,
-      params: {
-        username,
-      },
+      params,
     });
   }
 }

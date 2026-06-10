@@ -1,4 +1,5 @@
 import { AppConfig } from '@/common/config/app.config';
+import { IBaseExceptionResponse } from '@/common/exceptions/base.exception';
 import {
   ApolloServerPluginLandingPageLocalDefault,
   ApolloServerPluginLandingPageProductionDefault,
@@ -8,6 +9,7 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { GqlOptionsFactory } from '@nestjs/graphql';
 import { Response, Request } from 'express';
+import depthLimit from 'graphql-depth-limit';
 
 @Injectable()
 export class GqlConfigService implements GqlOptionsFactory {
@@ -26,6 +28,7 @@ export class GqlConfigService implements GqlOptionsFactory {
       // subscription
       installSubscriptionHandlers: true,
       playground: graphqlConfig.playgroundEnabled,
+      validationRules: [depthLimit(10)],
       plugins: [
         process.env.NODE_ENV === 'production'
           ? ApolloServerPluginLandingPageProductionDefault()
@@ -35,6 +38,21 @@ export class GqlConfigService implements GqlOptionsFactory {
         req,
         res,
       }),
+      formatError: (error) => {
+        const originalError = error.extensions?.originalError as
+          | IBaseExceptionResponse
+          | undefined;
+
+        return {
+          ...error,
+          extensions: {
+            ...error.extensions,
+            i18nKey: originalError?.i18nKey,
+            statusCode: originalError?.statusCode,
+            params: originalError?.params,
+          },
+        };
+      },
     };
   }
 }

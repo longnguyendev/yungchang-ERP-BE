@@ -1,7 +1,7 @@
 import { ONE_MINUTES } from '@/constants';
 import { CurrentUser, Public, RefreshToken, Token } from '@/decorators';
 import { JwtRefreshAuthGuard, LocalAuthGuard } from '@/guards';
-import { UseGuards } from '@nestjs/common';
+import { Logger, UseGuards } from '@nestjs/common';
 import { Args, Context, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { Throttle } from '@nestjs/throttler';
 import { type Request } from 'express';
@@ -37,8 +37,12 @@ export class AuthResolver {
   refreshToken(
     @CurrentUser() user: UserAccount,
     @RefreshToken() token: string,
+    @Context() context: Request,
   ) {
-    return this.authService.refreshToken(user, token);
+    Logger.log('user: ', user);
+    Logger.log('token: ', token);
+
+    return this.authService.refreshToken(user, token, context);
   }
 
   @Mutation(() => UserToken, { name: 'signOut' })
@@ -52,6 +56,7 @@ export class AuthResolver {
   }
 
   @Public()
+  @Throttle({ default: { limit: 3, ttl: ONE_MINUTES } })
   @Mutation(() => MessageResult, { name: 'forgotPassword' })
   async forgotPassword(@Args('email') email: string) {
     return this.authService.forgotPassword(email);

@@ -1,5 +1,5 @@
 import { CurrentUser } from '@/decorators/user.decorator';
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
 
 import { UserAccount } from '../user-account/entities/user-account.entity';
 import { CreateEmployeeInput } from './dto/create-employee.input';
@@ -19,22 +19,28 @@ export class EmployeeResolver {
     return this.employeeService.create(createEmployeeInput, currentUser);
   }
 
-  @Query(() => [Employee], { name: 'employee' })
-  findAll() {
-    return this.employeeService.findAll();
+  @Query(() => [Employee], { name: 'employees' })
+  findAll(
+    @Args('take', { type: () => Int, nullable: true, defaultValue: 50 })
+    take: number,
+    @Args('skip', { type: () => Int, nullable: true, defaultValue: 0 })
+    skip: number,
+  ) {
+    return this.employeeService.findAll({ take, skip });
   }
 
   @Query(() => Employee, { name: 'employee' })
-  findOneByCode(@Args('code', { type: () => String }) id: string) {
+  findOne(@Args('id', { type: () => String }) id: string) {
     return this.employeeService.findOne({ where: { id } });
   }
 
   @Mutation(() => Employee)
   updateEmployee(
     @Args('updateEmployeeInput') updateEmployeeInput: UpdateEmployeeInput,
+    @CurrentUser() currentUser: UserAccount,
   ) {
     const { id, ...rest } = updateEmployeeInput;
-    return this.employeeService.update(id, rest);
+    return this.employeeService.update(id, rest, currentUser);
   }
 
   @Mutation(() => Employee)
