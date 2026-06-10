@@ -1,3 +1,4 @@
+import { I18N_KEYS } from '@/constants/i18n-keys';
 import { Field, InputType } from '@nestjs/graphql';
 import { Matches, MinLength } from 'class-validator';
 
@@ -15,8 +16,7 @@ export class CreateUserAccountInput {
   @Field()
   @MinLength(8)
   @Matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/, {
-    message:
-      'Password must contain at least one uppercase letter, one lowercase letter, and one number',
+    message: I18N_KEYS.ERRORS.USER_ACCOUNT.INVALID_PASSWORD,
   })
   password!: string;
 }

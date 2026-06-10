@@ -2,6 +2,7 @@ export const I18N_KEYS = {
   ERRORS: {
     SYSTEM: {
       DEFAULT: 'errors.system.default',
+      BAD_REQUEST: 'errors.system.badRequest',
       TOO_MANY_REQUESTS: 'errors.system.tooManyRequests',
       UNAUTHORIZED: 'errors.system.unauthorized',
       NOT_FOUND: 'errors.system.notFound',
@@ -18,6 +19,7 @@ export const I18N_KEYS = {
       ALREADY_EXISTS: 'errors.userAccount.alreadyExists',
       USER_ACCOUNT_EMPLOYEE_EXISTS:
         'errors.userAccount.userAccountEmployeeExists',
+      INVALID_PASSWORD: 'errors.userAccount.invalidPassword',
     },
   },
 };

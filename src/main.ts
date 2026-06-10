@@ -6,6 +6,7 @@ import helmet from 'helmet';
 
 import { AppModule } from './app.module';
 import { AppConfig } from './common/config/app.config';
+import { BadRequestException } from './common/exceptions';
 import { AllExceptionsFilter } from './common/filters/all-exception.filter';
 
 async function bootstrap() {
@@ -16,7 +17,24 @@ async function bootstrap() {
   const mode = configService.get('server.mode', { infer: true })!;
 
   app.use(helmet());
-  app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalPipes(
+    new ValidationPipe({
+      transform: true,
+
+      whitelist: true,
+
+      exceptionFactory: (errors) => {
+        const firstError = errors[0];
+        const constraint = Object.values(firstError.constraints ?? {})[0];
+        return new BadRequestException({
+          i18nKey: constraint,
+          params: {
+            property: firstError.property,
+          },
+        });
+      },
+    }),
+  );
   app.useGlobalFilters(new AllExceptionsFilter());
   app.use(cookieParser());
   app.enableCors({
